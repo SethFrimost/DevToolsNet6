@@ -28,14 +28,8 @@ namespace DevToolsNet.Drawing
 
         public Bitmap Capture(enmScreenCaptureMode screenCaptureMode = enmScreenCaptureMode.Window)
         {
-            Rectangle bounds;
+            //Rectangle bounds;
 
-            var captureBmp = new Bitmap(1920, 1024, PixelFormat.Format32bppArgb);
-            using (var captureGraphic = Graphics.FromImage(captureBmp))
-            {
-                captureGraphic.CopyFromScreen(0, 0, 0, 0, captureBmp.Size);
-                captureBmp.Save("capture.jpg", ImageFormat.Jpeg);
-            }
 
             /*if (screenCaptureMode == enmScreenCaptureMode.Screen)
             {

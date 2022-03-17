@@ -7,19 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{06AA81F5-6D38-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net", "Net", "{AEA59BC9-D75F-49A2-AEF1-CD8A3267D653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.DB.Generator", "DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj", "{589493DD-1C42-4C52-8E98-8B2C4DD1CF7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.DB.Generator", "DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj", "{589493DD-1C42-4C52-8E98-8B2C4DD1CF7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{ABBB7B3B-79DF-4F4F-8B4D-7D16EFBC6F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Security", "DevToolsNet.Security\DevToolsNet.Security.csproj", "{F180E390-02D4-4BF8-86E0-1483D7CCA2C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Security", "DevToolsNet.Security\DevToolsNet.Security.csproj", "{F180E390-02D4-4BF8-86E0-1483D7CCA2C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.DB.SqlMultiServerRun", "DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.SqlMultiServerRun.csproj", "{D2C654F8-0837-4147-9937-FA5B5582D765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.DB.SqlMultiServerRun", "DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.SqlMultiServerRun.csproj", "{D2C654F8-0837-4147-9937-FA5B5582D765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Generics", "DevToolsNet.Generics\DevToolsNet.Generics.csproj", "{B2C61023-C3D3-4223-8419-05AEFF785213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Generics", "DevToolsNet.Generics\DevToolsNet.Generics.csproj", "{B2C61023-C3D3-4223-8419-05AEFF785213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Extensions", "DevToolsNet.Extensions\DevToolsNet.Extensions.csproj", "{B34A42F4-5584-4F47-9CF5-B7204416EF4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Extensions", "DevToolsNet.Extensions\DevToolsNet.Extensions.csproj", "{B34A42F4-5584-4F47-9CF5-B7204416EF4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Drawing", "DevToolsNet.Drawing\DevToolsNet.Drawing.csproj", "{8D21824F-105D-4BEA-9932-825991A5CFF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Drawing", "DevToolsNet.Drawing\DevToolsNet.Drawing.csproj", "{8D21824F-105D-4BEA-9932-825991A5CFF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Xml", "DevToolsNet.Xml\DevToolsNet.Xml.csproj", "{81ADFC9C-A913-4796-924A-CF4ED7540218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8D21824F-105D-4BEA-9932-825991A5CFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D21824F-105D-4BEA-9932-825991A5CFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D21824F-105D-4BEA-9932-825991A5CFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81ADFC9C-A913-4796-924A-CF4ED7540218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81ADFC9C-A913-4796-924A-CF4ED7540218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81ADFC9C-A913-4796-924A-CF4ED7540218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81ADFC9C-A913-4796-924A-CF4ED7540218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
