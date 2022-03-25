@@ -140,7 +140,7 @@ namespace DevToolsNet.Security
         private static void ImpersonateIdentity(IntPtr logonToken)
         {
             // Retrieve the Windows identity using the specified token.
-            WindowsIdentity windowsIdentity = new WindowsIdentity(logonToken);
+           /* WindowsIdentity windowsIdentity = new WindowsIdentity(logonToken);
 
             // Create a WindowsImpersonationContext object by impersonating the
             // Windows identity.
@@ -155,7 +155,7 @@ namespace DevToolsNet.Security
             // Check the identity name.
             Console.Write("Name of the identity after performing an Undo on the");
             Console.WriteLine(" impersonation: " +
-                WindowsIdentity.GetCurrent().Name);
+                WindowsIdentity.GetCurrent().Name);*/
         }
     }
 }

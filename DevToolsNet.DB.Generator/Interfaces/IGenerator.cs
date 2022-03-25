@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DevToolsNet.DB.Generator.Interfaces
 {
-    internal interface IPlantillaReader
+    public interface IGenerators
     {
+        List<ICodeGenerator> CodeGenerators { get; }
+        void LoadGenerators();
 
     }
 }

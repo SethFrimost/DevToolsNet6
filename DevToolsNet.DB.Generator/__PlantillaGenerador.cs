@@ -6,34 +6,34 @@ using System.Xml.Linq;
 
 namespace DevToolsNet.DB.Generator
 {
-  public class PlantillaGenerador
+  public class __PlantillaGenerador
   {
-    private List<PlantillaGenerador.Nodo> roots;
+    /*private List<__PlantillaGenerador.Nodo> roots;
 
-    public PlantillaGenerador(string data, bool isFile = true)
+    public __PlantillaGenerador(string data, bool isFile = true)
     {
       XDocument xdocument = !isFile ? XDocument.Parse(data) : XDocument.Load(data);
-      this.roots = new List<PlantillaGenerador.Nodo>();
-      this.agregarNodos((PlantillaGenerador.Nodo) null, xdocument.Elements());
+      this.roots = new List<__PlantillaGenerador.Nodo>();
+      this.agregarNodos((__PlantillaGenerador.Nodo) null, xdocument.Elements());
     }
 
-    private void agregarNodos(PlantillaGenerador.Nodo nodo, IEnumerable<XElement> Elements)
+    private void agregarNodos(__PlantillaGenerador.Nodo nodo, IEnumerable<XElement> Elements)
     {
       foreach (XElement element in Elements)
       {
-        PlantillaGenerador.Nodo nodo1 = new PlantillaGenerador.Nodo();
+        __PlantillaGenerador.Nodo nodo1 = new __PlantillaGenerador.Nodo();
         switch (element.Name.LocalName)
         {
           case "tabla":
-            nodo1.Tipo = PlantillaGenerador.TipoNodo.tabla;
+            nodo1.Tipo = __PlantillaGenerador.TipoNodo.tabla;
             this.agregarNodos(nodo1, element.Elements());
             break;
           case "columnas":
-            nodo1.Tipo = PlantillaGenerador.TipoNodo.columnas;
+            nodo1.Tipo = __PlantillaGenerador.TipoNodo.columnas;
             nodo1.Texto = element.Value;
             break;
           case "texto":
-            nodo1.Tipo = PlantillaGenerador.TipoNodo.texto;
+            nodo1.Tipo = __PlantillaGenerador.TipoNodo.texto;
             nodo1.Texto = element.Value;
             break;
         }
@@ -49,37 +49,37 @@ namespace DevToolsNet.DB.Generator
     public string ProcesarPlantilla(List<DataTable> tablas)
     {
       StringBuilder resultado = new StringBuilder();
-      this.roots.ForEach((Action<PlantillaGenerador.Nodo>) (n => resultado.Append(this.procesarNodo(n, tablas))));
+      this.roots.ForEach((Action<__PlantillaGenerador.Nodo>) (n => resultado.Append(this.procesarNodo(n, tablas))));
       return resultado.ToString();
     }
 
-    private string procesarNodo(PlantillaGenerador.Nodo n, List<DataTable> tablas)
+    private string procesarNodo(__PlantillaGenerador.Nodo n, List<DataTable> tablas)
     {
       StringBuilder res = new StringBuilder();
-      if (n.Tipo == PlantillaGenerador.TipoNodo.tabla)
+      if (n.Tipo == __PlantillaGenerador.TipoNodo.tabla)
         tablas.ForEach((Action<DataTable>) (t => res.Append(this.procesarNodo(n, t))));
-      else if (n.Tipo == PlantillaGenerador.TipoNodo.texto)
+      else if (n.Tipo == __PlantillaGenerador.TipoNodo.texto)
         res.Append(n.Texto);
       return res.ToString();
     }
 
-    private string procesarNodo(PlantillaGenerador.Nodo n, DataTable tabla)
+    private string procesarNodo(__PlantillaGenerador.Nodo n, DataTable tabla)
     {
       StringBuilder res = new StringBuilder();
-      bool flag1 = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.onlyIdentity.ToString().ToLower()));
-      bool flag2 = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.noIdentity.ToString().ToLower()));
+      bool flag1 = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.onlyIdentity.ToString().ToLower()));
+      bool flag2 = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.noIdentity.ToString().ToLower()));
       if (!flag1 && !flag2 || (flag1 && tabla.Columnas.Any<DataColumn>((Func<DataColumn, bool>) (c => c.is_identity)) || flag2 && !tabla.Columnas.Any<DataColumn>((Func<DataColumn, bool>) (c => c.is_identity))))
-        n.SubNodos.ForEach((Action<PlantillaGenerador.Nodo>) (sn =>
+        n.SubNodos.ForEach((Action<__PlantillaGenerador.Nodo>) (sn =>
         {
-          if (sn.Tipo == PlantillaGenerador.TipoNodo.tabla)
+          if (sn.Tipo == __PlantillaGenerador.TipoNodo.tabla)
             res.Append(this.procesarNodo(sn, tabla));
-          else if (sn.Tipo == PlantillaGenerador.TipoNodo.columnas)
+          else if (sn.Tipo == __PlantillaGenerador.TipoNodo.columnas)
           {
             res.Append(this.procesarNodo(sn, tabla.Columnas));
           }
           else
           {
-            if (sn.Tipo != PlantillaGenerador.TipoNodo.texto)
+            if (sn.Tipo != __PlantillaGenerador.TipoNodo.texto)
               return;
             res.Append(this.procesarTexto(sn.Texto, tabla));
           }
@@ -87,11 +87,11 @@ namespace DevToolsNet.DB.Generator
       return res.ToString();
     }
 
-    private string procesarNodo(PlantillaGenerador.Nodo n, List<DataColumn> columns)
+    private string procesarNodo(__PlantillaGenerador.Nodo n, List<DataColumn> columns)
     {
-      bool onlyIdentity = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.onlyIdentity.ToString().ToLower()));
-      bool noIncuriIdentity = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.noIdentity.ToString().ToLower()));
-      bool noIncluirTimeStamp = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.noTimestamp.ToString().ToLower()));
+      bool onlyIdentity = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.onlyIdentity.ToString().ToLower()));
+      bool noIncuriIdentity = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.noIdentity.ToString().ToLower()));
+      bool noIncluirTimeStamp = n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.noTimestamp.ToString().ToLower()));
       StringBuilder res = new StringBuilder();
       columns.ForEach((Action<DataColumn>) (c =>
       {
@@ -108,9 +108,9 @@ namespace DevToolsNet.DB.Generator
           res.Append(this.procesarTexto(n.Texto, c));
         }
       }));
-      if (!n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.trim.ToString().ToLower())))
+      if (!n.propiedades.Any<KeyValuePair<string, string>>((Func<KeyValuePair<string, string>, bool>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.trim.ToString().ToLower())))
         return res.ToString();
-      string str = n.propiedades.Find((Predicate<KeyValuePair<string, string>>) (x => x.Key.ToLower() == PlantillaGenerador.Atributos.trim.ToString().ToLower())).Value;
+      string str = n.propiedades.Find((Predicate<KeyValuePair<string, string>>) (x => x.Key.ToLower() == __PlantillaGenerador.Atributos.trim.ToString().ToLower())).Value;
       return res.ToString().Trim(str.ToCharArray());
     }
 
@@ -161,19 +161,19 @@ namespace DevToolsNet.DB.Generator
 
     private class Nodo
     {
-      public PlantillaGenerador.TipoNodo Tipo { get; set; }
+      public __PlantillaGenerador.TipoNodo Tipo { get; set; }
 
       public string Texto { get; set; }
 
-      public List<PlantillaGenerador.Nodo> SubNodos { get; set; }
+      public List<__PlantillaGenerador.Nodo> SubNodos { get; set; }
 
       public List<KeyValuePair<string, string>> propiedades { get; set; }
 
       public Nodo()
       {
-        this.SubNodos = new List<PlantillaGenerador.Nodo>();
+        this.SubNodos = new List<__PlantillaGenerador.Nodo>();
         this.propiedades = new List<KeyValuePair<string, string>>();
       }
-    }
+    }*/
   }
 }

@@ -1,0 +1,8 @@
+﻿<code>
+	<text>
+		{gTableSchema} {gTableName}
+		{gColName} {gColType} {gColMax}
+		{gColC#Type}
+	</text>
+	<columns opts="identity noIdentity noTimeStamp"></columns>
+</code>
