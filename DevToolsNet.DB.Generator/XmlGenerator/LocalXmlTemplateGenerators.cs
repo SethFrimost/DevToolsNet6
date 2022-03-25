@@ -17,7 +17,6 @@ namespace DevToolsNet.DB.Generator
         {
             this.configuration = Configuration;
             LoadGenerators();
-
         }
 
         public void LoadGenerators()

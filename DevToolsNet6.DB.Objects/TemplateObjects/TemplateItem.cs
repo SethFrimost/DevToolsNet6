@@ -26,7 +26,7 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
 
         public TemplateItem(XElement xmlElement)
         {
-            if (xmlElement.Name.LocalName.ToLower() == "columns") ItemType = TemplateItemType.Columns;
+            if (xmlElement.Name.LocalName.ToLower() == "columns" || xmlElement.Name.LocalName.ToLower() == "c") ItemType = TemplateItemType.Columns;
             else ItemType = TemplateItemType.Text;
 
             Identity = false;
@@ -41,7 +41,7 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
 
                 foreach (var o in opts)
                 {
-                    switch (o)
+                    switch (o.ToLower())
                     {
                         case "identity": Identity = true; break;
                         case "noidentity": NoIdentity = true; break;

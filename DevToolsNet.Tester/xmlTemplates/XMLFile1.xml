@@ -1,8 +1,28 @@
 ﻿<template name="PNE">
 	<text>
 		{gSchema} {gTable}
-		{gColName} {gColType} {gColMax}
-		{gColC#Type}
 	</text>
-	<columns opts="identity noIdentity noTimeStamp timeStamp"></columns>
+	<text>
+		/* ident */</text>
+	<columns opts="identity">	{gColName}
+	</columns>
+	<text>
+		/* noident */</text>
+	<columns opts="noidentity">	{gColName}
+	</columns>
+	<text>
+		/* timeStamp */</text>
+	<columns opts="timeStamp">	{gColName}
+	</columns>
+	<text>
+		/* noTimeStamp */
+	</text>
+	<columns opts="noTimeStamp">	{gColName}
+	</columns>
+	<text>
+		/* ALL */
+	</text>
+	<columns>	// {gColType}({gColMax}) {gColSqlType})
+		public {gColC#Type} {gColName} {get;set;}
+	</columns>
 </template>

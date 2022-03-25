@@ -70,5 +70,18 @@ namespace DevToolsNet.Extensions
 
         }
 
+
+        public static string ReplaceValues(this string txt, object data, string openTag = "{", string closeTag = "}")
+        {
+            string res = txt;
+            var props = data.GetType().GetProperties();
+            foreach (var p in props)
+            {
+                res = res.Replace(openTag + p.Name + closeTag, p.GetValue(data)?.ToString() ?? string.Empty);
+            }
+            return res;
+        }
+
+
     }
 }
