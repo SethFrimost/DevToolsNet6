@@ -57,6 +57,7 @@
             this.tsmiGenerador.Name = "tsmiGenerador";
             this.tsmiGenerador.Size = new System.Drawing.Size(180, 22);
             this.tsmiGenerador.Text = "Generador";
+            this.tsmiGenerador.Click += new System.EventHandler(this.tsmiGenerador_Click);
             // 
             // frmMain
             // 

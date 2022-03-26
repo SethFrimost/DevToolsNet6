@@ -14,13 +14,13 @@ namespace DevToolsNet.DB.Generator
 {
     public class SqlDataInfoRecover : IDataInfoRecover
     {
-        public IDbConnection connection {get;set;}
-     
-        public SqlDataInfoRecover(IDbConnection Connection)
-        {
-            connection = Connection;
-        }
+        IDbConnection connection {get;set;}
 
+
+        public void SetConnection(IDbConnection connection)
+        {
+            this.connection = connection;
+        }
 
         public List<DevToolsNet.DB.Objects.DataTable> GetTableInfo(string table)
         {
@@ -119,5 +119,7 @@ namespace DevToolsNet.DB.Generator
             return str + " order by o.name, c.column_id;";
         }
 
+
+        
     }
 }
