@@ -30,44 +30,32 @@
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbReload = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtFilter = new System.Windows.Forms.TextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.tscboConection = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tstSchema = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tstTable = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbLike = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.tscboConection = new System.Windows.Forms.ToolStripComboBox();
-            this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
             this.tsbRunAdd = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.tabResults = new System.Windows.Forms.TabControl();
-            this.tabManual = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.txtManual = new System.Windows.Forms.TextBox();
-            this.txtResManual = new System.Windows.Forms.TextBox();
-            this.tsbVerTabManual = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabResults.SuspendLayout();
-            this.tabManual.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbReload,
-            this.tsbVerTabManual,
             this.toolStripSeparator1,
             this.toolStripLabel3,
             this.tscboConection,
@@ -93,39 +81,25 @@
             this.tsbReload.Name = "tsbReload";
             this.tsbReload.Size = new System.Drawing.Size(23, 22);
             this.tsbReload.Text = "Reload";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.chkPlantillas);
-            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabResults);
-            this.splitContainer1.Size = new System.Drawing.Size(1092, 542);
-            this.splitContainer1.SplitterDistance = 231;
-            this.splitContainer1.TabIndex = 1;
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.BackColor = System.Drawing.SystemColors.Info;
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Location = new System.Drawing.Point(0, 0);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(231, 23);
-            this.txtFilter.TabIndex = 1;
+            this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(62, 22);
+            this.toolStripLabel3.Text = "Conection";
+            // 
+            // tscboConection
+            // 
+            this.tscboConection.DropDownWidth = 200;
+            this.tscboConection.Name = "tscboConection";
+            this.tscboConection.Size = new System.Drawing.Size(250, 25);
+            this.tscboConection.SelectedIndexChanged += new System.EventHandler(this.tscboConection_SelectedIndexChanged);
             // 
             // toolStripLabel1
             // 
@@ -149,11 +123,6 @@
             this.tstTable.Name = "tstTable";
             this.tstTable.Size = new System.Drawing.Size(200, 25);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // tsbLike
             // 
             this.tsbLike.CheckOnClick = true;
@@ -164,6 +133,11 @@
             this.tsbLike.Size = new System.Drawing.Size(23, 22);
             this.tsbLike.Text = "toolStripButton1";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // tsbRun
             // 
             this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -172,27 +146,7 @@
             this.tsbRun.Name = "tsbRun";
             this.tsbRun.Size = new System.Drawing.Size(23, 22);
             this.tsbRun.Text = "toolStripButton2";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(62, 22);
-            this.toolStripLabel3.Text = "Conection";
-            // 
-            // tscboConection
-            // 
-            this.tscboConection.DropDownWidth = 200;
-            this.tscboConection.Name = "tscboConection";
-            this.tscboConection.Size = new System.Drawing.Size(250, 25);
-            // 
-            // chkPlantillas
-            // 
-            this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPlantillas.FormattingEnabled = true;
-            this.chkPlantillas.Location = new System.Drawing.Point(0, 23);
-            this.chkPlantillas.Name = "chkPlantillas";
-            this.chkPlantillas.Size = new System.Drawing.Size(231, 519);
-            this.chkPlantillas.TabIndex = 2;
+            this.tsbRun.Click += new System.EventHandler(this.tsbRun_Click);
             // 
             // tsbRunAdd
             // 
@@ -202,81 +156,54 @@
             this.tsbRunAdd.Name = "tsbRunAdd";
             this.tsbRunAdd.Size = new System.Drawing.Size(23, 22);
             this.tsbRunAdd.Text = "toolStripButton1";
+            this.tsbRunAdd.Click += new System.EventHandler(this.tsbRunAdd_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.chkPlantillas);
+            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabResults);
+            this.splitContainer1.Size = new System.Drawing.Size(1092, 542);
+            this.splitContainer1.SplitterDistance = 231;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // chkPlantillas
+            // 
+            this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkPlantillas.FormattingEnabled = true;
+            this.chkPlantillas.Location = new System.Drawing.Point(0, 23);
+            this.chkPlantillas.Name = "chkPlantillas";
+            this.chkPlantillas.Size = new System.Drawing.Size(231, 519);
+            this.chkPlantillas.TabIndex = 2;
+            this.chkPlantillas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkPlantillas_ItemCheck);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.BackColor = System.Drawing.SystemColors.Info;
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFilter.Location = new System.Drawing.Point(0, 0);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(231, 23);
+            this.txtFilter.TabIndex = 1;
             // 
             // tabResults
             // 
-            this.tabResults.Controls.Add(this.tabManual);
             this.tabResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabResults.Location = new System.Drawing.Point(0, 0);
             this.tabResults.Name = "tabResults";
             this.tabResults.SelectedIndex = 0;
             this.tabResults.Size = new System.Drawing.Size(857, 542);
             this.tabResults.TabIndex = 0;
-            // 
-            // tabManual
-            // 
-            this.tabManual.Controls.Add(this.splitContainer2);
-            this.tabManual.Location = new System.Drawing.Point(4, 24);
-            this.tabManual.Name = "tabManual";
-            this.tabManual.Padding = new System.Windows.Forms.Padding(3);
-            this.tabManual.Size = new System.Drawing.Size(849, 514);
-            this.tabManual.TabIndex = 0;
-            this.tabManual.Text = "Manual";
-            this.tabManual.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.txtManual);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.txtResManual);
-            this.splitContainer2.Size = new System.Drawing.Size(843, 508);
-            this.splitContainer2.SplitterDistance = 281;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // txtManual
-            // 
-            this.txtManual.AcceptsReturn = true;
-            this.txtManual.AcceptsTab = true;
-            this.txtManual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtManual.Location = new System.Drawing.Point(0, 0);
-            this.txtManual.MaxLength = 999999999;
-            this.txtManual.Multiline = true;
-            this.txtManual.Name = "txtManual";
-            this.txtManual.Size = new System.Drawing.Size(843, 281);
-            this.txtManual.TabIndex = 0;
-            // 
-            // txtResManual
-            // 
-            this.txtResManual.AcceptsReturn = true;
-            this.txtResManual.AcceptsTab = true;
-            this.txtResManual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResManual.Location = new System.Drawing.Point(0, 0);
-            this.txtResManual.MaxLength = 999999999;
-            this.txtResManual.Multiline = true;
-            this.txtResManual.Name = "txtResManual";
-            this.txtResManual.Size = new System.Drawing.Size(843, 223);
-            this.txtResManual.TabIndex = 1;
-            // 
-            // tsbVerTabManual
-            // 
-            this.tsbVerTabManual.CheckOnClick = true;
-            this.tsbVerTabManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbVerTabManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.text_align_left;
-            this.tsbVerTabManual.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbVerTabManual.Name = "tsbVerTabManual";
-            this.tsbVerTabManual.Size = new System.Drawing.Size(23, 22);
-            this.tsbVerTabManual.Text = "toolStripButton1";
-            this.tsbVerTabManual.CheckedChanged += new System.EventHandler(this.tsbVerTabManual_CheckedChanged);
             // 
             // frmGenerador
             // 
@@ -287,6 +214,8 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmGenerador";
             this.Text = "Generador";
+            this.Load += new System.EventHandler(this.frmGenerador_Load);
+            this.Shown += new System.EventHandler(this.frmGenerador_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -294,14 +223,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabResults.ResumeLayout(false);
-            this.tabManual.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,10 +247,5 @@
         private CheckedListBox chkPlantillas;
         private ToolStripButton tsbRunAdd;
         private TabControl tabResults;
-        private TabPage tabManual;
-        private SplitContainer splitContainer2;
-        private TextBox txtManual;
-        private TextBox txtResManual;
-        private ToolStripButton tsbVerTabManual;
     }
 }

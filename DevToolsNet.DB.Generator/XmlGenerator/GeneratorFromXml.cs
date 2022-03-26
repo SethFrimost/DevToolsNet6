@@ -139,5 +139,11 @@ namespace DevToolsNet.DB.Generator
                 return string.Format("{0}({1})", columna.system_type, columna.max_length == -1 ? "MAX" : columna.max_length.ToString());
             return columna.system_type == "decimal" ? string.Format("{0}({1},{2})", columna.system_type, columna.max_length, columna.scale) : columna.system_type;
         }
+
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }
