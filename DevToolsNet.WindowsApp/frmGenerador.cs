@@ -23,6 +23,7 @@ namespace DevToolsNet.WindowsApp
         LocalXmlTemplateConfigSection settings;
         IGenerators generators;
         IDataInfoRecover dataInfoRecover;
+        List<TabPage> tabs;
 
         //SqlDataInfoRecover dataInfoRecover;
 
@@ -85,8 +86,9 @@ namespace DevToolsNet.WindowsApp
 
         private void chkPlantillas_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (e.CurrentValue == CheckState.Checked) tabResults.TabPages[e.Index + 1].Show();
-            else tabResults.TabPages[e.Index + 1].Hide();
+            //tabResults.TabPages[e.Index].Visible = (e.NewValue == CheckState.Chekced);
+            if (e.NewValue == CheckState.Checked) tabResults.TabPages.Add(tabs[e.Index]);
+            else tabResults.TabPages.Remove(tabs[e.Index]);
         }
 
 
@@ -105,14 +107,15 @@ namespace DevToolsNet.WindowsApp
         {
             try
             {
+                if (tabs == null) tabs = new List<TabPage>();
+                tabs.Clear();
                 tabResults.TabPages.Clear();                
                 chkPlantillas.Items.Clear();
                 generators.LoadGenerators();
                 foreach(var g in generators.CodeGenerators)
                 {
                     chkPlantillas.Items.Add(g);
-                    var t = generateTab(g);
-                    
+                    tabs.Add(generateTab(g));                    
                 }
             }
             catch (Exception ex)
@@ -139,7 +142,7 @@ namespace DevToolsNet.WindowsApp
             txt.MaxLength = int.MaxValue;
             txt.Dock = DockStyle.Fill;
 
-            tabResults.TabPages.Add(tab);
+            //tabResults.TabPages.Add(tab);
 
             return tab;
         }

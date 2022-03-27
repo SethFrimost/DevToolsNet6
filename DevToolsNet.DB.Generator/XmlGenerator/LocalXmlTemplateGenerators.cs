@@ -5,23 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using DevToolsNet.DB.Objects.Configs;
+using Microsoft.Extensions.Options;
 
 namespace DevToolsNet.DB.Generator
 {
     public class LocalXmlTemplateGenerators : IGenerators
     {
-        private IConfiguration configuration;
+        private IConnectionStrings configuration;
         public List<ICodeGenerator> CodeGenerators { get; private set; }
 
-        public LocalXmlTemplateGenerators(IConfiguration Configuration)
+        public LocalXmlTemplateGenerators(IOptions<IConnectionStrings> settings)
         {
-            this.configuration = Configuration;
+            this.configuration = settings.Value;
             LoadGenerators();
         }
 
         public void LoadGenerators()
         {
-            var folder = configuration["LocalXmlTemplateGenerators:XmlsFolder"];
+            var folder = configuration.XmlsFolder;
             CodeGenerators = new List<ICodeGenerator>();
             try
             {

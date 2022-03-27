@@ -160,7 +160,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
@@ -173,12 +173,15 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabResults);
+            this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.splitContainer1.Size = new System.Drawing.Size(1092, 542);
             this.splitContainer1.SplitterDistance = 231;
             this.splitContainer1.TabIndex = 1;
             // 
             // chkPlantillas
             // 
+            this.chkPlantillas.CheckOnClick = true;
+            this.chkPlantillas.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkPlantillas.FormattingEnabled = true;
             this.chkPlantillas.Location = new System.Drawing.Point(0, 23);

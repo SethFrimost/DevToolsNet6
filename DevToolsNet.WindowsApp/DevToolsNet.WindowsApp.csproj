@@ -10,10 +10,22 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="xmlTemplates\temp1.xml" />
+    <None Remove="xmlTemplates\temp2.xml" />
+    <None Remove="xmlTemplates\temp3.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="xmlTemplates\temp3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="xmlTemplates\temp2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="xmlTemplates\temp1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -28,6 +40,7 @@
 		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
+		<PackageReference Include="TROKA.Software.SimpleCodeEditor" Version="2.0.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
