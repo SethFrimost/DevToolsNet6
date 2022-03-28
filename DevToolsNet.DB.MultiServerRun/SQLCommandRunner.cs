@@ -13,15 +13,16 @@ namespace DevToolsNet.DB.Runner
 {
     public class SQLCommandRunner : ICommandRuner, IDisposable
     {
-        public ConectionString conectionString;
+        public ConnectionString connectionString;
         SqlConnection conn;
         private string outMessage = string.Empty;
 
+        public ConnectionString ConnectionString { get { return connectionString; } }
 
-        public SQLCommandRunner(ConectionString conectionString)
+        public void SetConnection(ConnectionString connectionString)
         {
-            this.conectionString = conectionString;
-            conn = new SqlConnection(conectionString.Value);
+            this.connectionString = connectionString;
+            conn = new SqlConnection(connectionString.Value);
         }
 
 
@@ -54,8 +55,8 @@ namespace DevToolsNet.DB.Runner
                 }
             }
 
-            conn.Close();
-            conn.Dispose();
+            //conn.Close();
+            //conn.Dispose();
 
             if (sbErr != null && !string.IsNullOrEmpty(sbErr.ToString()))
             {
@@ -110,8 +111,8 @@ namespace DevToolsNet.DB.Runner
                 throw ex;
             }
 
-            conn.Close();
-            conn.Dispose();
+            //conn.Close();
+            //conn.Dispose();
             message = outMessage;
             return ds;
         }
@@ -142,5 +143,7 @@ namespace DevToolsNet.DB.Runner
                 conn.Dispose();
             }
         }
+
+        
     }
 }

@@ -1,5 +1,9 @@
+using DevToolsNet.DB.Generator;
+using DevToolsNet.DB.Generator.Interfaces;
 using DevToolsNet.DB.Objects;
 using DevToolsNet.DB.Objects.Configs;
+using DevToolsNet.DB.Runner;
+using DevToolsNet.DB.Runner.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
@@ -34,22 +38,27 @@ namespace DevToolsNet.WindowsApp
 
         private static void ConfigureServices(ConfigurationManager confManager, IServiceCollection services)
         {
+            // configs
             services.AddSingleton<IConfiguration>(Configuration);
 
+            // config objects
             services
-                .Configure<LocalXmlTemplateConfigSection>(Configuration.GetSection("LocalXmlTemplateConfig"));
+                .Configure<LocalXmlTemplateConfigSection>(Configuration.GetSection("LocalXmlTemplateConfig"))
+                .Configure<ConnectionStringGroupCollection>(Configuration.GetSection("SqlRunner"));
           
+            // clases
             services
-                .AddScoped<DevToolsNet.DB.Generator.Interfaces.IGenerators, DevToolsNet.DB.Generator.LocalXmlTemplateGenerators>()
-                .AddScoped<DevToolsNet.DB.Generator.Interfaces.ICodeGenerator, DevToolsNet.DB.Generator.GeneratorFromXml>()
-                .AddScoped<DevToolsNet.DB.Generator.Interfaces.ITableDataInfoRecover, DevToolsNet.DB.Generator.SqlDataInfoRecover>()
-                .AddScoped<DevToolsNet.DB.Objects.Interfaces.IConnectionStrings, LocalXmlTemplateConfigSection>()
-                .AddScoped<IDbConnection, SqlConnection>();
-
+                .AddScoped<IGenerators, LocalXmlTemplateGenerators>()
+                .AddTransient<ICodeGenerator, GeneratorFromXml>()
+                .AddTransient<ITableDataInfoRecover, SqlDataInfoRecover>()
+                .AddTransient<ICommandRuner, SQLCommandRunner>()
+                .AddTransient<IDbConnection, SqlConnection>();
+            
+            // forms
             services
-                .AddScoped<frmMain>()
-                .AddScoped<frmGenerador>()
-                .AddScoped<frmSQLRunner>();
+                .AddTransient<frmMain>()
+                .AddTransient<frmGenerador>()
+                .AddTransient<frmSQLRunner>();
             
         }
     }

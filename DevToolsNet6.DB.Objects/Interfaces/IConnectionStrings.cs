@@ -9,6 +9,6 @@ namespace DevToolsNet.DB.Objects.Interfaces
 {
     public interface IConnectionStrings
     {
-        List<ConectionString> connectionStrings { get; set; }
+        List<ConnectionString> connectionStrings { get; set; }
     }
 }

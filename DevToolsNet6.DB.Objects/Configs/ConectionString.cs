@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevToolsNet.DB.Objects.Configs
 {
-    public class ConectionString
+    public class ConnectionString
     {
         public string Name { get; set; }
         public string Value { get; set; }

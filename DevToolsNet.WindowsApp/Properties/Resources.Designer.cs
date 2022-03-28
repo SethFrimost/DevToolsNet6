@@ -123,6 +123,16 @@ namespace DevToolsNet.WindowsApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap table_sql {
+            get {
+                object obj = ResourceManager.GetObject("table_sql", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_align_left {
             get {
                 object obj = ResourceManager.GetObject("text_align_left", resourceCulture);

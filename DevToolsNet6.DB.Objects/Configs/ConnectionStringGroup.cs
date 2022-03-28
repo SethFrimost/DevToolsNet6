@@ -10,7 +10,7 @@ namespace DevToolsNet.DB.Objects.Configs
     public class ConnectionStringGroup : IConnectionStrings
     {
         public string group { get; set; }
-        public List<ConectionString> connectionStrings { get; set; }
+        public List<ConnectionString> connectionStrings { get; set; }
 
         public List<ConnectionStringGroup> Groups { get; set; }
 

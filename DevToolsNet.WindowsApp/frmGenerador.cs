@@ -60,7 +60,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (tscboConection.SelectedIndex > 0)
                 {
-                    var cs = tscboConection.SelectedItem as ConectionString;
+                    var cs = tscboConection.SelectedItem as ConnectionString;
                     var conn = Program.ServiceProvider.GetService<IDbConnection>();
                     conn.ConnectionString = cs.Value;
                     dataInfoRecover.SetConnection(conn);

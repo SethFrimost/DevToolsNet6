@@ -6,14 +6,40 @@ using System.Threading.Tasks;
 
 namespace DevToolsNet.DB.Objects.Configs
 {
-    public class ConnectionStringCollection
+    public class ConnectionStringGroupCollection
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        public List<ConnectionStringGroup> connectionGroups { get; set; }
 
-        public override string ToString()
+
+
+        public List<ConnectionString> GetAllConnectionStrings()
         {
-            return Name;
+            if (connectionGroups != null)
+            {
+                List<ConnectionString> cs = new List<ConnectionString>();
+                connectionGroups.ForEach(x => cs.AddRange(getRecusive(x)));
+                return cs;
+            }
+            else return new List<ConnectionString>();
+        }
+
+        public List<ConnectionString> GetByName(string name)
+        {
+            return GetAllConnectionStrings().FindAll(x=>x.Name==name);
+        }
+
+        private List<ConnectionString> getRecusive(ConnectionStringGroup g)
+        {
+            if(g != null) { 
+                List<ConnectionString> cs = new List<ConnectionString>();
+                cs.AddRange(g.connectionStrings);
+                if (g.Groups != null) g.Groups.ForEach(x => cs.AddRange(getRecusive(x)));
+                return cs;
+            }
+            else 
+            {
+                return new List<ConnectionString>();
+            }
         }
     }
 }

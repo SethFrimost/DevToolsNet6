@@ -33,6 +33,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbReload = new System.Windows.Forms.ToolStripButton();
             this.tsbSelectReplace = new System.Windows.Forms.ToolStripButton();
+            this.tsbVerGrids = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbRunMeger = new System.Windows.Forms.ToolStripButton();
@@ -66,13 +67,14 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbReload,
             this.tsbSelectReplace,
+            this.tsbVerGrids,
             this.toolStripSeparator1,
             this.tsbRun,
             this.tsbRunMeger,
             this.tsbRunNonQ});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(943, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -96,6 +98,19 @@
             this.tsbSelectReplace.Size = new System.Drawing.Size(23, 22);
             this.tsbSelectReplace.Text = "Replace";
             this.tsbSelectReplace.CheckedChanged += new System.EventHandler(this.tsbSelectReplace_CheckedChanged);
+            // 
+            // tsbVerGrids
+            // 
+            this.tsbVerGrids.Checked = true;
+            this.tsbVerGrids.CheckOnClick = true;
+            this.tsbVerGrids.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsbVerGrids.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbVerGrids.Image = global::DevToolsNet.WindowsApp.Properties.Resources.table_sql;
+            this.tsbVerGrids.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbVerGrids.Name = "tsbVerGrids";
+            this.tsbVerGrids.Size = new System.Drawing.Size(23, 22);
+            this.tsbVerGrids.Text = "Ver las tablas de resultados";
+            this.tsbVerGrids.CheckedChanged += new System.EventHandler(this.tsbVerGrids_CheckedChanged);
             // 
             // toolStripSeparator1
             // 
@@ -149,8 +164,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabResults);
             this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitContainer1.Size = new System.Drawing.Size(636, 425);
-            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.Size = new System.Drawing.Size(725, 509);
+            this.splitContainer1.SplitterDistance = 291;
             this.splitContainer1.TabIndex = 2;
             // 
             // splcCode
@@ -171,8 +186,8 @@
             this.splcCode.Panel2.Controls.Add(this.txtReplace);
             this.splcCode.Panel2.Controls.Add(this.lblReplace);
             this.splcCode.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splcCode.Size = new System.Drawing.Size(636, 243);
-            this.splcCode.SplitterDistance = 105;
+            this.splcCode.Size = new System.Drawing.Size(725, 291);
+            this.splcCode.SplitterDistance = 124;
             this.splcCode.TabIndex = 2;
             // 
             // txtCode
@@ -185,7 +200,7 @@
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
             this.txtCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCode.Size = new System.Drawing.Size(636, 105);
+            this.txtCode.Size = new System.Drawing.Size(725, 124);
             this.txtCode.TabIndex = 2;
             // 
             // txtReplace
@@ -198,7 +213,7 @@
             this.txtReplace.Multiline = true;
             this.txtReplace.Name = "txtReplace";
             this.txtReplace.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtReplace.Size = new System.Drawing.Size(636, 119);
+            this.txtReplace.Size = new System.Drawing.Size(725, 148);
             this.txtReplace.TabIndex = 1;
             // 
             // lblReplace
@@ -207,7 +222,7 @@
             this.lblReplace.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblReplace.Location = new System.Drawing.Point(0, 0);
             this.lblReplace.Name = "lblReplace";
-            this.lblReplace.Size = new System.Drawing.Size(71, 15);
+            this.lblReplace.Size = new System.Drawing.Size(70, 15);
             this.lblReplace.TabIndex = 0;
             this.lblReplace.Text = "Replace text";
             // 
@@ -217,7 +232,7 @@
             this.tabResults.Location = new System.Drawing.Point(0, 0);
             this.tabResults.Name = "tabResults";
             this.tabResults.SelectedIndex = 0;
-            this.tabResults.Size = new System.Drawing.Size(636, 178);
+            this.tabResults.Size = new System.Drawing.Size(725, 214);
             this.tabResults.TabIndex = 1;
             // 
             // splitContainer2
@@ -230,12 +245,13 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.treeConnections);
+            this.splitContainer2.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 425);
-            this.splitContainer2.SplitterDistance = 160;
+            this.splitContainer2.Size = new System.Drawing.Size(943, 509);
+            this.splitContainer2.SplitterDistance = 214;
             this.splitContainer2.TabIndex = 3;
             // 
             // treeConnections
@@ -247,7 +263,7 @@
             this.treeConnections.Location = new System.Drawing.Point(0, 0);
             this.treeConnections.Name = "treeConnections";
             this.treeConnections.SelectedImageIndex = 0;
-            this.treeConnections.Size = new System.Drawing.Size(160, 425);
+            this.treeConnections.Size = new System.Drawing.Size(214, 509);
             this.treeConnections.TabIndex = 0;
             this.treeConnections.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeConnections_AfterCheck);
             // 
@@ -263,11 +279,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(943, 534);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmSQLRunner";
-            this.Text = "frmSQLEjecutor";
+            this.Text = "SQL Ejecutor";
             this.Shown += new System.EventHandler(this.frmSQLRunner_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -308,5 +324,6 @@
         private ImageList imglConn;
         private SplitContainer splcCode;
         private TextBox txtCode;
+        private ToolStripButton tsbVerGrids;
     }
 }

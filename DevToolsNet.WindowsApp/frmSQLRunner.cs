@@ -2,6 +2,7 @@
 using DevToolsNet.DB.Objects.Interfaces;
 using DevToolsNet.DB.Runner;
 using DevToolsNet.DB.Runner.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -19,25 +20,25 @@ namespace DevToolsNet.WindowsApp
 
     public partial class frmSQLRunner : Form
     {
-        ConnectionStringGroup settings;
-        ICommandRuner commandRuner;
-        Dictionary<string, SQLCommandRunner> runners;
+        ConnectionStringGroupCollection settings;
+        Dictionary<string, ICommandRuner> runners;
 
         private const string serverColumnUnion = "_Server_";
         private bool executedNoErr = false;
         private bool showReplace = false;
+        private bool showGrids = false;
 
-        public frmSQLRunner(IOptions<ConnectionStringGroup> settings, ICommandRuner commandRuner)
+        public frmSQLRunner(IOptions<ConnectionStringGroupCollection> settings)
         {
             this.settings = settings?.Value;
-            this.commandRuner = commandRuner;
+            //this.commandRuner = commandRuner;
 
             InitializeComponent();
             splcCode.Panel2Collapsed = !tsbSelectReplace.Checked;
             txtCode.MaxLength = int.MaxValue;
             txtReplace.MaxLength = int.MaxValue;
 
-            runners = new Dictionary<string, SQLCommandRunner>();
+            runners = new Dictionary<string, ICommandRuner>();
         }
 
 
@@ -50,10 +51,16 @@ namespace DevToolsNet.WindowsApp
 
         private void treeConnections_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Tag is ConectionString)
+            if (e.Node.Tag is ConnectionString)
             {
-                if (e.Node.Checked) runners.Add(e.Node.Name, new SQLCommandRunner(e.Node.Tag as ConectionString));
-                else runners.Remove(e.Node.Name);
+                if (e.Node.Checked)
+                {
+                    ICommandRuner r = Program.ServiceProvider.GetService<ICommandRuner>();
+                    r.SetConnection(e.Node.Tag as ConnectionString);
+                    runners.Add(e.Node.Name, r);
+                }
+                else 
+                    runners.Remove(e.Node.Name);
             }
 
             if (e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse)
@@ -72,6 +79,11 @@ namespace DevToolsNet.WindowsApp
         {
             splcCode.Panel2Collapsed = !tsbSelectReplace.Checked;
             showReplace = tsbSelectReplace.Checked;
+        }
+
+        private void tsbVerGrids_CheckedChanged(object sender, EventArgs e)
+        {
+            showGrids = tsbVerGrids.Checked;
         }
 
         private void tsbRun_Click(object sender, EventArgs e)
@@ -100,28 +112,25 @@ namespace DevToolsNet.WindowsApp
         {
             treeConnections.Nodes.Clear();
             treeConnections.CheckBoxes = true;
+            runners.Clear();
 
-            TreeNode nParent = null;
-            if (!string.IsNullOrEmpty(settings.group)) {
-                nParent = treeConnections.Nodes.Add(settings.group, settings.group, 0);
-            }
-
-            foreach (var g in settings.Groups) createNodes(nParent?.Nodes??treeConnections.Nodes, g);
+            foreach (var g in settings.connectionGroups) createNodes(treeConnections.Nodes, g);
         }
 
         private void createNodes(TreeNodeCollection parent, ConnectionStringGroup group)
         {
             // group node
-            TreeNode gNode = parent.Add(group.group, group.group,0);
+            TreeNode gNode = parent.Add(group.group, group.group,0,0);
 
-            foreach (var con in group.connectionStrings)
-            {
-                var n = gNode.Nodes.Add($"{group.group}_{con.Name}", con.Name,1);
-                n.Tag = con;
-
-                if (group.Groups != null && group.Groups.Any()) foreach (var g in group.Groups) createNodes(gNode.Nodes, g);
-
+            if(group.connectionStrings != null) { 
+                foreach (var con in group.connectionStrings)
+                {
+                    var n = gNode.Nodes.Add($"{group.group}_{con.Name}", con.Name,1,1);
+                    n.Tag = con;
+                }
             }
+            if (group.Groups != null && group.Groups.Any()) foreach (var g in group.Groups) createNodes(gNode.Nodes, g);
+
         }
 
 
@@ -132,7 +141,7 @@ namespace DevToolsNet.WindowsApp
             DataSet dsUnion = union ? new DataSet() : null;
             foreach(var run in runners.Values)
             {
-                tasks.Add(ejecutarSQL(run.conectionString.Name, run, nonquery, dsUnion));
+                tasks.Add(ejecutarSQL(run.ConnectionString.Name, run, nonquery, dsUnion));
             }
 
 
@@ -156,7 +165,7 @@ namespace DevToolsNet.WindowsApp
 
         /// <summary>  </summary>
         /// <param name="connName"></param>
-        private Task ejecutarSQL(string name, SQLCommandRunner run, bool nonquery, DataSet dsUnion)
+        private Task ejecutarSQL(string name, ICommandRuner run, bool nonquery, DataSet dsUnion)
         {
             DataSet ds = null;
             string strOut = string.Empty;
@@ -175,7 +184,7 @@ namespace DevToolsNet.WindowsApp
                     else
                     {
                         SetGridControl(tab, ds, strOut, false);
-                        if(showReplace) SetTextControl(tab, CreateTextReplace(ds,txtReplace.Text));
+                        
                     }
                 }
                 else
@@ -293,7 +302,7 @@ namespace DevToolsNet.WindowsApp
 
         private Control CrearGrids(DataSet ds, bool union)
         {
-            if (ds.Tables.Count == 1)
+            if (ds.Tables.Count == 1 && !showReplace)
             {
                 DataGridView g = CrearDataGridView(ds.Tables[0], union);
 
@@ -326,6 +335,26 @@ namespace DevToolsNet.WindowsApp
                         g.BringToFront();
                     }
 
+                    if(showReplace)
+                    {
+                        g.Dock = DockStyle.Top;
+                        g.Height = 200;
+                        var s = new Splitter() { Dock = DockStyle.Top, Height = 6 };
+                        p.Controls.Add(s);
+                        g.BringToFront();
+                        s.BringToFront();
+
+                        TextBox txt = new TextBox()
+                        {
+                            Dock = DockStyle.Fill,
+                            Multiline = true,
+                            MaxLength = int.MaxValue,
+                            ScrollBars = ScrollBars.Both
+                        };
+                        txt.Text = CreateTextReplace(ds, txtReplace.Text);
+                        p.Controls.Add(txt);
+                        txt.BringToFront();
+                    }
                 }
 
                 return p;
@@ -378,7 +407,7 @@ namespace DevToolsNet.WindowsApp
                 row = text;
                 foreach(DataColumn c in dt.Columns)
                 {
-                    row.Replace("{" + dt.Columns + "}", r[c].ToString());
+                    row = row.Replace("{" + c.ColumnName + "}", r[c].ToString());
                 }
                 sb.AppendLine(row);
             }
@@ -386,6 +415,7 @@ namespace DevToolsNet.WindowsApp
         }
 
         #endregion
+
 
     }
 }
