@@ -17,5 +17,12 @@ namespace DevToolsNet.WindowsApp
             f.MdiParent = this;
             f.Show();
         }
+
+        private void tsmiSqlRunner_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetService<frmSQLRunner>();
+            f.MdiParent = this;
+            f.Show();
+        }
     }
 }
