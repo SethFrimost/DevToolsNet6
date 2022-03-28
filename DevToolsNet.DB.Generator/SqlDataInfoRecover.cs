@@ -12,7 +12,7 @@ using System.Linq.Expressions;
 
 namespace DevToolsNet.DB.Generator
 {
-    public class SqlDataInfoRecover : IDataInfoRecover
+    public class SqlDataInfoRecover : ITableDataInfoRecover
     {
         IDbConnection connection {get;set;}
 

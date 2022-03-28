@@ -9,7 +9,7 @@ Console.WriteLine("Hello, World!");
 ConfigurationManager confManager = new ConfigurationManager();
 var configs = confManager.AddJsonFile("config.json").Build();
 
-LocalXmlTemplateGenerators generators = new LocalXmlTemplateGenerators(configs);
+/*LocalXmlTemplateGenerators generators = new LocalXmlTemplateGenerators(configs);
 generators.LoadGenerators();
 
 List<DataTable> datas = new List<DataTable>(); ;
@@ -25,5 +25,5 @@ datas.Add(new DataTable()
     }
 });
 generators.CodeGenerators.ForEach(g=> Console.WriteLine(g.GenerateCode(datas)));
-
+*/
 Console.WriteLine("--FIN--");

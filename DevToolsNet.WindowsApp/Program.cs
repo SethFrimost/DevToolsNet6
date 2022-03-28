@@ -42,13 +42,15 @@ namespace DevToolsNet.WindowsApp
             services
                 .AddScoped<DevToolsNet.DB.Generator.Interfaces.IGenerators, DevToolsNet.DB.Generator.LocalXmlTemplateGenerators>()
                 .AddScoped<DevToolsNet.DB.Generator.Interfaces.ICodeGenerator, DevToolsNet.DB.Generator.GeneratorFromXml>()
-                .AddScoped<DevToolsNet.DB.Generator.Interfaces.IDataInfoRecover, DevToolsNet.DB.Generator.SqlDataInfoRecover>()
+                .AddScoped<DevToolsNet.DB.Generator.Interfaces.ITableDataInfoRecover, DevToolsNet.DB.Generator.SqlDataInfoRecover>()
                 .AddScoped<DevToolsNet.DB.Objects.Interfaces.IConnectionStrings, LocalXmlTemplateConfigSection>()
                 .AddScoped<IDbConnection, SqlConnection>();
 
             services
                 .AddScoped<frmMain>()
-                .AddScoped<frmGenerador>();
+                .AddScoped<frmGenerador>()
+                .AddScoped<frmSQLRunner>();
+            
         }
     }
 }

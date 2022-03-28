@@ -28,34 +28,285 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textEditorControlEx1 = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSQLRunner));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbReload = new System.Windows.Forms.ToolStripButton();
+            this.tsbSelectReplace = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbRun = new System.Windows.Forms.ToolStripButton();
+            this.tsbRunMeger = new System.Windows.Forms.ToolStripButton();
+            this.tsbRunNonQ = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splcCode = new System.Windows.Forms.SplitContainer();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.txtReplace = new System.Windows.Forms.TextBox();
+            this.lblReplace = new System.Windows.Forms.Label();
+            this.tabResults = new System.Windows.Forms.TabControl();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.treeConnections = new System.Windows.Forms.TreeView();
+            this.imglConn = new System.Windows.Forms.ImageList(this.components);
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splcCode)).BeginInit();
+            this.splcCode.Panel1.SuspendLayout();
+            this.splcCode.Panel2.SuspendLayout();
+            this.splcCode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textEditorControlEx1
+            // toolStrip1
             // 
-            this.textEditorControlEx1.FoldingStrategy = null;
-            this.textEditorControlEx1.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textEditorControlEx1.Location = new System.Drawing.Point(76, 29);
-            this.textEditorControlEx1.Name = "textEditorControlEx1";
-            this.textEditorControlEx1.Size = new System.Drawing.Size(598, 376);
-            this.textEditorControlEx1.SyntaxHighlighting = null;
-            this.textEditorControlEx1.TabIndex = 1;
-            this.textEditorControlEx1.Text = "textEditorControlEx1";
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbReload,
+            this.tsbSelectReplace,
+            this.toolStripSeparator1,
+            this.tsbRun,
+            this.tsbRunMeger,
+            this.tsbRunNonQ});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbReload
+            // 
+            this.tsbReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbReload.Image = global::DevToolsNet.WindowsApp.Properties.Resources.refresh;
+            this.tsbReload.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReload.Name = "tsbReload";
+            this.tsbReload.Size = new System.Drawing.Size(23, 22);
+            this.tsbReload.Text = "Reload";
+            this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
+            // 
+            // tsbSelectReplace
+            // 
+            this.tsbSelectReplace.CheckOnClick = true;
+            this.tsbSelectReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSelectReplace.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
+            this.tsbSelectReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSelectReplace.Name = "tsbSelectReplace";
+            this.tsbSelectReplace.Size = new System.Drawing.Size(23, 22);
+            this.tsbSelectReplace.Text = "Replace";
+            this.tsbSelectReplace.CheckedChanged += new System.EventHandler(this.tsbSelectReplace_CheckedChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbRun
+            // 
+            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRun.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play;
+            this.tsbRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRun.Name = "tsbRun";
+            this.tsbRun.Size = new System.Drawing.Size(23, 22);
+            this.tsbRun.Text = "toolStripButton2";
+            this.tsbRun.Click += new System.EventHandler(this.tsbRun_Click);
+            // 
+            // tsbRunMeger
+            // 
+            this.tsbRunMeger.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRunMeger.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_step_forward;
+            this.tsbRunMeger.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRunMeger.Name = "tsbRunMeger";
+            this.tsbRunMeger.Size = new System.Drawing.Size(23, 22);
+            this.tsbRunMeger.Text = "Run Merge";
+            this.tsbRunMeger.Click += new System.EventHandler(this.tsbRunMeger_Click);
+            // 
+            // tsbRunNonQ
+            // 
+            this.tsbRunNonQ.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRunNonQ.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
+            this.tsbRunNonQ.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRunNonQ.Name = "tsbRunNonQ";
+            this.tsbRunNonQ.Size = new System.Drawing.Size(23, 22);
+            this.tsbRunNonQ.Text = "Run NonQuery";
+            this.tsbRunNonQ.Click += new System.EventHandler(this.tsbRunNonQ_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.splcCode);
+            this.splitContainer1.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabResults);
+            this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splitContainer1.Size = new System.Drawing.Size(636, 425);
+            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // splcCode
+            // 
+            this.splcCode.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splcCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splcCode.Location = new System.Drawing.Point(0, 0);
+            this.splcCode.Name = "splcCode";
+            this.splcCode.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splcCode.Panel1
+            // 
+            this.splcCode.Panel1.Controls.Add(this.txtCode);
+            this.splcCode.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
+            // 
+            // splcCode.Panel2
+            // 
+            this.splcCode.Panel2.Controls.Add(this.txtReplace);
+            this.splcCode.Panel2.Controls.Add(this.lblReplace);
+            this.splcCode.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splcCode.Size = new System.Drawing.Size(636, 243);
+            this.splcCode.SplitterDistance = 105;
+            this.splcCode.TabIndex = 2;
+            // 
+            // txtCode
+            // 
+            this.txtCode.AcceptsReturn = true;
+            this.txtCode.AcceptsTab = true;
+            this.txtCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCode.Location = new System.Drawing.Point(0, 0);
+            this.txtCode.MaxLength = 999999;
+            this.txtCode.Multiline = true;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtCode.Size = new System.Drawing.Size(636, 105);
+            this.txtCode.TabIndex = 2;
+            // 
+            // txtReplace
+            // 
+            this.txtReplace.AcceptsReturn = true;
+            this.txtReplace.AcceptsTab = true;
+            this.txtReplace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReplace.Location = new System.Drawing.Point(0, 15);
+            this.txtReplace.MaxLength = 999999;
+            this.txtReplace.Multiline = true;
+            this.txtReplace.Name = "txtReplace";
+            this.txtReplace.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtReplace.Size = new System.Drawing.Size(636, 119);
+            this.txtReplace.TabIndex = 1;
+            // 
+            // lblReplace
+            // 
+            this.lblReplace.AutoSize = true;
+            this.lblReplace.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblReplace.Location = new System.Drawing.Point(0, 0);
+            this.lblReplace.Name = "lblReplace";
+            this.lblReplace.Size = new System.Drawing.Size(71, 15);
+            this.lblReplace.TabIndex = 0;
+            this.lblReplace.Text = "Replace text";
+            // 
+            // tabResults
+            // 
+            this.tabResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabResults.Location = new System.Drawing.Point(0, 0);
+            this.tabResults.Name = "tabResults";
+            this.tabResults.SelectedIndex = 0;
+            this.tabResults.Size = new System.Drawing.Size(636, 178);
+            this.tabResults.TabIndex = 1;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.treeConnections);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer2.Size = new System.Drawing.Size(800, 425);
+            this.splitContainer2.SplitterDistance = 160;
+            this.splitContainer2.TabIndex = 3;
+            // 
+            // treeConnections
+            // 
+            this.treeConnections.CheckBoxes = true;
+            this.treeConnections.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeConnections.ImageIndex = 0;
+            this.treeConnections.ImageList = this.imglConn;
+            this.treeConnections.Location = new System.Drawing.Point(0, 0);
+            this.treeConnections.Name = "treeConnections";
+            this.treeConnections.SelectedImageIndex = 0;
+            this.treeConnections.Size = new System.Drawing.Size(160, 425);
+            this.treeConnections.TabIndex = 0;
+            this.treeConnections.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeConnections_AfterCheck);
+            // 
+            // imglConn
+            // 
+            this.imglConn.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imglConn.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglConn.ImageStream")));
+            this.imglConn.TransparentColor = System.Drawing.Color.Transparent;
+            this.imglConn.Images.SetKeyName(0, "folder.png");
+            this.imglConn.Images.SetKeyName(1, "server.png");
             // 
             // frmSQLRunner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textEditorControlEx1);
+            this.Controls.Add(this.splitContainer2);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "frmSQLRunner";
             this.Text = "frmSQLEjecutor";
-            this.Load += new System.EventHandler(this.frmSQLRunner_Load);
+            this.Shown += new System.EventHandler(this.frmSQLRunner_Shown);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splcCode.Panel1.ResumeLayout(false);
+            this.splcCode.Panel1.PerformLayout();
+            this.splcCode.Panel2.ResumeLayout(false);
+            this.splcCode.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splcCode)).EndInit();
+            this.splcCode.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private ICSharpCode.TextEditor.TextEditorControlEx textEditorControlEx1;
+
+        private ToolStrip toolStrip1;
+        private ToolStripButton tsbReload;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton tsbRun;
+        private ToolStripButton tsbRunMeger;
+        private ToolStripButton tsbRunNonQ;
+        private ToolStripButton tsbSelectReplace;
+        private SplitContainer splitContainer1;
+        private Label lblReplace;
+        private TextBox txtReplace;
+        private SplitContainer splitContainer2;
+        private TabControl tabResults;
+        private TreeView treeConnections;
+        private ImageList imglConn;
+        private SplitContainer splcCode;
+        private TextBox txtCode;
     }
 }

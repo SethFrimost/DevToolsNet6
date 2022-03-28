@@ -22,12 +22,12 @@ namespace DevToolsNet.WindowsApp
     {
         LocalXmlTemplateConfigSection settings;
         IGenerators generators;
-        IDataInfoRecover dataInfoRecover;
+        ITableDataInfoRecover dataInfoRecover;
         List<TabPage> tabs;
 
         //SqlDataInfoRecover dataInfoRecover;
 
-        public frmGenerador(IOptions<LocalXmlTemplateConfigSection> settings, IGenerators Generators, IDataInfoRecover DataInfoRecover)
+        public frmGenerador(IOptions<LocalXmlTemplateConfigSection> settings, IGenerators Generators, ITableDataInfoRecover DataInfoRecover)
         {
             this.settings = settings.Value;
             generators = Generators;

@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{AB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Security", "DevToolsNet.Security\DevToolsNet.Security.csproj", "{F180E390-02D4-4BF8-86E0-1483D7CCA2C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.DB.SqlMultiServerRun", "DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.SqlMultiServerRun.csproj", "{D2C654F8-0837-4147-9937-FA5B5582D765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.DB.Runner", "DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.Runner.csproj", "{D2C654F8-0837-4147-9937-FA5B5582D765}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Generics", "DevToolsNet.Generics\DevToolsNet.Generics.csproj", "{B2C61023-C3D3-4223-8419-05AEFF785213}"
 EndProject
@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.DB.Objects", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.zzzTester", "DevToolsNet.Tester\DevToolsNet.zzzTester.csproj", "{E2C82E9D-447B-4B7B-988F-DC44DDE5E764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.WindowsApp", "DevToolsNet.WindowsApp\DevToolsNet.WindowsApp.csproj", "{5AA788E8-47E9-478A-B850-6E60E994A699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.WindowsApp", "DevToolsNet.WindowsApp\DevToolsNet.WindowsApp.csproj", "{5AA788E8-47E9-478A-B850-6E60E994A699}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{B70C7224-EFDD-4E22-A907-8C829388A5AD}"
 EndProject

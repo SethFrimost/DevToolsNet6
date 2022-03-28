@@ -40,12 +40,11 @@
 		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
-		<PackageReference Include="TROKA.Software.SimpleCodeEditor" Version="2.0.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
     <ProjectReference Include="..\DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj" />
-    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.SqlMultiServerRun.csproj" />
+    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.Runner.csproj" />
     <ProjectReference Include="..\DevToolsNet.Drawing\DevToolsNet.Drawing.csproj" />
     <ProjectReference Include="..\DevToolsNet.Extensions\DevToolsNet.Extensions.csproj" />
     <ProjectReference Include="..\DevToolsNet.Generics\DevToolsNet.Generics.csproj" />

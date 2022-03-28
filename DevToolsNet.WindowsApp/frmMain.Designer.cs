@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmSQL = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGenerador = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSqlRunner = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,8 @@
             // tsmSQL
             // 
             this.tsmSQL.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiGenerador});
+            this.tsmiGenerador,
+            this.tsmiSqlRunner});
             this.tsmSQL.Name = "tsmSQL";
             this.tsmSQL.Size = new System.Drawing.Size(35, 20);
             this.tsmSQL.Text = "Sql";
@@ -58,6 +60,13 @@
             this.tsmiGenerador.Size = new System.Drawing.Size(180, 22);
             this.tsmiGenerador.Text = "Generador";
             this.tsmiGenerador.Click += new System.EventHandler(this.tsmiGenerador_Click);
+            // 
+            // tsmiSqlRunner
+            // 
+            this.tsmiSqlRunner.Name = "tsmiSqlRunner";
+            this.tsmiSqlRunner.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSqlRunner.Text = "SQL Runner";
+            this.tsmiSqlRunner.Click += new System.EventHandler(this.tsmiSqlRunner_Click);
             // 
             // frmMain
             // 
@@ -81,5 +90,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem tsmSQL;
         private ToolStripMenuItem tsmiGenerador;
+        private ToolStripMenuItem tsmiSqlRunner;
     }
 }

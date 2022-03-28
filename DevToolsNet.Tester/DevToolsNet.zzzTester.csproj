@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj" />
-    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.SqlMultiServerRun.csproj" />
+    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.Runner.csproj" />
     <ProjectReference Include="..\DevToolsNet.Drawing\DevToolsNet.Drawing.csproj" />
     <ProjectReference Include="..\DevToolsNet.Extensions\DevToolsNet.Extensions.csproj" />
     <ProjectReference Include="..\DevToolsNet.Generics\DevToolsNet.Generics.csproj" />

@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DevToolsNet.DB.Objects.Configs;
 using Microsoft.Extensions.Options;
+using DevToolsNet.DB.Objects.Interfaces;
 
 namespace DevToolsNet.DB.Generator
 {
     public class LocalXmlTemplateGenerators : IGenerators
     {
-        private IConnectionStrings configuration;
+        private LocalXmlTemplateConfigSection configuration;
         public List<ICodeGenerator> CodeGenerators { get; private set; }
 
-        public LocalXmlTemplateGenerators(IOptions<IConnectionStrings> settings)
+        public LocalXmlTemplateGenerators(IOptions<LocalXmlTemplateConfigSection> settings)
         {
             this.configuration = settings.Value;
             LoadGenerators();

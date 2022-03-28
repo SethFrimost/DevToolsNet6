@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevToolsNet.DB.Generator.Interfaces
 {
-    public interface IDataInfoRecover
+    public interface ITableDataInfoRecover
     {
         void SetConnection(IDbConnection connection);
 
