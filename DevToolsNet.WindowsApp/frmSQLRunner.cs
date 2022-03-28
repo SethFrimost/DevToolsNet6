@@ -43,6 +43,7 @@ namespace DevToolsNet.WindowsApp
 
 
         #region Events
+
         private void frmSQLRunner_Shown(object sender, EventArgs e)
         {
             loadConnections();
@@ -63,10 +64,10 @@ namespace DevToolsNet.WindowsApp
                     runners.Remove(e.Node.Name);
             }
 
-            if (e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse)
-            {
+            //if (e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse)
+            //{
                 foreach (TreeNode n in e.Node.Nodes) { n.Checked = e.Node.Checked; }
-            }
+            //}
         }
 
 
