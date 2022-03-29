@@ -14,7 +14,7 @@ namespace DevToolsNet.DB.Generator
 {
     public class SqlDataInfoRecover : ITableDataInfoRecover
     {
-        IDbConnection connection {get;set;}
+        public IDbConnection connection {get;set;}
 
 
         public void SetConnection(IDbConnection connection)
@@ -60,6 +60,7 @@ namespace DevToolsNet.DB.Generator
                 {
                     source.Add(new PlainDataTable()
                     {
+                        DataBase = connection.Database,
                         Schema = sqlDataReader[0].ToString(),
                         Tabla = sqlDataReader[1].ToString(),
                         Columna = sqlDataReader[2].ToString(),
@@ -73,9 +74,10 @@ namespace DevToolsNet.DB.Generator
                     });
                 }
                 con.Close();
-                return source.GroupBy(t => new { schema = t.Schema, table = t.Tabla })
+                return source.GroupBy(t => new { db=t.DataBase, schema = t.Schema, table = t.Tabla })
                     .Select(d => new DevToolsNet.DB.Objects.DataTable()
                     {
+                        DataBase= d.Key.db,
                         Tabla = d.Key.table,
                         Schema = d.Key.schema,
                         Columnas = d.Select(c => new DevToolsNet.DB.Objects.DataColumn()

@@ -1,28 +1,30 @@
-﻿<template name="PNE">
-	<text>
-		{gSchema} {gTable}
-	</text>
-	<text>
-		/* ident */</text>
-	<columns opts="identity">	{gColName}
-	</columns>
-	<text>
-		/* noident */</text>
-	<columns opts="noidentity">	{gColName}
-	</columns>
-	<text>
-		/* timeStamp */</text>
-	<columns opts="timeStamp">	{gColName}
-	</columns>
-	<text>
-		/* noTimeStamp */
-	</text>
-	<columns opts="noTimeStamp">	{gColName}
-	</columns>
-	<text>
-		/* ALL */
-	</text>
-	<columns>	// {gColType}({gColMax}) {gColSqlType})
-		public {gColC#Type} {gColName} {get;set;}
-	</columns>
+﻿<template name="Merge table">
+  <t>
+    set IDENTITY_INSERT {gSchema}.{gTable} on
+
+    merge {gSchema}.{gTable} as target
+    using [SICER_CTR].{gDB}.{gSchema}.{gTable} as source on
+  </t>
+  <c opts="identity">target.[{gColName}] = source.[{gColName}]</c>
+  <t>
+    when matched then
+    update set
+  </t>
+  <c opts="noidentity noTimeStamp">{gColName} = source.{gColName}, </c>
+  <t>
+    when not matched by target then
+    insert (
+  </t>
+  <c opts="noTimestamp">{gColName}, </c>
+  <t>
+    ) values (
+  </t>
+  <c opts="noTimestamp">source.{gColName}, </c>
+  <t>
+    )
+    -- when not matched by source then delete
+    ;
+
+    set IDENTITY_INSERT {gSchema}.{gTable} off
+  </t>
 </template>

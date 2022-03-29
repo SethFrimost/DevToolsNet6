@@ -185,7 +185,6 @@ namespace DevToolsNet.WindowsApp
                     else
                     {
                         SetGridControl(tab, ds, strOut, false);
-                        
                     }
                 }
                 else

@@ -22,7 +22,8 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
         public bool NoIdentity { get; private set; }
         public bool TimeStamp { get; private set; }
         public bool NoTimeStamp { get; private set; }
-
+        
+        public string TrimText { get; private set; }
 
         public TemplateItem(XElement xmlElement)
         {
@@ -50,7 +51,12 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
                     }
                 }
             }
-            Text= xmlElement.Value ?? String.Empty;
+
+            var trim = xmlElement.Attributes("trim").FirstOrDefault();
+            if (trim != null) TrimText = trim.Value;
+            else TrimText = string.Empty;
+
+            Text = xmlElement.Value ?? String.Empty;
         }
     }
 }

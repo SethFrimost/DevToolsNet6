@@ -2,6 +2,8 @@
 {
   public class PlainDataTable
   {
+    public string DataBase { get; set; }
+
     public string Schema { get; set; }
 
     public string Tabla { get; set; }
