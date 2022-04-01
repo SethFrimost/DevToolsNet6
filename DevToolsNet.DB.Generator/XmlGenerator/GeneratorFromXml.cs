@@ -63,8 +63,10 @@ namespace DevToolsNet.DB.Generator
                                                         (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
                                                         (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
                                                     );
-                            cols.ForEach(c => code += TextItem(t, c, itm.Text).TrimEnd(itm.TrimText.ToCharArray()));
+                            cols.ForEach(c => code += TextItem(t, c, itm.Text));
+                            code.TrimEnd(itm.TrimText.ToCharArray());
                         }
+
                     }
                 }
                 
