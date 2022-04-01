@@ -58,7 +58,7 @@ namespace DevToolsNet.WindowsApp
         {
             try
             {
-                if (tscboConection.SelectedIndex > 0)
+                if (tscboConection.SelectedIndex >= 0)
                 {
                     var cs = tscboConection.SelectedItem as ConnectionString;
                     var conn = Program.ServiceProvider.GetService<IDbConnection>();
@@ -139,9 +139,11 @@ namespace DevToolsNet.WindowsApp
             txt.AcceptsReturn = true;
             txt.AcceptsTab = true;
             txt.Multiline = true;
+            txt.ScrollBars = ScrollBars.Both;
+            txt.WordWrap = false;
             txt.MaxLength = int.MaxValue;
             txt.Dock = DockStyle.Fill;
-
+            
             //tabResults.TabPages.Add(tab);
 
             return tab;
@@ -166,6 +168,7 @@ namespace DevToolsNet.WindowsApp
                     {
                         var g = tabResults.TabPages[i].Tag as ICodeGenerator;
                         var code = g.GenerateCode(tables);
+                        code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
                         if (append) ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
                         else ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
                     }

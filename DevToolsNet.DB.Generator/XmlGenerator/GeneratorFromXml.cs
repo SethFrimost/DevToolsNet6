@@ -13,6 +13,7 @@ namespace DevToolsNet.DB.Generator
 {
     public class GeneratorFromXml : ICodeGenerator
     {
+        private const string tagDatabase = "{gDB}";
         private const string tagSchema = "{gSchema}";
         private const string tagTable = "{gTable}";
         private const string tagColName = "{gColName}";
@@ -55,14 +56,14 @@ namespace DevToolsNet.DB.Generator
                 {
                     foreach (var itm in items)
                     {
-                        if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text);
+                        if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text).TrimEnd(itm.TrimText.ToCharArray());
                         else
                         {
                             var cols = t.Columnas.FindAll(x => (!itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) || 
                                                         (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
                                                         (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
                                                     );
-                            cols.ForEach(c => code += TextItem(t, c, itm.Text));
+                            cols.ForEach(c => code += TextItem(t, c, itm.Text).TrimEnd(itm.TrimText.ToCharArray()));
                         }
                     }
                 }
@@ -78,6 +79,7 @@ namespace DevToolsNet.DB.Generator
         private string TextItem(DataTable t, string text)
         {
             return text
+                .Replace(tagDatabase, t.DataBase)
                 .Replace(tagSchema, t.Schema)
                 .Replace(tagTable, t.Tabla);
         }
