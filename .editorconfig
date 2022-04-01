@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS8603: Posible tipo de valor devuelto de referencia nulo
+dotnet_diagnostic.CS8603.severity = none
