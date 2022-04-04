@@ -55,7 +55,7 @@ namespace DevToolsNet.AppConfig.SQL
         {
             return "select Id, App, PC, Name, Value, From, To " +
                 "from dbo.AppConfig " +
-                "where App=@app and pc=@pc and @date between From and To";
+                "where App=@app and (pc is null or pc=@pc) and @date between From and To";
         }
 
     }
