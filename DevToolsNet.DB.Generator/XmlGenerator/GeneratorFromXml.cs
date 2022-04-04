@@ -22,6 +22,8 @@ namespace DevToolsNet.DB.Generator
         private const string tagColCType = "{gColC#Type}";
         private const string tagColSqlType = "{gColSqlType}";
 
+        private const string tagIndexName = "{gIndxName}";
+
         public string Name { get; private set; }
 
         List<TemplateItem> items = null;

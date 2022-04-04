@@ -114,8 +114,9 @@ namespace DevToolsNet.WindowsApp
             treeConnections.Nodes.Clear();
             treeConnections.CheckBoxes = true;
             runners.Clear();
-
-            foreach (var g in settings.connectionGroups) createNodes(treeConnections.Nodes, g);
+            if(settings?.connectionGroups != null) { 
+                foreach (var g in settings.connectionGroups) createNodes(treeConnections.Nodes, g);
+            }
         }
 
         private void createNodes(TreeNodeCollection parent, ConnectionStringGroup group)

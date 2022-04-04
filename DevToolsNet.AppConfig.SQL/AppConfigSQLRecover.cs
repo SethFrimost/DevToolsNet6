@@ -18,7 +18,7 @@ namespace DevToolsNet.AppConfig.SQL
             var res = new List<AppConfig>();
             
             SqlCommand cmd = new SqlCommand(getCommandString(), conn);
-            cmd.Parameters.Add("@app",SqlDbType.UniqueIdentifier).Value = app;
+            cmd.Parameters.Add("@app",SqlDbType.VarChar).Value = app;
             cmd.Parameters.Add("@pc", SqlDbType.VarChar).Value = pc;
             cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
 
@@ -35,11 +35,14 @@ namespace DevToolsNet.AppConfig.SQL
                 foreach (DataRow r in ds.Tables[0].Rows)
                 {
                     var newO = new AppConfig();
-                    foreach (DataColumn c in ds.Tables[0].Columns)
-                    {
-                        var p = tipoRes.GetProperty(c.ColumnName);
-                        if (p != null) p.SetValue(newO, r[c], null);
-                    }
+                    newO.Id = (Guid)r["Id"];
+                    newO.App = r["App"].ToString();
+                    newO.PC = r["Pc"]?.ToString();
+                    newO.Name = r["Name"].ToString();
+                    newO.Value = r["Value"].ToString();
+                    newO.From = (DateTime)r["From"];
+                    newO.To = (DateTime)r["To"];
+                    
                     res.Add(newO);
                 }
             }
@@ -53,9 +56,9 @@ namespace DevToolsNet.AppConfig.SQL
 
         private string getCommandString()
         {
-            return "select Id, App, PC, Name, Value, From, To " +
+            return "select [Id], [App], [PC], [Name], [Value], [From], [To] " +
                 "from dbo.AppConfig " +
-                "where App=@app and (pc is null or pc=@pc) and @date between From and To";
+                "where App=@app and (pc is null or pc=@pc) and @date between [From] and [To]";
         }
 
     }
