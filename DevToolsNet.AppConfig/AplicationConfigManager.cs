@@ -11,7 +11,7 @@ namespace DevToolsNet.AppConfig
         public List<AppConfig> AppConfigs { get; private set; } 
         private IConfigRecover configRecover;
         private ISerializer confSerializer;
-         
+
 
         public AplicationConfigManager(IConfigRecover configRecover, ISerializer confSerializer)
         {
@@ -19,9 +19,9 @@ namespace DevToolsNet.AppConfig
         }
 
 
-        public List<AppConfig> LoadConfigs(string app, string pc, DateTime date)
+        public List<AppConfig> LoadConfigs(string app, string? group, string? pc, DateTime date)
         {
-            AppConfigs = configRecover.RecoverConfigs(app, pc, date);
+            AppConfigs = configRecover.RecoverConfigs(app, group, pc, date);
             return AppConfigs;
         }
 
@@ -41,6 +41,5 @@ namespace DevToolsNet.AppConfig
         {
             return AppConfigs?.Find(x => x.Name == name)?.Value;
         }
-
     }
 }

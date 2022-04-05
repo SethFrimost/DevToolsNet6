@@ -34,7 +34,7 @@ namespace DevToolsNet.WindowsApp
                 AppConfigSQLRecover confRecover = new AppConfigSQLRecover();
                 confRecover.SetConnectionString(appConn);
                 AplicationConfigManager appConfMan = new AplicationConfigManager(confRecover, new DevToolsNet.Json.JsonSerializer());
-                appConfMan.LoadConfigs(Application.ProductName, Environment.MachineName, DateTime.Now);
+                appConfMan.LoadConfigs(Application.ProductName, null, Environment.MachineName, DateTime.Now);
                 var s = appConfMan.GetConfigValue("SqlRunner");
                 if(s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
                 s = appConfMan.GetConfigValue("LocalXmlTemplateConfig");
