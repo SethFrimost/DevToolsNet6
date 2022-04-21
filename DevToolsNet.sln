@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Shared", "DevTo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.AppConfig.SQL", "DevToolsNet.AppConfig.SQL\DevToolsNet.AppConfig.SQL.csproj", "{3ED67C2E-BDA7-4394-B1E7-462AD6D2851D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Json", "DevToolsNet.Json\DevToolsNet.Json.csproj", "{0AA80A65-F152-4D08-9993-E1CCBD71CC4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Json", "DevToolsNet.Json\DevToolsNet.Json.csproj", "{0AA80A65-F152-4D08-9993-E1CCBD71CC4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppConfig", "AppConfig", "{525DFD46-5565-48A2-BB54-8A2168FA3E3F}"
 EndProject

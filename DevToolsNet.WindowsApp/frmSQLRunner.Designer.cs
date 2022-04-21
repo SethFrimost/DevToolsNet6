@@ -229,6 +229,7 @@
             // tabResults
             // 
             this.tabResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabResults.ImageList = this.imglConn;
             this.tabResults.Location = new System.Drawing.Point(0, 0);
             this.tabResults.Name = "tabResults";
             this.tabResults.SelectedIndex = 0;
@@ -274,6 +275,8 @@
             this.imglConn.TransparentColor = System.Drawing.Color.Transparent;
             this.imglConn.Images.SetKeyName(0, "folder.png");
             this.imglConn.Images.SetKeyName(1, "server.png");
+            this.imglConn.Images.SetKeyName(2, "media_play_green.png");
+            this.imglConn.Images.SetKeyName(3, "error.png");
             // 
             // frmSQLRunner
             // 

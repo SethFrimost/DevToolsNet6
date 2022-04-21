@@ -18,7 +18,7 @@ namespace DevToolsNet.DB.Generator
 
         public LocalXmlTemplateGenerators(IOptions<LocalXmlTemplateConfigSection> settings)
         {
-            this.configuration = settings.Value;
+            this.configuration = settings?.Value??new LocalXmlTemplateConfigSection();
             LoadGenerators();
         }
 

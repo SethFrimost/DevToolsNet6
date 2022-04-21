@@ -97,12 +97,16 @@ namespace DevToolsNet.DB.Runner
             var ds = new DataSet();
             conn.InfoMessage += conn_InfoMessage;
             if (conn.State != ConnectionState.Open) conn.Open();
-
             try
             {
-                using (SqlDataAdapter da = new SqlDataAdapter(comando, conn))
+                using (SqlCommand comand = new SqlCommand(comando, conn))
                 {
-                    da.Fill(ds);
+                    comand.CommandTimeout = 0;
+                    using (SqlDataAdapter da = new SqlDataAdapter(comando, conn))
+                    {
+                        da.SelectCommand.CommandTimeout = 0;
+                        da.Fill(ds);
+                    }
                 }
             }
             catch (Exception ex)

@@ -31,14 +31,21 @@ namespace DevToolsNet.WindowsApp
             var appConn = Configuration.GetConnectionString("AppConfig");
             if (!string.IsNullOrEmpty(appConn))
             {
-                AppConfigSQLRecover confRecover = new AppConfigSQLRecover();
-                confRecover.SetConnectionString(appConn);
-                AplicationConfigManager appConfMan = new AplicationConfigManager(confRecover, new DevToolsNet.Json.JsonSerializer());
-                appConfMan.LoadConfigs(Application.ProductName, null, Environment.MachineName, DateTime.Now);
-                var s = appConfMan.GetConfigValue("SqlRunner");
-                if(s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
-                s = appConfMan.GetConfigValue("LocalXmlTemplateConfig");
-                if (s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
+                try
+                {
+                    AppConfigSQLRecover confRecover = new AppConfigSQLRecover();
+                    confRecover.SetConnectionString(appConn);
+                    AplicationConfigManager appConfMan = new AplicationConfigManager(confRecover, new DevToolsNet.Json.JsonSerializer());
+                    appConfMan.LoadConfigs(Application.ProductName, null, Environment.MachineName, DateTime.Now);
+                    var s = appConfMan.GetConfigValue("SqlRunner");
+                    if (s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
+                    s = appConfMan.GetConfigValue("LocalXmlTemplateConfig");
+                    if (s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
+                }
+                catch(Exception ex)
+                {
+                    // log config
+                }
             }
 
             Configuration = confBuilder.Build();

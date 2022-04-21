@@ -140,8 +140,14 @@ namespace DevToolsNet.WindowsApp
         {
             tabResults.TabPages.Clear();
             List<Task> tasks = new List<Task>();
-            DataSet dsUnion = union ? new DataSet() : null;
-            foreach(var run in runners.Values)
+            DataSet dsUnion = null;
+            if (union)
+            {
+                dsUnion = new DataSet();
+                var tab = GetTabPage("Result");
+                tab.ImageIndex = 2;
+            }
+            foreach (var run in runners.Values)
             {
                 tasks.Add(ejecutarSQL(run.ConnectionString.Name, run, nonquery, dsUnion));
             }
@@ -156,6 +162,8 @@ namespace DevToolsNet.WindowsApp
                 if (dsUnion != null)
                 {
                     var tab = GetTabPage("Result");
+                    tab.ImageIndex = -1;
+
                     SetGridControl(tab, dsUnion, null, true);
                     if (showReplace) SetTextControl(tab, CreateTextReplace(dsUnion, txtReplace.Text));
                 }
@@ -171,6 +179,8 @@ namespace DevToolsNet.WindowsApp
         {
             DataSet ds = null;
             string strOut = string.Empty;
+            var tab = GetTabPage(name);
+            tab.ImageIndex = 2;
 
             Task tSql = Task.Factory.StartNew(() =>
             {
@@ -180,13 +190,14 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion == null)
                 {
-                    var tab = GetTabPage(name);
-                    if (t.Exception != null) SetTextControl(tab, t.Exception.ToString());
-                    else if (nonquery) SetTextControl(tab, strOut);
-                    else
+                    tab.ImageIndex = -1;
+                    if (t.Exception != null)
                     {
-                        SetGridControl(tab, ds, strOut, false);
+                        tab.ImageIndex = 3;
+                        SetTextControl(tab, t.Exception.ToString());
                     }
+                    else if (nonquery) SetTextControl(tab, strOut);
+                    else SetGridControl(tab, ds, strOut, false);
                 }
                 else
                 {
