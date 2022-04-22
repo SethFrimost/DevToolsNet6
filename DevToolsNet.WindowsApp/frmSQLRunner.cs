@@ -141,11 +141,12 @@ namespace DevToolsNet.WindowsApp
             tabResults.TabPages.Clear();
             List<Task> tasks = new List<Task>();
             DataSet dsUnion = null;
+            TabPage tabUnion = null;
             if (union)
             {
                 dsUnion = new DataSet();
-                var tab = GetTabPage("Result");
-                tab.ImageIndex = 2;
+                tabUnion = GetTabPage("Result");
+                tabUnion.ImageIndex = 2;
             }
             foreach (var run in runners.Values)
             {
@@ -161,11 +162,11 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion != null)
                 {
-                    var tab = GetTabPage("Result");
-                    tab.ImageIndex = -1;
+                    if(tabUnion == null) tabUnion = GetTabPage("Result");
+                    tabUnion.ImageIndex = -1;
 
-                    SetGridControl(tab, dsUnion, null, true);
-                    if (showReplace) SetTextControl(tab, CreateTextReplace(dsUnion, txtReplace.Text));
+                    SetGridControl(tabUnion, dsUnion, null, true);
+                    if (showReplace) SetTextControl(tabUnion, CreateTextReplace(dsUnion, txtReplace.Text));
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
@@ -179,9 +180,11 @@ namespace DevToolsNet.WindowsApp
         {
             DataSet ds = null;
             string strOut = string.Empty;
-            var tab = GetTabPage(name);
-            tab.ImageIndex = 2;
-
+            TabPage tab = null;
+            if (dsUnion == null) { 
+                tab = GetTabPage(name);
+                tab.ImageIndex = 2;
+            }
             Task tSql = Task.Factory.StartNew(() =>
             {
                 if (nonquery) strOut = run.RunNonQuery(txtCode.Text);
@@ -190,6 +193,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion == null)
                 {
+                    if(tab==null) tab = GetTabPage(name);
                     tab.ImageIndex = -1;
                     if (t.Exception != null)
                     {

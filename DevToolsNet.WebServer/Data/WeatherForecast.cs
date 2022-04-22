@@ -1,4 +1,4 @@
-namespace DevToolsNet6.WebApp.Data
+namespace DevToolsNet.WebServer.Data
 {
     public class WeatherForecast
     {

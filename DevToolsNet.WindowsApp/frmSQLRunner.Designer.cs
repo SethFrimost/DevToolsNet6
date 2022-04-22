@@ -44,9 +44,9 @@
             this.txtReplace = new System.Windows.Forms.TextBox();
             this.lblReplace = new System.Windows.Forms.Label();
             this.tabResults = new System.Windows.Forms.TabControl();
+            this.imglConn = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.treeConnections = new System.Windows.Forms.TreeView();
-            this.imglConn = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -236,6 +236,16 @@
             this.tabResults.Size = new System.Drawing.Size(725, 214);
             this.tabResults.TabIndex = 1;
             // 
+            // imglConn
+            // 
+            this.imglConn.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imglConn.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglConn.ImageStream")));
+            this.imglConn.TransparentColor = System.Drawing.Color.Transparent;
+            this.imglConn.Images.SetKeyName(0, "folder.png");
+            this.imglConn.Images.SetKeyName(1, "server.png");
+            this.imglConn.Images.SetKeyName(2, "media_play_green.png");
+            this.imglConn.Images.SetKeyName(3, "error.png");
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Cursor = System.Windows.Forms.Cursors.VSplit;
@@ -267,16 +277,6 @@
             this.treeConnections.Size = new System.Drawing.Size(214, 509);
             this.treeConnections.TabIndex = 0;
             this.treeConnections.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeConnections_AfterCheck);
-            // 
-            // imglConn
-            // 
-            this.imglConn.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imglConn.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglConn.ImageStream")));
-            this.imglConn.TransparentColor = System.Drawing.Color.Transparent;
-            this.imglConn.Images.SetKeyName(0, "folder.png");
-            this.imglConn.Images.SetKeyName(1, "server.png");
-            this.imglConn.Images.SetKeyName(2, "media_play_green.png");
-            this.imglConn.Images.SetKeyName(3, "error.png");
             // 
             // frmSQLRunner
             // 

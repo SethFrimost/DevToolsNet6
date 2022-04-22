@@ -107,7 +107,7 @@ namespace DevToolsNet.DB.Generator
             if (useLike)
             {
                 if (!string.IsNullOrWhiteSpace(schema))
-                    str += string.Format(" AND o.name like '{0}'", (object)schema.Trim());
+                    str += string.Format(" AND s.name like '{0}'", (object)schema.Trim());
                 if (!string.IsNullOrWhiteSpace(tabla))
                     str += string.Format(" AND o.name like '{0}'", (object)tabla.Trim());
             }

@@ -1,4 +1,4 @@
-using DevToolsNet6.WebApp.Data;
+using DevToolsNet.WebServer.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
