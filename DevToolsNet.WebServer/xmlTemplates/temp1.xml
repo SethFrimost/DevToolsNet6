@@ -1,0 +1,30 @@
+﻿<template name="Merge table">
+  <t>
+    set IDENTITY_INSERT {gSchema}.{gTable} on
+
+    merge {gSchema}.{gTable} as target
+    using [SICER_CTR].{gDB}.{gSchema}.{gTable} as source on
+  </t>
+  <c opts="identity">target.[{gColName}] = source.[{gColName}]</c>
+  <t>
+    when matched then
+    update set
+  </t>
+  <c opts="noidentity noTimeStamp">{gColName} = source.{gColName}, </c>
+  <t>
+    when not matched by target then
+    insert (
+  </t>
+  <c opts="noTimestamp">{gColName}, </c>
+  <t>
+    ) values (
+  </t>
+  <c opts="noTimestamp">source.{gColName}, </c>
+  <t>
+    )
+    -- when not matched by source then delete
+    ;
+
+    set IDENTITY_INSERT {gSchema}.{gTable} off
+  </t>
+</template>

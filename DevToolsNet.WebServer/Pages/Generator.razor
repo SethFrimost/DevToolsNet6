@@ -1,0 +1,112 @@
+﻿@page "/generator"
+@using Blazorise
+@using DevToolsNet.DB.Objects.Configs
+@using DevToolsNet.DB.Generator.Interfaces
+@using Microsoft.Extensions.Options
+@using Microsoft.Extensions.DependencyInjection
+@inherits OwningComponentBase
+@inject IOptions<LocalXmlTemplateConfigSection> settings;
+@inject IGenerators generators;
+@inject ITableDataInfoRecover dataInfoRecover;
+
+
+<PageTitle>Test title</PageTitle>
+
+<h3>Test</h3>
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Dark" ThemeContrast="ThemeContrast.Dark">
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarDropdown>
+                    <BarDropdownToggle>@conection</BarDropdownToggle>
+                    <BarDropdownMenu>
+                        @if (connectionStrings != null)
+                        {
+                            @foreach (var c in connectionStrings)
+                            {
+                                <BarDropdownItem @onclick="@(e => SetActiveConn(c))">@c.Name</BarDropdownItem>
+                            }
+                        }
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+            <BarItem><TextEdit @bind-Text="@sckema" Placeholder="Schema..." /></BarItem>
+            <BarItem><TextEdit @bind-Text="@table" Placeholder="Table..." /></BarItem>
+            <BarItem>
+                <BarDropdown>
+                    <BarDropdownToggle>@generator</BarDropdownToggle>
+                    <BarDropdownMenu>
+                        @if (codeGenerators != null)
+                        {
+                            @foreach (var g in codeGenerators)
+                            {
+                                <BarDropdownItem @onclick="@(e => activeGenerator=g)">@g.Name</BarDropdownItem>
+                            }
+                        }
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+            <BarItem><Button Color="Color.Dark" Clicked="@OnGenerateCode"><BarIcon IconName="IconName.Play" /></Button></BarItem>
+            <BarItem><Button Color="Color.Dark" Clicked="@OnGenerateCodeAppend"><BarIcon IconName="IconName.StepForward" /></Button>
+            </BarItem>
+        </BarStart>
+    </BarMenu>
+</Bar>
+
+<TextEdit ReadOnly Size=Size.ExtraLarge>
+    @generatedCode
+</TextEdit>
+
+@code {
+    List<ICodeGenerator> codeGenerators => generators?.CodeGenerators;
+    ICodeGenerator activeGenerator = null;
+    string generator => activeGenerator!=null ? $"{activeGenerator.Name}":"Generator";
+
+    List<ConnectionString> connectionStrings = null;
+    ConnectionString activeConnection = null;
+    string conection => activeConnection!=null ? $"Connection: {activeConnection.Name}":"Connection";
+
+    string sckema = string.Empty;
+    string table = string.Empty;
+    string generatedCode = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        connectionStrings = settings?.Value?.connectionStrings;
+        generators?.LoadGenerators();
+    }
+
+    void SetActiveConn(ConnectionString conStr)
+    {
+        activeConnection = conStr;
+        var conn = ScopedServices.GetRequiredService<System.Data.IDbConnection>();
+        conn.ConnectionString = activeConnection.Value;
+        dataInfoRecover.SetConnection(conn);
+    }
+
+
+    Task OnGenerateCode() => return Task.Factory.StartNew(() => generateCode(false));
+    Task OnGenerateCodeAppend() => return Task.Factory.StartNew(() => generateCode(true));
+
+
+    /// <summary>Call generators for visible tabs</summary>
+    /// <param name="append">Append code or clear and set code</param>
+    void generateCode(bool append)
+    {
+        // Find tables
+        List<DB.Objects.DataTable> tables;
+        /*if (tsbLike.Checked) tables = dataInfoRecover.GetTableInfo(tstSchema.Text,tstTable.Text);
+        else*/ tables = dataInfoRecover.GetTableInfoLike(sckema, table);
+
+        if (tables.Any())
+        {
+            // Generate codes
+            var code = activeGenerator.GenerateCode(tables);
+            //code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
+            if (append) generatedCode += code;
+            else generatedCode = code;
+        }
+        else generatedCode = "Error: Table not found";
+    }
+}

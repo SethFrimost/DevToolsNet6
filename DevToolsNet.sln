@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.Json", "DevTool
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppConfig", "AppConfig", "{525DFD46-5565-48A2-BB54-8A2168FA3E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.WebServer", "DevToolsNet.WebServer\DevToolsNet.WebServer.csproj", "{703BA31C-F57C-44CC-942E-DFC07E7117CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.WebServer", "DevToolsNet.WebServer\DevToolsNet.WebServer.csproj", "{703BA31C-F57C-44CC-942E-DFC07E7117CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

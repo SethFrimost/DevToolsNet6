@@ -1,13 +1,22 @@
 using DevToolsNet.WebServer.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.DependencyInjection;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Services.LoadConfigs(builder.Configuration);
+Services.ConfigureServices(builder.Services);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddBlazorise(options => { options.Immediate = true; });
+builder.Services.AddBootstrapProviders();
+builder.Services.AddFontAwesomeIcons();
 
 var app = builder.Build();
 
