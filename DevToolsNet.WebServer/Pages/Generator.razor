@@ -53,9 +53,7 @@
     </BarMenu>
 </Bar>
 
-<TextEdit ReadOnly Size=Size.ExtraLarge>
-    @generatedCode
-</TextEdit>
+<TextEdit ReadOnly @bind-Text="@generatedCode" />
 
 @code {
     List<ICodeGenerator> codeGenerators => generators?.CodeGenerators;
@@ -86,8 +84,8 @@
     }
 
 
-    Task OnGenerateCode() => return Task.Factory.StartNew(() => generateCode(false));
-    Task OnGenerateCodeAppend() => return Task.Factory.StartNew(() => generateCode(true));
+    Task OnGenerateCode() => Task.Factory.StartNew(() => generateCode(false));
+    Task OnGenerateCodeAppend() => Task.Factory.StartNew(() => generateCode(true));
 
 
     /// <summary>Call generators for visible tabs</summary>
