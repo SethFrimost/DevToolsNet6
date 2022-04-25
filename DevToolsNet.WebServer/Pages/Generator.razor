@@ -53,7 +53,7 @@
     </BarMenu>
 </Bar>
 
-<TextEdit ReadOnly @bind-Text="@generatedCode" />
+<MemoEdit @bind-Text="@generatedCode" />
 
 @code {
     List<ICodeGenerator> codeGenerators => generators?.CodeGenerators;
