@@ -10,18 +10,18 @@
 
 <Layout>
     <LayoutHeader>
-        <Bar Breakpoint="Breakpoint.Desktop" Background="Background.Dark" ThemeContrast="ThemeContrast.Dark">
+        <Bar >
             <BarMenu>
                 <BarStart>
-                    <BarItem><Button Color="Color.Dark" Clicked="@temp"><BarIcon IconName="IconName.AlignLeft" /></Button></BarItem>
-                    <BarItem><Button Color="Color.Dark" Clicked="@temp"><BarIcon IconName="IconName.Play" /></Button></BarItem>
-                    <BarItem><Button Color="Color.Dark" Clicked="@temp"><BarIcon IconName="IconName.StepForward" /></Button></BarItem>
-                    <BarItem><Button Color="Color.Dark" Clicked="@temp"><BarIcon IconName="IconName.PlayCircle" /></Button></BarItem>
+                    <BarItem><Button Clicked="@temp"><BarIcon IconName="IconName.AlignLeft" /></Button></BarItem>
+                    <BarItem><Button Clicked="@temp"><BarIcon IconName="IconName.Play" /></Button></BarItem>
+                    <BarItem><Button Clicked="@temp"><BarIcon IconName="IconName.StepForward" /></Button></BarItem>
+                    <BarItem><Button Clicked="@temp"><BarIcon IconName="IconName.PlayCircle" /></Button></BarItem>
                 </BarStart>
             </BarMenu>
         </Bar>
-    </LayoutHeader>cl
-    <Layout Sider >
+    </LayoutHeader>
+    <Layout Sider>
         <LayoutSider><LayoutSiderContent>
                 TRee
         </LayoutSiderContent></LayoutSider>
@@ -32,7 +32,7 @@
                     <Tab Name="profile">Profile</Tab>
                     <Tab Name="messages">Messages</Tab>
                     <Tab Name="settings">Settings</Tab>
-                </Items>1
+                </Items>
                 <Content>
                     <TabPanel Name="home">
                         Content for home.

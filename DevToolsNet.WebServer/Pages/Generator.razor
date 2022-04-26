@@ -13,7 +13,7 @@
 <PageTitle>Test title</PageTitle>
 
 <h3>Test</h3>
-<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Dark" ThemeContrast="ThemeContrast.Dark">
+<Bar Breakpoint="Breakpoint.Desktop">
     <BarMenu>
         <BarStart>
             <BarItem>
@@ -46,8 +46,8 @@
                     </BarDropdownMenu>
                 </BarDropdown>
             </BarItem>
-            <BarItem><Button Color="Color.Dark" Clicked="@OnGenerateCode"><BarIcon IconName="IconName.Play" /></Button></BarItem>
-            <BarItem><Button Color="Color.Dark" Clicked="@OnGenerateCodeAppend"><BarIcon IconName="IconName.StepForward" /></Button>
+            <BarItem><Button Clicked="@OnGenerateCode"><BarIcon IconName="IconName.Play" /></Button></BarItem>
+            <BarItem><Button Clicked="@OnGenerateCodeAppend"><BarIcon IconName="IconName.StepForward" /></Button>
             </BarItem>
         </BarStart>
     </BarMenu>
