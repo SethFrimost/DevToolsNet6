@@ -33,14 +33,13 @@ namespace DevToolsNet.WindowsApp
             {
                 try
                 {
-                    AppConfigSQLRecover confRecover = new AppConfigSQLRecover();
-                    confRecover.SetConnectionString(appConn);
+                    AppConfigSQLRecover confRecover = new AppConfigSQLRecover(Configuration);
                     AplicationConfigManager appConfMan = new AplicationConfigManager(confRecover, new DevToolsNet.Json.JsonSerializer());
                     appConfMan.LoadConfigs(Application.ProductName, null, Environment.MachineName, DateTime.Now);
-                    var s = appConfMan.GetConfigValue("SqlRunner");
-                    if (s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
-                    s = appConfMan.GetConfigValue("LocalXmlTemplateConfig");
-                    if (s != null) confBuilder.AddJsonStream(s.GenerateStreamFromString());
+                    foreach(var s in appConfMan.AppConfigs)
+                    {
+                        confBuilder.AddJsonStream(s.Value.GenerateStreamFromString()); 
+                    }
                 }
                 catch(Exception ex)
                 {

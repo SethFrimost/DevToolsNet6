@@ -1,4 +1,5 @@
 ﻿using DevToolsNet.AppConfig.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,13 +7,19 @@ namespace DevToolsNet.AppConfig.SQL
 {
     public class AppConfigSQLRecover: IConfigRecover
     {
-        SqlConnection conn;
+        SqlConnection conn = null;
+
+        public AppConfigSQLRecover(IConfiguration config)
+        {
+            SetConnectionString(config?.GetConnectionString("AppConfig"));
+        }
         
-        public void SetConnectionString(string connString)
+        private void SetConnectionString(string? connString)
         {
             try
             {
-                conn = new SqlConnection(connString);
+                if (connString != null) conn = new SqlConnection(connString);
+                else conn = null;
             }
             catch {
                 conn = null;
