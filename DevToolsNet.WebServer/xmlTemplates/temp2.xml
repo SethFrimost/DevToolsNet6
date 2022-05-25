@@ -1,28 +1,13 @@
-﻿<template name="asdfa">
-	<text>
-		{gSchema} {gTable}
-	</text>
-	<text>
-		/* ident */</text>
-	<columns opts="identity">	{gColName}
-	</columns>
-	<text>
-		/* noident */</text>
-	<columns opts="noidentity">	{gColName}
-	</columns>
-	<text>
-		/* timeStamp */</text>
-	<columns opts="timeStamp">	{gColName}
-	</columns>
-	<text>
-		/* noTimeStamp */
-	</text>
-	<columns opts="noTimeStamp">	{gColName}
-	</columns>
-	<text>
-		/* ALL */
-	</text>
-	<columns>	// {gColType}({gColMax}) {gColSqlType})
-		public {gColC#Type} {gColName} {get;set;}
-	</columns>
+﻿<template name="Rereplicar tabla select where">
+  <t>
+    insert into SICER_CAT.Mostrador.Cliente(IdCliente, FK_IdMomentoPago, Nombre, Apellidos, NIF, Domicilio, Numero, EscPisoPta, Poblacion, Telefono, Movil, Email, NoCuentaCorriente, FK_IdMecanismoPago, Observaciones, NotasOcultas, usuarioModificacion, fechaModificacion, Publicado, MailingCorreo, MailingSMS, MailingNoRecibir, TipoVia, CP, Provincia, MailingCorreoOrdinario, EnvioNombre, EnvioCalleNum, EnvioPoblacionCP, EnvioAtencionDe, CuentaContable, DeBaja, ImportadoSysITV, FacturaElectronica)
+    select 2,'{gTable}',
+  </t>
+  <c opts="identity">x.{gColName}</c>
+  <t>,getdate(),0,0, '&gt;?xml version="1.0" encoding="utf-16"?&lt;  '+(select {gTable}.* from {gSchema}.{gTable} {gTable} where </t>
+  <c opts="identity">{gTable}.{gColName}=x.{gColName}</c>
+  <t>
+    for xml auto) xmldata,0,1,0,'Re-Replicado'
+    from {gSchema}.{gTable} x
+  </t>
 </template>

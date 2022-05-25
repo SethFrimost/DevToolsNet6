@@ -23,5 +23,25 @@ namespace DevToolsNet.Generics
             return res;
         }
 
+        /// <summary>
+        /// Replace all properties into text. Using {propertieName} for replace pattern
+        /// </summary>
+        /// <param name="textoFormato">String format. Ex; "Hi {Name}, ... " </param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string StringReplaceProperites(string textoFormato, object obj)
+        {
+            string res = string.Empty;
+            if (obj != null && !string.IsNullOrEmpty(textoFormato))
+            {
+                var t = obj.GetType();
+                foreach (var p in t.GetProperties())
+                    res = res.Replace("{" + p.Name + "}", p.GetValue(obj, null)?.ToString()?.Trim() ?? string.Empty);
+            }
+            return res;
+        }
     }
+
+
+    
 }
