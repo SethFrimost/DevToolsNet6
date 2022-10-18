@@ -1,0 +1,5 @@
+﻿<template name="POCO EF DbSet">
+<t>
+public virtual DbSet&lt;{gTable}&gt; {gTable} { get; set; }
+</t>
+</template>

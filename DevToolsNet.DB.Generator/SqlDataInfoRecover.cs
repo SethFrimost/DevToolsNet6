@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace DevToolsNet.DB.Generator
 {
@@ -70,7 +71,8 @@ namespace DevToolsNet.DB.Generator
                         precision = (int)(byte)sqlDataReader[6],
                         scale = (int)(byte)sqlDataReader[7],
                         is_nullable = (bool)sqlDataReader[8],
-                        is_identity = (bool)sqlDataReader[9]
+                        is_identity = (bool)sqlDataReader[9],
+                        is_primary_key = (bool)sqlDataReader[10],
                     });
                 }
                 con.Close();
@@ -89,7 +91,9 @@ namespace DevToolsNet.DB.Generator
                             precision = c.precision,
                             scale = c.scale,
                             is_nullable = c.is_nullable,
-                            is_identity = c.is_identity
+                            is_identity = c.is_identity,
+
+                            is_primary_key = c.is_primary_key,
                         }).ToList()
                     }).ToList();
 ;
@@ -103,7 +107,19 @@ namespace DevToolsNet.DB.Generator
 
         private static string getSqlDataTable(string schema, string tabla, bool useLike)
         {
-            string str = string.Empty + "SELECT s.name [schema], o.name tabla, c.name columna, c.system_type_id, t.name dataType, c.max_length, c.precision, c.scale, c.is_nullable, c.is_identity " + "from sys.objects o " + "\tINNER JOIN sys.schemas s ON o.schema_id = s.schema_id" + "\tinner join sys.columns c ON c.object_id = o.object_id" + "\tinner join sys.types   t ON t.system_type_id = c.system_type_id" + " where o.type = 'U' and o.name <> 'sysdiagrams'";
+            string str =
+                "SELECT s.name [schema], o.name tabla, c.name columna, c.system_type_id, t.name dataType, c.max_length, c.precision, c.scale, c.is_nullable, c.is_identity, \r\n"
+                + "isnull(i.is_primary_key,0) is_primary_key\r\n"
+                + "from sys.objects o \r\n"
+                + "\tINNER JOIN sys.schemas s ON o.schema_id = s.schema_id\r\n"
+                + "\tinner join sys.columns c ON c.object_id = o.object_id\r\n"
+                + "\tinner join sys.types   t ON t.system_type_id = c.system_type_id\r\n"
+                + "\tleft join(\r\n" 
+                + "\t    select distinct ic.column_id, ic.object_id, isnull(ind.name,'') indexName, isnull(ind.is_primary_key, 0) is_primary_key, isnull(ind.is_unique_constraint, 0) is_unique_constraint, isnull(ind.type, 0) indexType, isnull(ind.type_desc, '') indexTypeDesc, isnull(ind.index_id, 0) index_id \r\n" 
+                + "\t    from sys.index_columns ic \r\n " 
+                + "\t        inner join sys.indexes ind On ind.object_id = ic.object_id and ind.index_id = ic.index_id and ind.is_disabled = 0 and ind.is_primary_key = 1 \r\n" 
+                + "\t	) i on i.column_id = c.column_id and i.object_id = o.object_id\r\n"
+                + " where o.type = 'U' and o.name <> 'sysdiagrams'";
             if (useLike)
             {
                 if (!string.IsNullOrWhiteSpace(schema))

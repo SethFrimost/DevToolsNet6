@@ -73,6 +73,16 @@ namespace DevToolsNet.WindowsApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap document_refresh {
+            get {
+                object obj = ResourceManager.GetObject("document_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap media_play {
             get {
                 object obj = ResourceManager.GetObject("media_play", resourceCulture);

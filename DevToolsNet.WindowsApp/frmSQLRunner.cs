@@ -102,6 +102,10 @@ namespace DevToolsNet.WindowsApp
             ejecutarTodos(true, false);
         }
 
+        private void tsbDoReplace_Click(object sender, EventArgs e)
+        {
+            MakeReplaceText();
+        }
 
         #endregion
 
@@ -243,12 +247,12 @@ namespace DevToolsNet.WindowsApp
             else
             {
                 tab = new TabPage(name) { Text = name };
+                tab.Tag = new TabData() { Name = name };
                 tabResults.TabPages.Add(tab);
             }
 
             return tab;
         }
-
 
         private void SetTextControl(TabPage tab, string text)
         {
@@ -260,6 +264,7 @@ namespace DevToolsNet.WindowsApp
                 ScrollBars = ScrollBars.Both
             };
             txt.Text = text;
+            ((TabData)tab.Tag).txtReplace = txt;
 
             tab.Controls.Add(txt);
         }
@@ -268,8 +273,9 @@ namespace DevToolsNet.WindowsApp
         {
             // limiar columnas
             CorregirColumnas(ds);
+            ((TabData)tab.Tag).data = ds;
 
-            var g = CrearGrids(ds, union);
+            var g = CrearGrids(tab, ds, union);
 
             if (!string.IsNullOrEmpty(strOut))
             {
@@ -316,7 +322,7 @@ namespace DevToolsNet.WindowsApp
             }
         }
 
-        private Control CrearGrids(DataSet ds, bool union)
+        private Control CrearGrids(TabPage tab, DataSet ds, bool union)
         {
             if (ds.Tables.Count == 1 && !showReplace)
             {
@@ -368,6 +374,8 @@ namespace DevToolsNet.WindowsApp
                             ScrollBars = ScrollBars.Both
                         };
                         txt.Text = CreateTextReplace(ds, txtReplace.Text);
+                        ((TabData)tab.Tag).txtReplace = txt;
+
                         p.Controls.Add(txt);
                         txt.BringToFront();
                     }
@@ -430,8 +438,31 @@ namespace DevToolsNet.WindowsApp
             return sb.ToString();
         }
 
+        private void MakeReplaceText()
+        {
+            for(int i=0;i<tabResults.TabCount;i++)
+            {
+                var td = tabResults.TabPages[i].Tag as TabData;
+                if(td?.txtReplace != null)
+                {
+                    // do replace
+                    td.txtReplace.Text = CreateTextReplace(td.data, txtReplace.Text);
+                    td.txtReplace.Update();
+                }
+            }
+        }
+
+
+
+
         #endregion
 
+    }
 
+    public class TabData
+    {
+        public string Name { get; set; }
+        public DataSet data { get; set; }
+        public TextBox txtReplace { get; set; }
     }
 }

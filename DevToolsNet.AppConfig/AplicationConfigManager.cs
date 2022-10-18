@@ -1,7 +1,5 @@
 ﻿using DevToolsNet.AppConfig.Interfaces;
 using DevToolsNet.Shared.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
 using System.Runtime.Serialization;
 
 namespace DevToolsNet.AppConfig

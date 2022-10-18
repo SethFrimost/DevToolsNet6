@@ -1,0 +1,81 @@
+﻿<template name="POCO EF BasicFunctions">
+  <t>
+
+    public partial class {gSchema}Context : I{gTable}Data
+    {
+    /// &lt;summary&gt;Recupera todos los elementos de {gTable}&lt;/summary&gt;
+    public List&lt;{gTable}&gt;
+    GetVehiculoUtilizacions()
+    {
+    return {gTable}.ToList();
+    }
+</t>
+<c opts="identity">
+
+    /// &lt;summary&gt;Recupera un {gTable} por ID&lt;/summary&gt;
+    public {gTable}? GetVehiculoUtilizacion(long {gColName})
+    {
+    return {gTable}.Where(x => x.{gColName} == {gColName}.FirstOrDefault();
+    }
+
+    /// &lt;summary&gt;Inserta un nuevo {gTable}&lt;/summary&gt;
+    public {gTable} InsertVehiculoUtilizacion({gTable} a, bool save = true)
+    {
+    this.{gTable}.Add(a);
+    if(save) this.SaveChanges();
+    return a;
+    }
+
+    /// &lt;summary&gt;Actualiza un {gTable}&lt;/summary&gt;
+    public {gTable} UpdateVehiculoUtilizacion(long {gColName}, bool save = true)
+    {
+    var x = GetVehiculoUtilizacion({gColName});
+    if (x == null) throw NullReferenceException("No se encuentra el {gTable} a actualizar");
+    return UpdateVehiculoUtilizacion(x, save);
+    }
+    /// &lt;summary&gt;Actualiza un {gTable}&lt;/summary&gt;
+    public {gTable} UpdateVehiculoUtilizacion({gTable} a, bool save = true)
+    {
+    if (this.Entry(a) == null)
+    {
+    this.{gTable}.Attach(a);
+    this.Entry(a).State = EntityState.Modified;
+    }
+    else
+    {
+    this.Update(a);
+    this.Entry(a).State = EntityState.Modified;
+    }
+
+    if(save) this.SaveChanges();
+
+    return a;
+    }
+
+    /// &lt;summary&gt;Elimina un {gTable}&lt;/summary&gt;
+    public bool DeleteVehiculoUtilizacion(long {gColName}, bool save = true)
+    {
+    var x = GetVehiculoUtilizacion({gColName});
+    if (x == null) return false;
+    return DeleteVehiculoUtilizacion(x,save);
+    }
+
+    /// &lt;summary&gt;Elimina un {gTable}&lt;/summary&gt;
+    public bool DeleteVehiculoUtilizacion({gTable} a, bool save = true)
+    {
+    if (this.Entry(a) == null)
+    {
+    return false;
+    }
+    else
+    {
+    this.{gTable}.Remove(a);
+    if (save) this.SaveChanges();
+    return true;
+    }
+    }
+  </c>
+<t>
+    }
+</t>
+</template>

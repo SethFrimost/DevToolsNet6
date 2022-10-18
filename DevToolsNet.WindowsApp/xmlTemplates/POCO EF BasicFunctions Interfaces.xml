@@ -1,0 +1,31 @@
+﻿<template name="POCO EF BasicFunctions Interfaces">
+<t>
+
+  public interface I{gTable}Data
+  {
+    /// &lt;summary&gt;Recupera todos los elementos de {gTable}&lt;/summary&gt;
+    public List&lt;{gTable}&gt; Get{gTable}s();
+</t>
+<c opts="identity">
+  /// &lt;summary&gt;Recupera un {gTable} por ID&lt;/summary&gt;
+  public {gTable}? GetVehiculoUtilizacion(long {gColName});
+
+  /// &lt;summary&gt;Inserta un nuevo {gTable}&lt;/summary&gt;
+  public {gTable} InsertVehiculoUtilizacion({gTable} a, bool save = true);
+
+  /// &lt;summary&gt;Actualiza un {gTable}&lt;/summary&gt;
+  public {gTable} UpdateVehiculoUtilizacion(long {gColName}, bool save = true);
+
+  /// &lt;summary&gt;Actualiza un {gTable}&lt;/summary&gt;
+  public {gTable} UpdateVehiculoUtilizacion({gTable} a, bool save = true);
+
+  /// &lt;summary&gt;Elimina un {gTable}&lt;/summary&gt;
+  public bool DeleteVehiculoUtilizacion(long {gColName}, bool save = true);
+
+  /// &lt;summary&gt;Elimina un {gTable}&lt;/summary&gt;
+  public bool DeleteVehiculoUtilizacion({gTable} a, bool save = true);
+</c>
+<t>
+  }
+</t>
+</template>

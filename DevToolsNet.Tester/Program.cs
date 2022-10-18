@@ -4,11 +4,13 @@ using Microsoft.Extensions.Configuration;
 using DevToolsNet.Generics;
 using DevToolsNet.Extensions;
 using DevToolsNet.DB.Objects;
+using VideoLibrary;
 
+/*
 Console.WriteLine("Hello, World!");
 ConfigurationManager confManager = new ConfigurationManager();
 var configs = confManager.AddJsonFile("config.json").Build();
-
+*/
 
 /*LocalXmlTemplateGenerators generators = new LocalXmlTemplateGenerators(configs);
 generators.LoadGenerators();
@@ -27,5 +29,14 @@ datas.Add(new DataTable()
 });
 generators.CodeGenerators.ForEach(g=> Console.WriteLine(g.GenerateCode(datas)));
 */
-var l = new List<int>() { 4 };
+//var l = new List<int>() { 4 };
+
+
+//using VideoLibrary;
+var VedioUrl = "https://www.youtube.com/embed/lUEXzILh2aQ.mp4";
+var youTube = YouTube.Default;
+var video = youTube.GetVideo(VedioUrl);
+System.IO.File.WriteAllBytes(@"c:\temp\" + video.FullName + ".mp4", video.GetBytes());
+
+
 Console.WriteLine("--FIN--");

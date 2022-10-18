@@ -1,0 +1,8 @@
+﻿<template name="Xml to Table">
+<t>select  
+</t>
+<c trim=", "> T.c.value('@{gColName}','{gColSqlType}') [{gColName}],</c>
+<t>
+from @a.nodes('//{gTable}') T(c)
+</t>
+</template>

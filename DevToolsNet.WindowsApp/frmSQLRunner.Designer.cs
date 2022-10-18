@@ -32,12 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSQLRunner));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbReload = new System.Windows.Forms.ToolStripButton();
-            this.tsbSelectReplace = new System.Windows.Forms.ToolStripButton();
             this.tsbVerGrids = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbRunMeger = new System.Windows.Forms.ToolStripButton();
             this.tsbRunNonQ = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbSelectReplace = new System.Windows.Forms.ToolStripButton();
+            this.tsbDoReplace = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splcCode = new System.Windows.Forms.SplitContainer();
             this.txtCode = new System.Windows.Forms.TextBox();
@@ -66,12 +68,14 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbReload,
-            this.tsbSelectReplace,
             this.tsbVerGrids,
             this.toolStripSeparator1,
             this.tsbRun,
             this.tsbRunMeger,
-            this.tsbRunNonQ});
+            this.tsbRunNonQ,
+            this.toolStripSeparator2,
+            this.tsbSelectReplace,
+            this.tsbDoReplace});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(943, 25);
@@ -87,17 +91,6 @@
             this.tsbReload.Size = new System.Drawing.Size(23, 22);
             this.tsbReload.Text = "Reload";
             this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
-            // 
-            // tsbSelectReplace
-            // 
-            this.tsbSelectReplace.CheckOnClick = true;
-            this.tsbSelectReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSelectReplace.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
-            this.tsbSelectReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSelectReplace.Name = "tsbSelectReplace";
-            this.tsbSelectReplace.Size = new System.Drawing.Size(23, 22);
-            this.tsbSelectReplace.Text = "Replace";
-            this.tsbSelectReplace.CheckedChanged += new System.EventHandler(this.tsbSelectReplace_CheckedChanged);
             // 
             // tsbVerGrids
             // 
@@ -146,6 +139,32 @@
             this.tsbRunNonQ.Size = new System.Drawing.Size(23, 22);
             this.tsbRunNonQ.Text = "Run NonQuery";
             this.tsbRunNonQ.Click += new System.EventHandler(this.tsbRunNonQ_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbSelectReplace
+            // 
+            this.tsbSelectReplace.CheckOnClick = true;
+            this.tsbSelectReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSelectReplace.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
+            this.tsbSelectReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSelectReplace.Name = "tsbSelectReplace";
+            this.tsbSelectReplace.Size = new System.Drawing.Size(23, 22);
+            this.tsbSelectReplace.Text = "Replace";
+            this.tsbSelectReplace.CheckedChanged += new System.EventHandler(this.tsbSelectReplace_CheckedChanged);
+            // 
+            // tsbDoReplace
+            // 
+            this.tsbDoReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDoReplace.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_refresh;
+            this.tsbDoReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDoReplace.Name = "tsbDoReplace";
+            this.tsbDoReplace.Size = new System.Drawing.Size(23, 22);
+            this.tsbDoReplace.Text = "Do replace";
+            this.tsbDoReplace.Click += new System.EventHandler(this.tsbDoReplace_Click);
             // 
             // splitContainer1
             // 
@@ -328,5 +347,7 @@
         private SplitContainer splcCode;
         private TextBox txtCode;
         private ToolStripButton tsbVerGrids;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton tsbDoReplace;
     }
 }

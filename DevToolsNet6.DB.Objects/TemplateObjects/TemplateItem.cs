@@ -18,6 +18,8 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
         public TemplateItemType ItemType { get; private set; }
         public string Text { get; private set; }
 
+        public bool PK { get; private set; }
+        public bool NoPK { get; private set; }
         public bool Identity { get; private set; }
         public bool NoIdentity { get; private set; }
         public bool TimeStamp { get; private set; }
@@ -30,6 +32,8 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
             if (xmlElement.Name.LocalName.ToLower() == "columns" || xmlElement.Name.LocalName.ToLower() == "c") ItemType = TemplateItemType.Columns;
             else ItemType = TemplateItemType.Text;
 
+            PK = false;
+            NoPK = false;
             Identity = false;
             NoIdentity = false;
             TimeStamp = false;
@@ -44,6 +48,8 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
                 {
                     switch (o.ToLower())
                     {
+                        case "pk": PK = true; break;
+                        case "nopk": NoPK = true; break;
                         case "identity": Identity = true; break;
                         case "noidentity": NoIdentity = true; break;
                         case "timestamp": TimeStamp = true; break;

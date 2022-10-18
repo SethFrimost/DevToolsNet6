@@ -1,0 +1,15 @@
+﻿<template name="POCO Object">
+<t>
+
+	[Table("{gTable}", Schema = "{gSchema}")]
+  public partial class {gTable}
+  {</t>
+<c opts="pk">
+	[Key]
+	public {gColC#Type} {gColName} { get; set; } </c>
+<c opts="noPK">
+	public {gColC#Type} {gColName} { get; set; } </c>
+<t>
+}
+</t>
+</template>

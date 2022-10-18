@@ -61,7 +61,8 @@ namespace DevToolsNet.DB.Generator
                         if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text).TrimEnd(itm.TrimText.ToCharArray());
                         else
                         {
-                            var cols = t.Columnas.FindAll(x => (!itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) || 
+                            var cols = t.Columnas.FindAll(x => (!itm.PK && !itm.NoPK && !itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) || 
+                                                        (itm.PK && x.is_primary_key) || (itm.NoPK && !x.is_primary_key) ||
                                                         (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
                                                         (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
                                                     );
@@ -94,11 +95,11 @@ namespace DevToolsNet.DB.Generator
                 .Replace(tagColName, c.name)
                 .Replace(tagColType, c.system_type)
                 .Replace(tagColMax, c.max_length.ToString())
-                .Replace(tagColCType, getCType(c.system_type))
+                .Replace(tagColCType, getCType(c.system_type, c.is_nullable))
                 .Replace(tagColSqlType, getSqlType(c));
         }
 
-        private string getCType(string system_type)
+        private string getCType(string system_type, bool nullable)
         {
             var res = system_type;
 
@@ -136,6 +137,7 @@ namespace DevToolsNet.DB.Generator
                 case "varchar": res = "string"; break;
                 case "xml": res = "Xml"; break;
             }
+            if (nullable) res += "?";
             return res;
         }
 

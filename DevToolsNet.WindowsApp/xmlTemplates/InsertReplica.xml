@@ -1,0 +1,10 @@
+﻿<template name="Rereplicar tabla select where">
+<t>insert into Replicacion.MovimientoIn(FK_IdTipoMovimiento,Entidad,Clave,Fecha,Procesado,Publicado,XmlDato,FK_IdReplicaExternaOrigen,AplicarEnBBDD,esConflictoResuelto,Varios)
+select 2,'{gTable}',</t>
+<c opts="identity">x.{gColName}</c>
+<t>,getdate(),0,0, '&lt;?xml version="1.0" encoding="utf-16"?&gt;  '+(select {gTable}.* from {gSchema}.{gTable} {gTable} where </t>
+<c opts="identity"> {gTable}.{gColName}=x.{gColName} </c>
+<t> for xml auto) xmldata,0,1,0,'Re-Replicado'
+from {gSchema}.{gTable} x
+</t>
+</template>

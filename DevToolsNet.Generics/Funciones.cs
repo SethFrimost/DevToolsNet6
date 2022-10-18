@@ -24,7 +24,7 @@ namespace DevToolsNet.Generics
         }
 
         /// <summary>
-        /// Replace all properties into text. Using {propertieName} for replace pattern
+        /// Replace all properties into text. Using {propertieName} for replace pattern.
         /// </summary>
         /// <param name="textoFormato">String format. Ex; "Hi {Name}, ... " </param>
         /// <param name="obj"></param>
