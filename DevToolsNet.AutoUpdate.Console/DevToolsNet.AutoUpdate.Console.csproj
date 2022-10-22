@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToolsNet.AppConfig.SQL\DevToolsNet.AppConfig.SQL.csproj" />
+    <ProjectReference Include="..\DevToolsNet.AppConfig\DevToolsNet.AppConfig.csproj" />
+    <ProjectReference Include="..\DevToolsNet.AutoUpdate\DevToolsNet.AutoUpdate.csproj" />
+  </ItemGroup>
+
+</Project>

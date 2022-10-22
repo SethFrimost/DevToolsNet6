@@ -1,19 +1,34 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>DevToolsNet.WebServer</PageTitle>
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+<RadzenLayout>
+    <RadzenHeader>
+        <div class="row justify-content-start align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
+            <RadzenLabel Text="TestBlazorEstudio"></RadzenLabel>
+          </div>
+          <div class="col-6 text-right"></div>
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+    </RadzenHeader>
+    <RadzenBody Expanded="@sidebarExpanded" style="background-color:var(--rz-body-background-color); color:var(--rz-text-color);">
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+    </RadzenBody>
+    <RadzenSidebar @bind-Expanded="@sidebarExpanded" Responsive="true">
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Db">
+                <RadzenPanelMenuItem Text="Generador" Target="generadorCodigo" />
+                <RadzenPanelMenuItem Text="Ejecutor" />
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Windows">
+                <RadzenPanelMenuItem Text="Servicios"></RadzenPanelMenuItem>
+            </RadzenPanelMenuItem>
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+</RadzenLayout>

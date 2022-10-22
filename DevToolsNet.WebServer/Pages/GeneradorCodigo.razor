@@ -1,0 +1,37 @@
+@page "/generadorCodigo"
+
+<PageTitle>Generador de código</PageTitle>
+
+<div class="container-fluid" style="height: 100%;">
+
+        <RadzenSplitter Orientation="Orientation.Horizontal">
+            <RadzenSplitterPane Size="15%">
+                <RadzenTree AllowCheckBoxes=true AllowCheckChildren=true>
+                    <RadzenTreeItem Text="A">
+                        <RadzenTreeItem Text="A1" />
+                        <RadzenTreeItem Text="A2" />
+                        <RadzenTreeItem Text="A3" />
+                        <RadzenTreeItem Text="A4" />
+                    </RadzenTreeItem>
+                    <RadzenTreeItem Text="B">
+                        <RadzenTreeItem Text="B1" />
+                        <RadzenTreeItem Text="B2" />
+                    </RadzenTreeItem>
+                </RadzenTree>
+            </RadzenSplitterPane>
+            <RadzenSplitterPane Style="padding:0 5px;">
+                <RadzenPanel>
+                    <LabeledControl LabelText="Conexion">
+
+                    </LabeledControl>
+                </RadzenPanel>
+                <br />
+                <RadzenPanel>
+                    <RadzenTabs>
+                        
+                    </RadzenTabs>
+                </RadzenPanel>
+            </RadzenSplitterPane>
+        </RadzenSplitter>
+
+</div>

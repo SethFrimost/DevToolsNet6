@@ -1,0 +1,9 @@
+﻿<div style="display:flex; flex-direction:row">
+    <RadzenLabel Text="@LabelText" />
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public string LabelText { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

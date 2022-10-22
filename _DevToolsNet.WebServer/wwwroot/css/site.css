@@ -1,11 +1,7 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: var(--rz-text-font-family);
-    color: var(--rz-text-color);
-    /*font-size: var(--rz-body-font-size);
-    line-height: var(--rz-body-line-height);*/
-    background-color: var(--rz-body-background-color);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1:focus {

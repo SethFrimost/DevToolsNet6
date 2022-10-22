@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,44 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="xmlTemplates\temp1.xml" />
-    <None Remove="xmlTemplates\temp2.xml" />
-    <None Remove="xmlTemplates\temp3.xml" />
+    <Compile Remove="Pages\GeneradorCodigo.razor.cs" />
+    <Compile Remove="Pages\WinServices.razor.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="xmlTemplates\temp1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xmlTemplates\temp2.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xmlTemplates\temp3.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Pages\GeneradorCodigo.razor.cs" />
+    <Content Include="Pages\WinServices.razor.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.4" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.4" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevToolsNet.AppConfig.SQL\DevToolsNet.AppConfig.SQL.csproj" />
-    <ProjectReference Include="..\DevToolsNet.AppConfig\DevToolsNet.AppConfig.csproj" />
-    <ProjectReference Include="..\DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj" />
-    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.Runner.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Extensions\DevToolsNet.Extensions.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Generics\DevToolsNet.Generics.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Json\DevToolsNet.Json.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
-    <ProjectReference Include="..\DevToolsNet6.DB.Objects\DevToolsNet.DB.Objects.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controls\" />
+    <PackageReference Include="Radzen.Blazor" Version="4.1.8" />
   </ItemGroup>
 
 </Project>
