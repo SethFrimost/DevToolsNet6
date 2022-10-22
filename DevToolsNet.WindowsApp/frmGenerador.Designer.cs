@@ -41,6 +41,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbRunAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbToFiles = new System.Windows.Forms.ToolStripButton();
+            this.tstFileTemplate = new System.Windows.Forms.ToolStripTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
@@ -66,7 +69,10 @@
             this.tsbLike,
             this.toolStripSeparator2,
             this.tsbRun,
-            this.tsbRunAdd});
+            this.tsbRunAdd,
+            this.toolStripSeparator3,
+            this.tsbToFiles,
+            this.tstFileTemplate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1092, 25);
@@ -158,9 +164,30 @@
             this.tsbRunAdd.Text = "toolStripButton1";
             this.tsbRunAdd.Click += new System.EventHandler(this.tsbRunAdd_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbToFiles
+            // 
+            this.tsbToFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbToFiles.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
+            this.tsbToFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbToFiles.Name = "tsbToFiles";
+            this.tsbToFiles.Size = new System.Drawing.Size(23, 22);
+            this.tsbToFiles.Text = "Generar en ficheros separados";
+            this.tsbToFiles.Click += new System.EventHandler(this.tsbToFiles_Click);
+            // 
+            // tstFileTemplate
+            // 
+            this.tstFileTemplate.Name = "tstFileTemplate";
+            this.tstFileTemplate.Size = new System.Drawing.Size(200, 25);
+            this.tstFileTemplate.Text = "[t].cs";
+            this.tstFileTemplate.ToolTipText = "File template: default \"[t].cs\"";
+            // 
             // splitContainer1
             // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
@@ -173,7 +200,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabResults);
-            this.splitContainer1.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.splitContainer1.Size = new System.Drawing.Size(1092, 542);
             this.splitContainer1.SplitterDistance = 231;
             this.splitContainer1.TabIndex = 1;
@@ -181,7 +207,6 @@
             // chkPlantillas
             // 
             this.chkPlantillas.CheckOnClick = true;
-            this.chkPlantillas.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkPlantillas.FormattingEnabled = true;
             this.chkPlantillas.Location = new System.Drawing.Point(0, 23);
@@ -250,5 +275,8 @@
         private CheckedListBox chkPlantillas;
         private ToolStripButton tsbRunAdd;
         private TabControl tabResults;
+        private ToolStripButton tsbToFiles;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripTextBox tstFileTemplate;
     }
 }

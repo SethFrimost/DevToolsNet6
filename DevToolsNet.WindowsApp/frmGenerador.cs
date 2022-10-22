@@ -70,6 +70,16 @@ namespace DevToolsNet.WindowsApp
             generateCode(true);
         }
 
+        private void tsbToFiles_Click(object sender, EventArgs e)
+        {
+            var fbd = new FolderBrowserDialog();
+            fbd.ShowNewFolderButton = true;
+            
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                generateToFiles(fbd.SelectedPath, tstFileTemplate.Text, false); 
+            }
+        }
 
 
         private void chkPlantillas_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -138,6 +148,7 @@ namespace DevToolsNet.WindowsApp
         }
 
 
+
         /// <summary>Call generators for visible tabs</summary>
         /// <param name="append">Append code or clear and set code</param>
         private void generateCode(bool append)
@@ -147,22 +158,82 @@ namespace DevToolsNet.WindowsApp
             if (tsbLike.Checked) tables = dataInfoRecover.GetTableInfo(tstSchema.Text,tstTable.Text);
             else tables = dataInfoRecover.GetTableInfoLike(tstSchema.Text, tstTable.Text);
 
+            string? tabFolder = null;
+
             if (tables.Any())
             {
                 // Generate codes
                 for (int i = 0; i < tabResults.TabPages.Count; i++)
                 {
-                    if (tabResults.TabPages[0].Visible)
+                    if (tabResults.TabPages[i].Visible)
                     {
                         var g = tabResults.TabPages[i].Tag as ICodeGenerator;
                         var code = g.GenerateCode(tables);
                         code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
-                        if (append) ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
-                        else ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
+
+                        if (append)
+                        {
+
+                            ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
+                        } 
+                        else
+                        {
+                            ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
+                        } 
                     }
                 }
             }
             else MessageBox.Show("No se han encontrado tablas");
+        }
+
+
+        private void generateToFiles(string baseFolder, string fileTemplate, bool append)
+        {
+            // Find tables
+            List<DB.Objects.DataTable> tables;
+            if (tsbLike.Checked) tables = dataInfoRecover.GetTableInfo(tstSchema.Text, tstTable.Text);
+            else tables = dataInfoRecover.GetTableInfoLike(tstSchema.Text, tstTable.Text);
+
+            if (tables.Any())
+            {
+                string tabFolder;
+                string tableFile;
+
+                // Generate codes
+                for (int i = 0; i < tabResults.TabPages.Count; i++)
+                {
+                    if (tabResults.TabPages[i].Visible)
+                    {
+                        var g = tabResults.TabPages[i].Tag as ICodeGenerator;
+                        var codes = g.GenerateCodeList(tables);
+
+                        codes.ForEach(x => x.Code = x.Code.Replace("\n\r", "\n").Replace("\n", Environment.NewLine));
+
+                        tabFolder = GetTabPageFolder(baseFolder, g.Name);
+                        foreach (var ct in codes)
+                        {
+                            tableFile = $"{tabFolder}\\{fileTemplate.Replace("[t]",ct.Table)}";
+
+                            if (append) File.AppendAllText(tableFile, ct.Code);
+                            else File.WriteAllText(tableFile, ct.Code);
+                        }
+
+
+
+                    }
+                }
+            }
+            else MessageBox.Show("No se han encontrado tablas");
+
+        }
+
+        private string GetTabPageFolder(string? baseFolder, string folderName)
+        {
+            var res = baseFolder + "\\" + folderName;
+
+            if(!System.IO.Directory.Exists(res)) System.IO.Directory.CreateDirectory(res);
+
+            return res;
         }
     }
 }

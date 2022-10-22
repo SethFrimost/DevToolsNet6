@@ -10,6 +10,8 @@ namespace DevToolsNet.DB.Generator.Interfaces
     public interface ICodeGenerator
     {
         string Name { get; }
+        string GenerateCode(DataTable tables);
         string GenerateCode(List<DataTable> tables);
+        List<TableCode> GenerateCodeList(List<DataTable> tables);
     }
 }

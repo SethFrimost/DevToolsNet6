@@ -48,6 +48,29 @@ namespace DevToolsNet.DB.Generator
             }
         }
 
+
+        public List<TableCode> GenerateCodeList(List<DataTable> tables)
+        {
+            var res = new List<TableCode>();
+
+            if (items != null)
+            {
+                string code = string.Empty;
+
+                foreach (var t in tables)
+                {
+                    code = String.Empty;
+                    res.Add(new TableCode() 
+                    { 
+                        Table = t.Tabla, 
+                        Code = CodeTable(code, t) 
+                    });
+                }
+            }
+
+            return res;
+        }
+
         public string GenerateCode(List<DataTable> tables)
         {
             if(items != null)
@@ -56,21 +79,7 @@ namespace DevToolsNet.DB.Generator
 
                 foreach (var t in tables)
                 {
-                    foreach (var itm in items)
-                    {
-                        if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text).TrimEnd(itm.TrimText.ToCharArray());
-                        else
-                        {
-                            var cols = t.Columnas.FindAll(x => (!itm.PK && !itm.NoPK && !itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) || 
-                                                        (itm.PK && x.is_primary_key) || (itm.NoPK && !x.is_primary_key) ||
-                                                        (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
-                                                        (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
-                                                    );
-                            cols.ForEach(c => code += TextItem(t, c, itm.Text));
-                            code.TrimEnd(itm.TrimText.ToCharArray());
-                        }
-
-                    }
+                    code = CodeTable(code, t);
                 }
                 
                 return code;
@@ -79,6 +88,34 @@ namespace DevToolsNet.DB.Generator
             {
                 return string.Empty;
             }
+        }
+
+        public string GenerateCode(DataTable t)
+        {
+            string code = "";
+            return CodeTable(code, t); ;
+        }
+
+
+        private string CodeTable(string code, DataTable t)
+        {
+            foreach (var itm in items)
+            {
+                if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text).TrimEnd(itm.TrimText.ToCharArray());
+                else
+                {
+                    var cols = t.Columnas.FindAll(x => (!itm.PK && !itm.NoPK && !itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) ||
+                                                (itm.PK && x.is_primary_key) || (itm.NoPK && !x.is_primary_key) ||
+                                                (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
+                                                (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
+                                            );
+                    cols.ForEach(c => code += TextItem(t, c, itm.Text));
+                    code.TrimEnd(itm.TrimText.ToCharArray());
+                }
+
+            }
+
+            return code;
         }
 
         private string TextItem(DataTable t, string text)
@@ -153,5 +190,7 @@ namespace DevToolsNet.DB.Generator
         {
             return this.Name;
         }
+
+
     }
 }
