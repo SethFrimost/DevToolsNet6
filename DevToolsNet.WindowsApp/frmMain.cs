@@ -24,5 +24,12 @@ namespace DevToolsNet.WindowsApp
             f.MdiParent = this;
             f.Show();
         }
+
+        private void servicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetService<frmWinServices>();
+            f.MdiParent = this;
+            f.Show();
+        }
     }
 }

@@ -83,6 +83,16 @@ namespace DevToolsNet.WindowsApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folder_refresh {
+            get {
+                object obj = ResourceManager.GetObject("folder_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap media_play {
             get {
                 object obj = ResourceManager.GetObject("media_play", resourceCulture);
@@ -106,6 +116,16 @@ namespace DevToolsNet.WindowsApp.Properties {
         internal static System.Drawing.Bitmap media_step_forward {
             get {
                 object obj = ResourceManager.GetObject("media_step_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap media_stop_red {
+            get {
+                object obj = ResourceManager.GetObject("media_stop_red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

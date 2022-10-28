@@ -124,7 +124,6 @@ namespace Servicios
 
                 t.ContinueWith((x) =>
                 {
-
                     if (x.Exception != null)
                     {
                         n.LeftImages[0] = global::Servicios.Properties.Resources.gear_warning; 

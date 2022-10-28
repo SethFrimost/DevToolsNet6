@@ -33,13 +33,16 @@
             this.tsmSQL = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGenerador = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSqlRunner = new System.Windows.Forms.ToolStripMenuItem();
+            this.windosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmSQL});
+            this.tsmSQL,
+            this.windosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1013, 24);
@@ -58,16 +61,31 @@
             // tsmiGenerador
             // 
             this.tsmiGenerador.Name = "tsmiGenerador";
-            this.tsmiGenerador.Size = new System.Drawing.Size(180, 22);
+            this.tsmiGenerador.Size = new System.Drawing.Size(136, 22);
             this.tsmiGenerador.Text = "Generador";
             this.tsmiGenerador.Click += new System.EventHandler(this.tsmiGenerador_Click);
             // 
             // tsmiSqlRunner
             // 
             this.tsmiSqlRunner.Name = "tsmiSqlRunner";
-            this.tsmiSqlRunner.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSqlRunner.Size = new System.Drawing.Size(136, 22);
             this.tsmiSqlRunner.Text = "SQL Runner";
             this.tsmiSqlRunner.Click += new System.EventHandler(this.tsmiSqlRunner_Click);
+            // 
+            // windosToolStripMenuItem
+            // 
+            this.windosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.servicesToolStripMenuItem});
+            this.windosToolStripMenuItem.Name = "windosToolStripMenuItem";
+            this.windosToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.windosToolStripMenuItem.Text = "Windows";
+            // 
+            // servicesToolStripMenuItem
+            // 
+            this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
+            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.servicesToolStripMenuItem.Text = "Services";
+            this.servicesToolStripMenuItem.Click += new System.EventHandler(this.servicesToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -94,5 +112,7 @@
         private ToolStripMenuItem tsmSQL;
         private ToolStripMenuItem tsmiGenerador;
         private ToolStripMenuItem tsmiSqlRunner;
+        private ToolStripMenuItem windosToolStripMenuItem;
+        private ToolStripMenuItem servicesToolStripMenuItem;
     }
 }

@@ -66,6 +66,7 @@
     <ProjectReference Include="..\DevToolsNet.Json\DevToolsNet.Json.csproj" />
     <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
     <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
+    <ProjectReference Include="..\DevToolsNet.WinServicesManager\DevToolsNet.WinServicesManager.csproj" />
     <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
     <ProjectReference Include="..\DevToolsNet6.DB.Objects\DevToolsNet.DB.Objects.csproj" />
   </ItemGroup>

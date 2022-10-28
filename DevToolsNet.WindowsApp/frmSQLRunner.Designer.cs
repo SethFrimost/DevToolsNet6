@@ -241,7 +241,7 @@
             this.lblReplace.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblReplace.Location = new System.Drawing.Point(0, 0);
             this.lblReplace.Name = "lblReplace";
-            this.lblReplace.Size = new System.Drawing.Size(70, 15);
+            this.lblReplace.Size = new System.Drawing.Size(71, 15);
             this.lblReplace.TabIndex = 0;
             this.lblReplace.Text = "Replace text";
             // 

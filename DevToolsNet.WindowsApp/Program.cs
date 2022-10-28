@@ -7,8 +7,11 @@ using DevToolsNet.DB.Objects.Configs;
 using DevToolsNet.DB.Runner;
 using DevToolsNet.DB.Runner.Interfaces;
 using DevToolsNet.Extensions;
+using DevToolsNet.WinServicesManager;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -61,24 +64,29 @@ namespace DevToolsNet.WindowsApp
             // configs
             services.AddSingleton<IConfiguration>(Configuration);
 
+            
+
             // config objects
             services
                 .Configure<LocalXmlTemplateConfigSection>(Configuration.GetSection("LocalXmlTemplateConfig"))
-                .Configure<ConnectionStringGroupCollection>(Configuration.GetSection("SqlRunner"));
-          
+                .Configure<ConnectionStringGroupCollection>(Configuration.GetSection("SqlRunner"))
+                .Configure<WinServicesManagerConfig>(Configuration.GetSection("WinServicesManagerConfig"));
+
             // clases
             services
+                .AddScoped<WindowsServicesManager, WindowsServicesManager>()
                 .AddScoped<IGenerators, LocalXmlTemplateGenerators>()
                 .AddTransient<ICodeGenerator, GeneratorFromXml>()
                 .AddTransient<ITableDataInfoRecover, SqlDataInfoRecover>()
                 .AddTransient<ICommandRuner, SQLCommandRunner>()
                 .AddTransient<IDbConnection, SqlConnection>();
-            
+                
             // forms
             services
                 .AddTransient<frmMain>()
                 .AddTransient<frmGenerador>()
-                .AddTransient<frmSQLRunner>();
+                .AddTransient<frmSQLRunner>()
+                .AddTransient<frmWinServices>();
             
         }
     }
