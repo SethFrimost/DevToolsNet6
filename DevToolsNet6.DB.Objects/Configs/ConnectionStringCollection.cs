@@ -11,7 +11,6 @@ namespace DevToolsNet.DB.Objects.Configs
         public List<ConnectionStringGroup> connectionGroups { get; set; }
 
 
-
         public List<ConnectionString> GetAllConnectionStrings()
         {
             if (connectionGroups != null)

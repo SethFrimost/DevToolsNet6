@@ -13,4 +13,8 @@
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

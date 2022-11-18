@@ -9,6 +9,7 @@ namespace DevToolsNet.WinServicesManager
 {
     public class WindowsServiceStatus
     {
+        public string Key { get; set; }
         public string Server { get; set; }
         public string Name { get; set; }
         public ServiceControllerStatus LastStatus { get; set; }

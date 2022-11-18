@@ -10,6 +10,7 @@ namespace DevToolsNet.DB.Runner.Interfaces
 {
     public interface ICommandRuner
     {
+        string DisplayName { get; set; }
         ConnectionString ConnectionString { get; }
         void SetConnection(ConnectionString connectionString);
         string RunNonQuery(string comando);

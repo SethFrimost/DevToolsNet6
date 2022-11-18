@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DevToolsNet.DB.Objects.Configs;
+using DevToolsNet.Shared.Configs;
 using DevToolsNet.WinServicesManager;
 using Microsoft.Extensions.Options;
 
@@ -16,19 +18,70 @@ namespace DevToolsNet.WindowsApp;
 public partial class frmWinServices : Form
 {
     WindowsServicesManager winServicesManager;
+    WindowsServicesManager2 swManager;
 
-    public frmWinServices(WindowsServicesManager winServicesManager)
+    private frmWinServices(WindowsServicesManager winServicesManager)
     {
         InitializeComponent();
         this.winServicesManager = winServicesManager;
         winServicesManager.ServiceStatusUpdate += ServiceStatusUpdate;
     }
 
+    public frmWinServices(IOptions<ServersConfig<WindowsServiceConfig>> settings)
+    {
+        InitializeComponent();
+        if (settings != null) treeServerServices.LoadServers(settings.Value);
+        swManager = new WindowsServicesManager2();
+        swManager.ServiceStatusUpdate += ServiceStatusUpdate;
+    }
 
     private void frmWinServices_Shown(object sender, EventArgs e)
     {
         Load();
     }
+
+    private void treeServ_AfterSelect(object sender, TreeViewEventArgs e)
+    {
+        if (!string.IsNullOrEmpty(e.Node?.ToolTipText))
+        {
+            txtMsg.Text = e.Node.ToolTipText;
+            spltMain.Panel2Collapsed = false;
+        }
+        else
+        {
+            txtMsg.Text = String.Empty;
+            spltMain.Panel2Collapsed = true;
+
+        }
+    }
+
+
+    private void treeServerServices_AfterNodeCheck(object sender, TreeViewEventArgs e)
+    {
+        if (e.Node?.Parent?.Tag is ServerConfig && e.Node?.Tag is string)
+        {
+            var sc = e.Node.Parent.Tag as ServerConfig;
+            var name = e.Node.Tag as string;
+            e.Node.ImageKey= e.Node.SelectedImageKey = "Wait";
+            if (sc != null && name != null) swManager.TrackService(e.Node.Name, sc.IP, name);
+        }
+
+    }
+
+    private void treeServerServices_AfterNodeSelect(object sender, TreeViewEventArgs e)
+    {
+        if (!string.IsNullOrEmpty(e.Node?.ToolTipText))
+        {
+            txtMsg.Text = e.Node.ToolTipText;
+            spltMain.Panel2Collapsed = false;
+        }
+        else
+        {
+            txtMsg.Text = String.Empty;
+            spltMain.Panel2Collapsed = true;
+        }
+    }
+
 
     private void tsbReload_Click(object sender, EventArgs e)
     {
@@ -65,10 +118,10 @@ public partial class frmWinServices : Form
     {
         if(se != null)
         {
-            var n = treeServ.Nodes.Find(se.Server + se.Name, true).FirstOrDefault();
+            var n = treeServerServices.Nodes.Find(se.Key, true).FirstOrDefault();
             if (n != null)
             {
-                if (treeServ.InvokeRequired) treeServ.Invoke(() => setIcon(n, se.LastStatus, se.exception?.ToString()));
+                if (treeServerServices.InvokeRequired) treeServerServices.Invoke(() => setIcon(n, se.LastStatus, se.exception?.ToString()));
                 else setIcon(n, se.LastStatus, se.exception?.ToString());
             }
         }
@@ -80,6 +133,7 @@ public partial class frmWinServices : Form
         treeServ.Nodes.Clear();
         txtMsg.Text = String.Empty;
         spltMain.Panel2Collapsed = true;
+        //if(swManager != null) swManager.Clear();
 
         if (winServicesManager != null)
         {
@@ -107,22 +161,47 @@ public partial class frmWinServices : Form
     {
         n.ToolTipText = String.Empty;
 
-        if(err != null)
+        if (err != null)
         {
-            n.ImageIndex = 4;
             n.ToolTipText = err;
+            n.ForeColor = Color.Red;
+            n.ImageKey = n.SelectedImageKey = "Error";
         }
         else
         {
-            switch (state)
-            {
-                case System.ServiceProcess.ServiceControllerStatus.Running: n.ImageIndex = 2; break;
-                case System.ServiceProcess.ServiceControllerStatus.Stopped: n.ImageIndex = 3; break;
-                default: n.ImageIndex=1; break;    
-            }
+            n.ImageKey = n.SelectedImageKey = state.ToString();
+            n.ForeColor = Color.Empty;
         }
 
-        n.SelectedImageIndex = n.ImageIndex;
+        checkServerIcon(n.Parent, err);
+    }
+
+    private void checkServerIcon(TreeNode n, string? err)
+    {
+        bool withErr = false;
+        if (err != null) withErr = true;
+        else
+        {
+            foreach(TreeNode x in n.Nodes)
+            {
+                if(!string.IsNullOrEmpty(x.ToolTipText))
+                {
+                    withErr = true;
+                    break;
+                }
+            }            
+        }
+
+        if(withErr)
+        {
+            n.ImageKey = n.SelectedImageKey = "server_error";
+            n.ForeColor = Color.Red;
+        }
+        else
+        {
+            n.ImageKey = n.SelectedImageKey = "server";
+            n.ForeColor = Color.Empty;
+        }
     }
 
     private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -130,18 +209,4 @@ public partial class frmWinServices : Form
 
     }
 
-    private void treeServ_AfterSelect(object sender, TreeViewEventArgs e)
-    {
-        if(!string.IsNullOrEmpty(e.Node?.ToolTipText))
-        {
-            txtMsg.Text = e.Node.ToolTipText;
-            spltMain.Panel2Collapsed = false;
-        }
-        else
-        {
-            txtMsg.Text = String.Empty;
-            spltMain.Panel2Collapsed = true;
-
-        }
-    }
 }

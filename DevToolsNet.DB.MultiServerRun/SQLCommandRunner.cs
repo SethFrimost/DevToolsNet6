@@ -17,6 +17,8 @@ namespace DevToolsNet.DB.Runner
         SqlConnection conn;
         private string outMessage = string.Empty;
 
+        public string DisplayName { get; set; }
+
         public ConnectionString ConnectionString { get { return connectionString; } }
 
         public void SetConnection(ConnectionString connectionString)

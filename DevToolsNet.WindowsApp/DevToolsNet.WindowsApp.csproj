@@ -10,17 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="WinServiceManager\frmServicios.cs" />
-    <Compile Remove="WinServiceManager\frmServicios.Designer.cs" />
-    <Compile Remove="WinServiceManager\Impersonate.cs" />
-    <Compile Remove="WinServiceManager\ServiceConfig.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="WinServiceManager\frmServicios.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="xmlTemplates\temp1.xml" />
     <None Remove="xmlTemplates\temp2.xml" />
@@ -77,6 +66,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="ServerTrees\TreeServerServices.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -111,10 +101,6 @@
     <None Update="xmlTemplates\SQL_XmlToTable.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WinServiceManager\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

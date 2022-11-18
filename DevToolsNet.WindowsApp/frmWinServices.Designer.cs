@@ -42,6 +42,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.spltMain = new System.Windows.Forms.SplitContainer();
             this.txtMsg = new System.Windows.Forms.TextBox();
+            this.treeServerServices = new DevToolsNet.WindowsApp.ServerTrees.TreeServerServices();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltMain)).BeginInit();
             this.spltMain.Panel1.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             // spltMain.Panel1
             // 
+            this.spltMain.Panel1.Controls.Add(this.treeServerServices);
             this.spltMain.Panel1.Controls.Add(this.treeServ);
             this.spltMain.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
@@ -179,6 +181,18 @@
             this.txtMsg.ReadOnly = true;
             this.txtMsg.Size = new System.Drawing.Size(346, 93);
             this.txtMsg.TabIndex = 0;
+            // 
+            // treeServerServices
+            // 
+            this.treeServerServices.CheckBoxes = true;
+            this.treeServerServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeServerServices.Location = new System.Drawing.Point(0, 0);
+            this.treeServerServices.Name = "treeServerServices";
+            this.treeServerServices.ShowTools = true;
+            this.treeServerServices.Size = new System.Drawing.Size(346, 347);
+            this.treeServerServices.TabIndex = 3;
+            this.treeServerServices.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeCheck);
+            this.treeServerServices.AfterNodeSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeSelect);
             // 
             // frmWinServices
             // 
@@ -216,5 +230,6 @@
         private ImageList imlTree;
         private SplitContainer spltMain;
         private TextBox txtMsg;
+        private ServerTrees.TreeServerServices treeServerServices;
     }
 }

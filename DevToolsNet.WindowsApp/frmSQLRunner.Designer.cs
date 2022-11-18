@@ -48,6 +48,7 @@
             this.tabResults = new System.Windows.Forms.TabControl();
             this.imglConn = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.treeServers = new DevToolsNet.WindowsApp.ServerTrees.TreeServerConnections();
             this.treeConnections = new System.Windows.Forms.TreeView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -274,6 +275,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.treeServers);
             this.splitContainer2.Panel1.Controls.Add(this.treeConnections);
             this.splitContainer2.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             // 
@@ -284,17 +286,29 @@
             this.splitContainer2.SplitterDistance = 214;
             this.splitContainer2.TabIndex = 3;
             // 
+            // treeServers
+            // 
+            this.treeServers.CheckBoxes = true;
+            this.treeServers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeServers.Location = new System.Drawing.Point(0, 0);
+            this.treeServers.Name = "treeServers";
+            this.treeServers.ShowTools = true;
+            this.treeServers.Size = new System.Drawing.Size(214, 386);
+            this.treeServers.TabIndex = 1;
+            this.treeServers.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeServers_AfterNodeCheck);
+            // 
             // treeConnections
             // 
             this.treeConnections.CheckBoxes = true;
-            this.treeConnections.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeConnections.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.treeConnections.ImageIndex = 0;
             this.treeConnections.ImageList = this.imglConn;
-            this.treeConnections.Location = new System.Drawing.Point(0, 0);
+            this.treeConnections.Location = new System.Drawing.Point(0, 386);
             this.treeConnections.Name = "treeConnections";
             this.treeConnections.SelectedImageIndex = 0;
-            this.treeConnections.Size = new System.Drawing.Size(214, 509);
+            this.treeConnections.Size = new System.Drawing.Size(214, 123);
             this.treeConnections.TabIndex = 0;
+            this.treeConnections.Visible = false;
             this.treeConnections.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeConnections_AfterCheck);
             // 
             // frmSQLRunner
@@ -349,5 +363,6 @@
         private ToolStripButton tsbVerGrids;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbDoReplace;
+        private ServerTrees.TreeServerConnections treeServers;
     }
 }

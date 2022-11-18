@@ -31,5 +31,12 @@ namespace DevToolsNet.WindowsApp
             f.MdiParent = this;
             f.Show();
         }
+
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            /*var f = Program.ServiceProvider.GetService<frmTest>();
+            f.MdiParent = this;
+            f.Show();*/
+        }
     }
 }

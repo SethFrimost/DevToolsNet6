@@ -2,6 +2,7 @@
 using DevToolsNet.DB.Objects.Interfaces;
 using DevToolsNet.DB.Runner;
 using DevToolsNet.DB.Runner.Interfaces;
+using DevToolsNet.Shared.Configs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
@@ -20,6 +21,9 @@ namespace DevToolsNet.WindowsApp
 
     public partial class frmSQLRunner : Form
     {
+
+        ServersConfig<ServerConnectionStringCollection> servers;
+
         ConnectionStringGroupCollection settings;
         Dictionary<string, ICommandRuner> runners;
 
@@ -28,17 +32,26 @@ namespace DevToolsNet.WindowsApp
         private bool showReplace = false;
         private bool showGrids = false;
 
-        public frmSQLRunner(IOptions<ConnectionStringGroupCollection> settings)
+        private frmSQLRunner()
         {
-            this.settings = settings?.Value;
-            //this.commandRuner = commandRuner;
-
             InitializeComponent();
+
             splcCode.Panel2Collapsed = !tsbSelectReplace.Checked;
             txtCode.MaxLength = int.MaxValue;
             txtReplace.MaxLength = int.MaxValue;
 
             runners = new Dictionary<string, ICommandRuner>();
+        }
+
+        /*public frmSQLRunner(IOptions<ConnectionStringGroupCollection> settings) : this()
+        {
+            this.settings = settings.Value;
+        }*/
+
+        public frmSQLRunner(IOptions<ServersConfig<ServerConnectionStringCollection>> settings) : this()
+        {
+            servers = settings.Value;
+            this.treeServers.LoadServers(servers);
         }
 
 
@@ -58,18 +71,35 @@ namespace DevToolsNet.WindowsApp
                 {
                     ICommandRuner r = Program.ServiceProvider.GetService<ICommandRuner>();
                     r.SetConnection(e.Node.Tag as ConnectionString);
+                    r.DisplayName = e.Node.Text;
                     runners.Add(e.Node.Name, r);
                 }
-                else 
+                else
                     runners.Remove(e.Node.Name);
             }
 
             //if (e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse)
             //{
-                foreach (TreeNode n in e.Node.Nodes) { n.Checked = e.Node.Checked; }
+            foreach (TreeNode n in e.Node.Nodes) { n.Checked = e.Node.Checked; }
             //}
         }
 
+        private void treeServers_AfterNodeCheck(object sender, TreeViewEventArgs e)
+        {
+            
+            if (e.Node != null && e.Node.Tag is ConnectionString)
+            {
+                if (e.Node.Checked)
+                {
+                    ICommandRuner r = Program.ServiceProvider.GetService<ICommandRuner>();
+                    r.SetConnection(e.Node.Tag as ConnectionString);
+                    r.DisplayName = e.Node.Parent.Text + "." + e.Node.Text;
+                    runners.Add(e.Node.Name, r);
+                }
+                else
+                    runners.Remove(e.Node.Name);
+            }
+        }
 
         private void tsbReload_Click(object sender, EventArgs e)
         {
@@ -118,20 +148,23 @@ namespace DevToolsNet.WindowsApp
             treeConnections.Nodes.Clear();
             treeConnections.CheckBoxes = true;
             runners.Clear();
-            if(settings?.connectionGroups != null) { 
+            if (settings?.connectionGroups != null)
+            {
                 foreach (var g in settings.connectionGroups) createNodes(treeConnections.Nodes, g);
             }
+            if(servers != null) treeServers.LoadServers(servers);
         }
 
         private void createNodes(TreeNodeCollection parent, ConnectionStringGroup group)
         {
             // group node
-            TreeNode gNode = parent.Add(group.group, group.group,0,0);
+            TreeNode gNode = parent.Add(group.group, group.group, 0, 0);
 
-            if(group.connectionStrings != null) { 
+            if (group.connectionStrings != null)
+            {
                 foreach (var con in group.connectionStrings)
                 {
-                    var n = gNode.Nodes.Add($"{group.group}_{con.Name}", con.Name,1,1);
+                    var n = gNode.Nodes.Add($"{group.group}_{con.Name}", con.Name, 1, 1);
                     n.Tag = con;
                 }
             }
@@ -154,7 +187,7 @@ namespace DevToolsNet.WindowsApp
             }
             foreach (var run in runners.Values)
             {
-                tasks.Add(ejecutarSQL(run.ConnectionString.Name, run, nonquery, dsUnion));
+                tasks.Add(ejecutarSQL(run.ConnectionString.Name, run, nonquery, dsUnion, run.DisplayName));
             }
 
 
@@ -166,7 +199,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion != null)
                 {
-                    if(tabUnion == null) tabUnion = GetTabPage("Result");
+                    if (tabUnion == null) tabUnion = GetTabPage("Result");
                     tabUnion.ImageIndex = -1;
 
                     SetGridControl(tabUnion, dsUnion, null, true);
@@ -180,12 +213,13 @@ namespace DevToolsNet.WindowsApp
 
         /// <summary>  </summary>
         /// <param name="connName"></param>
-        private Task ejecutarSQL(string name, ICommandRuner run, bool nonquery, DataSet dsUnion)
+        private Task ejecutarSQL(string name, ICommandRuner run, bool nonquery, DataSet dsUnion, string displayName)
         {
             DataSet ds = null;
             string strOut = string.Empty;
             TabPage tab = null;
-            if (dsUnion == null) { 
+            if (dsUnion == null)
+            {
                 tab = GetTabPage(name);
                 tab.ImageIndex = 2;
             }
@@ -197,7 +231,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion == null)
                 {
-                    if(tab==null) tab = GetTabPage(name);
+                    if (tab == null) tab = GetTabPage(name);
                     tab.ImageIndex = -1;
                     if (t.Exception != null)
                     {
@@ -227,7 +261,7 @@ namespace DevToolsNet.WindowsApp
                             var clone = dt.Clone();
                             foreach (DataRow dr in dt.Rows) clone.ImportRow(dr);
                             clone.Columns.Add(serverColumnUnion);
-                            foreach (DataRow dr in clone.Rows) dr[serverColumnUnion] = name;
+                            foreach (DataRow dr in clone.Rows) dr[serverColumnUnion] = displayName;
                             if (dsUnion.Tables[clone.TableName] == null) dsUnion.Tables.Add(clone);
                             else dsUnion.Tables[clone.TableName].Merge(clone);
                         }
@@ -357,7 +391,7 @@ namespace DevToolsNet.WindowsApp
                         g.BringToFront();
                     }
 
-                    if(showReplace)
+                    if (showReplace)
                     {
                         g.Dock = DockStyle.Top;
                         g.Height = 200;
@@ -415,7 +449,7 @@ namespace DevToolsNet.WindowsApp
         private string CreateTextReplace(DataSet ds, string text)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(DataTable dt in ds.Tables)
+            foreach (DataTable dt in ds.Tables)
             {
                 sb.AppendLine(CreateTextReplace(dt, text));
             }
@@ -426,10 +460,10 @@ namespace DevToolsNet.WindowsApp
         {
             StringBuilder sb = new StringBuilder();
             string row = string.Empty;
-            foreach(DataRow r in dt.Rows)
+            foreach (DataRow r in dt.Rows)
             {
                 row = text;
-                foreach(DataColumn c in dt.Columns)
+                foreach (DataColumn c in dt.Columns)
                 {
                     row = row.Replace("{" + c.ColumnName + "}", r[c].ToString());
                 }
@@ -440,10 +474,10 @@ namespace DevToolsNet.WindowsApp
 
         private void MakeReplaceText()
         {
-            for(int i=0;i<tabResults.TabCount;i++)
+            for (int i = 0; i < tabResults.TabCount; i++)
             {
                 var td = tabResults.TabPages[i].Tag as TabData;
-                if(td?.txtReplace != null)
+                if (td?.txtReplace != null)
                 {
                     // do replace
                     td.txtReplace.Text = CreateTextReplace(td.data, txtReplace.Text);
@@ -457,6 +491,7 @@ namespace DevToolsNet.WindowsApp
 
         #endregion
 
+        
     }
 
     public class TabData
