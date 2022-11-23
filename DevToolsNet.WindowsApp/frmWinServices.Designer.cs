@@ -1,4 +1,6 @@
-﻿namespace DevToolsNet.WindowsApp
+﻿using DevToolsNet.WindowsApp.ServerTreeManager;
+
+namespace DevToolsNet.WindowsApp
 {
     partial class frmWinServices
     {
@@ -37,12 +39,11 @@
             this.tsbStart = new System.Windows.Forms.ToolStripButton();
             this.tsbStop = new System.Windows.Forms.ToolStripButton();
             this.tsbRestart = new System.Windows.Forms.ToolStripButton();
-            this.treeServ = new System.Windows.Forms.TreeView();
             this.imlTree = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.spltMain = new System.Windows.Forms.SplitContainer();
+            this.treeServerServices = new DevToolsNet.WinFormsControlLibrary.TreeViewTools();
             this.txtMsg = new System.Windows.Forms.TextBox();
-            this.treeServerServices = new DevToolsNet.WindowsApp.ServerTrees.TreeServerServices();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltMain)).BeginInit();
             this.spltMain.Panel1.SuspendLayout();
@@ -120,18 +121,6 @@
             this.tsbRestart.Text = "Restart";
             this.tsbRestart.Click += new System.EventHandler(this.tsbRestart_Click);
             // 
-            // treeServ
-            // 
-            this.treeServ.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeServ.ImageIndex = 0;
-            this.treeServ.ImageList = this.imlTree;
-            this.treeServ.Location = new System.Drawing.Point(0, 0);
-            this.treeServ.Name = "treeServ";
-            this.treeServ.SelectedImageIndex = 0;
-            this.treeServ.Size = new System.Drawing.Size(346, 347);
-            this.treeServ.TabIndex = 1;
-            this.treeServ.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeServ_AfterSelect);
-            // 
             // imlTree
             // 
             this.imlTree.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
@@ -158,7 +147,6 @@
             // spltMain.Panel1
             // 
             this.spltMain.Panel1.Controls.Add(this.treeServerServices);
-            this.spltMain.Panel1.Controls.Add(this.treeServ);
             this.spltMain.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // spltMain.Panel2
@@ -168,7 +156,18 @@
             this.spltMain.Size = new System.Drawing.Size(346, 444);
             this.spltMain.SplitterDistance = 347;
             this.spltMain.TabIndex = 2;
-            this.spltMain.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            // 
+            // treeServerServices
+            // 
+            this.treeServerServices.CheckBoxes = true;
+            this.treeServerServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeServerServices.Location = new System.Drawing.Point(0, 0);
+            this.treeServerServices.Name = "treeServerServices";
+            this.treeServerServices.ShowTools = true;
+            this.treeServerServices.Size = new System.Drawing.Size(346, 347);
+            this.treeServerServices.TabIndex = 0;
+            this.treeServerServices.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeCheck);
+            this.treeServerServices.AfterNodeSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeSelect);
             // 
             // txtMsg
             // 
@@ -181,18 +180,6 @@
             this.txtMsg.ReadOnly = true;
             this.txtMsg.Size = new System.Drawing.Size(346, 93);
             this.txtMsg.TabIndex = 0;
-            // 
-            // treeServerServices
-            // 
-            this.treeServerServices.CheckBoxes = true;
-            this.treeServerServices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeServerServices.Location = new System.Drawing.Point(0, 0);
-            this.treeServerServices.Name = "treeServerServices";
-            this.treeServerServices.ShowTools = true;
-            this.treeServerServices.Size = new System.Drawing.Size(346, 347);
-            this.treeServerServices.TabIndex = 3;
-            this.treeServerServices.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeCheck);
-            this.treeServerServices.AfterNodeSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeServerServices_AfterNodeSelect);
             // 
             // frmWinServices
             // 
@@ -219,7 +206,6 @@
         #endregion
 
         private ToolStrip toolStrip1;
-        private TreeView treeServ;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripButton tsbReload;
         private ToolStripSeparator toolStripSeparator1;
@@ -230,6 +216,6 @@
         private ImageList imlTree;
         private SplitContainer spltMain;
         private TextBox txtMsg;
-        private ServerTrees.TreeServerServices treeServerServices;
+        private WinFormsControlLibrary.TreeViewTools treeServerServices;
     }
 }

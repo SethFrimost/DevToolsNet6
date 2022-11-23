@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -33,15 +33,16 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Primitives" Version="7.0.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -55,9 +56,11 @@
     <ProjectReference Include="..\DevToolsNet.Json\DevToolsNet.Json.csproj" />
     <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
     <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
+    <ProjectReference Include="..\DevToolsNet.WinFormsControlLibrary\DevToolsNet.WinFormsControlLibrary.csproj" />
     <ProjectReference Include="..\DevToolsNet.WinServicesManager\DevToolsNet.WinServicesManager.csproj" />
     <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
     <ProjectReference Include="..\DevToolsNet6.DB.Objects\DevToolsNet.DB.Objects.csproj" />
+    <ProjectReference Include="..\DevToolsNet6.PowerShell\DevToolsNet.PowerShell.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,7 +69,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="ServerTrees\TreeServerServices.cs" />
   </ItemGroup>
 
   <ItemGroup>

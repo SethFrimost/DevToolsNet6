@@ -7,6 +7,7 @@ using DevToolsNet.DB.Objects.Configs;
 using DevToolsNet.DB.Runner;
 using DevToolsNet.DB.Runner.Interfaces;
 using DevToolsNet.Extensions;
+using DevToolsNet.PowerShell;
 using DevToolsNet.Shared.Configs;
 using DevToolsNet.WinServicesManager;
 using Microsoft.Extensions.Configuration;
@@ -32,14 +33,14 @@ namespace DevToolsNet.WindowsApp
             ConfigurationBuilder confBuilder = new ConfigurationBuilder();
             Configuration = confBuilder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
 
-            //
+            /*
             var scBase = new ServersConfig<ServerConfig>();
             var scCon = new ServersConfig<ServerConnectionStringCollection>();
             var scWS = new ServersConfig<WindowsServiceConfig>();
             Configuration.GetSection("ServersConfig").Bind(scBase);
             Configuration.GetSection("ServersConfig").Bind(scCon);
             Configuration.GetSection("ServersConfig").Bind(scWS);
-            
+            */
            
             var appConn = Configuration.GetConnectionString("AppConfig");
             if (!string.IsNullOrEmpty(appConn))
@@ -79,6 +80,7 @@ namespace DevToolsNet.WindowsApp
                 .Configure<LocalXmlTemplateConfigSection>(Configuration.GetSection("LocalXmlTemplateConfig"))
                 .Configure<ConnectionStringGroupCollection>(Configuration.GetSection("SqlRunner"))
                 .Configure<WinServicesManagerConfig>(Configuration.GetSection("WinServicesManagerConfig"))
+                .Configure<ServersConfig<ServerConfig>>(Configuration.GetSection("ServersConfig"))
                 .Configure<ServersConfig<ServerConnectionStringCollection>>(Configuration.GetSection("ServersConfig"))
                 .Configure<ServersConfig<WindowsServiceConfig>>(Configuration.GetSection("ServersConfig"));
 
@@ -89,7 +91,8 @@ namespace DevToolsNet.WindowsApp
                 .AddTransient<ICodeGenerator, GeneratorFromXml>()
                 .AddTransient<ITableDataInfoRecover, SqlDataInfoRecover>()
                 .AddTransient<ICommandRuner, SQLCommandRunner>()
-                .AddTransient<IDbConnection, SqlConnection>();
+                .AddTransient<IDbConnection, SqlConnection>()
+                .AddTransient<IPowerShellRunner, PowerShellRunner>();
                 
             // forms
             services
@@ -97,6 +100,7 @@ namespace DevToolsNet.WindowsApp
                 .AddTransient<frmGenerador>()
                 .AddTransient<frmSQLRunner>()
                 .AddTransient<frmWinServices>()
+                .AddTransient<frmPowerShell>()
                 .AddTransient<frmTest>();
             
         }

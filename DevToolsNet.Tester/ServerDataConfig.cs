@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DevToolsNet.zzzTester
 {
-    public class ServerDataConfig : Shared.Configs.ServerConfig
+    /*public class ServerDataConfig : Shared.Configs.ServerConfig
     {
         public List<string> datos { get; set; }
-    }
+    }*/
 }

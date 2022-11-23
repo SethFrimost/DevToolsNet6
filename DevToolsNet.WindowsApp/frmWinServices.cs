@@ -4,36 +4,39 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using DevToolsNet.DB.Objects.Configs;
 using DevToolsNet.Shared.Configs;
+using DevToolsNet.WindowsApp.ServerTreeManager;
 using DevToolsNet.WinServicesManager;
 using Microsoft.Extensions.Options;
+using Namotion.Reflection;
 
 namespace DevToolsNet.WindowsApp;
 
 public partial class frmWinServices : Form
 {
-    WindowsServicesManager winServicesManager;
+    ServersConfig<WindowsServiceConfig> servers;
+    ServerTreeManager.TreeServerServices treeServicesManager;
     WindowsServicesManager2 swManager;
-
-    private frmWinServices(WindowsServicesManager winServicesManager)
-    {
-        InitializeComponent();
-        this.winServicesManager = winServicesManager;
-        winServicesManager.ServiceStatusUpdate += ServiceStatusUpdate;
-    }
 
     public frmWinServices(IOptions<ServersConfig<WindowsServiceConfig>> settings)
     {
         InitializeComponent();
-        if (settings != null) treeServerServices.LoadServers(settings.Value);
+
+        servers = settings.Value;
+
+        treeServicesManager = new ServerTreeManager.TreeServerServices();
+        treeServicesManager.InitializeTree(treeServerServices.Tree);
+
         swManager = new WindowsServicesManager2();
         swManager.ServiceStatusUpdate += ServiceStatusUpdate;
     }
+
 
     private void frmWinServices_Shown(object sender, EventArgs e)
     {
@@ -90,27 +93,27 @@ public partial class frmWinServices : Form
 
     private void tsbStart_Click(object sender, EventArgs e)
     {
-        var se = treeServ.SelectedNode?.Tag as WindowsServiceStatus;
-        if(se != null) winServicesManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Play);
+        var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Play);
     }
 
     private void tsbStop_Click(object sender, EventArgs e)
     {
-        var se = treeServ.SelectedNode?.Tag as WindowsServiceStatus;
-        if (se != null) winServicesManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Stop);
+        var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Stop);
     }
 
     private void tsbRestart_Click(object sender, EventArgs e)
     {
-        var se = treeServ.SelectedNode?.Tag as WindowsServiceStatus;
-        if (se != null) winServicesManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Restart);
+        var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Restart);
 
     }
 
     private void tsbRefresh_Click(object sender, EventArgs e)
     {
-        var se = treeServ.SelectedNode?.Tag as WindowsServiceStatus;
-        if (se != null) winServicesManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Refresh);
+        var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Refresh);
     }
 
 
@@ -130,31 +133,12 @@ public partial class frmWinServices : Form
 
     private async void Load()
     {
-        treeServ.Nodes.Clear();
+        treeServerServices.Tree.Nodes.Clear();
         txtMsg.Text = String.Empty;
         spltMain.Panel2Collapsed = true;
-        //if(swManager != null) swManager.Clear();
+        if(swManager != null) swManager.Clear();
+        treeServicesManager.LoadNodes(treeServerServices.Tree, servers);
 
-        if (winServicesManager != null)
-        {
-            var serv = await winServicesManager.LoadServices();
-            foreach(var s in serv)
-            {
-                AddServiceNode(s);
-            }
-        }
-    }
-
-    private TreeNode AddServiceNode(WindowsServiceStatus se)
-    {
-        var servNode = treeServ.Nodes.Find(se.Server, false).FirstOrDefault();
-        if (servNode == null) servNode = treeServ.Nodes.Add(se.Server, se.Server, 0);
-
-        var sn = servNode.Nodes.Add(se.Server + se.Name, se.Name, 1);
-        sn.Tag = se;
-        setIcon(sn, se.LastStatus, se.exception?.ToString());
-
-        return sn;
     }
 
     private void setIcon(TreeNode n, System.ServiceProcess.ServiceControllerStatus state, string? err)
@@ -204,9 +188,5 @@ public partial class frmWinServices : Form
         }
     }
 
-    private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-    {
-
-    }
 
 }

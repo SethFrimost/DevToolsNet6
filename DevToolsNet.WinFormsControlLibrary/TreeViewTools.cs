@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace DevToolsNet.WindowsApp.ServerTrees
+namespace DevToolsNet.WinFormsControlLibrary
 {
     public partial class TreeViewTools : UserControl
     {
         private Dictionary<TreeNodeCollection, List<TreeNode>> hidenNodes = new Dictionary<TreeNodeCollection, List<TreeNode>>();
         private string filterString = string.Empty;
+        private List<string> filters = new List<string>();
+
+        private System.Windows.Forms.Timer tFilter;
+
+        public ImageList TreeImages { get => ilTree; }
+
+        public TreeView Tree { get => tree; }
+
+        public TreeNodeCollection Nodes { get => tree.Nodes; }
 
         public bool ShowTools
         {
@@ -48,9 +58,16 @@ namespace DevToolsNet.WindowsApp.ServerTrees
         {
             InitializeComponent();
             chkExact.Checked = false;
+            tFilter = new System.Windows.Forms.Timer() { Interval = 500 };
+            tFilter.Tick += TFilter_Tick;
         }
 
-
+        private void TFilter_Tick(object? sender, EventArgs e)
+        {
+            FilterNodes(tree.Nodes);
+            tree.Sort();
+            tFilter.Stop();
+        }
 
         private void TreeViewTools_Resize(object sender, EventArgs e)
         {
@@ -89,15 +106,21 @@ namespace DevToolsNet.WindowsApp.ServerTrees
 
         private void tstFilter_TextChanged(object sender, EventArgs e)
         {
+            tFilter.Stop();
+            filters.Clear();
             filterString = tstFilter.Text.ToLower();
-            FilterNodes(tree.Nodes);
-            tree.Sort();
+            var fs = filterString.Split('|');
+            foreach(var f in fs)
+            {
+                if(!string.IsNullOrEmpty(f.Trim())) filters.Add(f.Trim());
+            }
+            tFilter.Start();
         }
 
         private void chkExact_CheckedChanged(object sender, EventArgs e)
         {
-            FilterNodes(tree.Nodes);
-            tree.Sort();
+            tFilter.Stop();
+            tFilter.Start();
         }
 
 
@@ -200,9 +223,25 @@ namespace DevToolsNet.WindowsApp.ServerTrees
         private bool checkFilter(string text)
         {
             if (!ShowTools) return true;
+            if (string.IsNullOrEmpty(filterString)) return true;
 
-            if(chkExact.Checked) return text == filterString;
-            else return text.Contains(filterString);
+            if (filters.Count == 1) return checkFilterString(text, filterString);
+            else
+            {
+                bool ok = false;
+                foreach(var f in filters)
+                {
+                    ok = checkFilterString(text, f);
+                    if (ok) break;  
+                }
+                return ok;
+            }
+        }
+
+        private bool checkFilterString(string text, string filter)
+        {
+            if (chkExact.Checked) return text == filter;
+            else return text.Contains(filter);
         }
 
         // no tenemos

@@ -35,6 +35,7 @@
             this.tsmiSqlRunner = new System.Windows.Forms.ToolStripMenuItem();
             this.windosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.powerShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +76,8 @@
             // windosToolStripMenuItem
             // 
             this.windosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.servicesToolStripMenuItem});
+            this.servicesToolStripMenuItem,
+            this.powerShellToolStripMenuItem});
             this.windosToolStripMenuItem.Name = "windosToolStripMenuItem";
             this.windosToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.windosToolStripMenuItem.Text = "Windows";
@@ -83,9 +85,16 @@
             // servicesToolStripMenuItem
             // 
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
-            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.servicesToolStripMenuItem.Text = "Services";
             this.servicesToolStripMenuItem.Click += new System.EventHandler(this.servicesToolStripMenuItem_Click);
+            // 
+            // powerShellToolStripMenuItem
+            // 
+            this.powerShellToolStripMenuItem.Name = "powerShellToolStripMenuItem";
+            this.powerShellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerShellToolStripMenuItem.Text = "Power Shell";
+            this.powerShellToolStripMenuItem.Click += new System.EventHandler(this.powerShellToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -115,5 +124,6 @@
         private ToolStripMenuItem tsmiSqlRunner;
         private ToolStripMenuItem windosToolStripMenuItem;
         private ToolStripMenuItem servicesToolStripMenuItem;
+        private ToolStripMenuItem powerShellToolStripMenuItem;
     }
 }

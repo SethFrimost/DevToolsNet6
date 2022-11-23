@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -25,21 +25,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.2.7" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.0" />
     <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
     <PackageReference Include="VideoLibrary" Version="3.2.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DevToolsNet.DB.Generator\DevToolsNet.DB.Generator.csproj" />
-    <ProjectReference Include="..\DevToolsNet.DB.MultiServerRun\DevToolsNet.DB.Runner.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Drawing\DevToolsNet.Drawing.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Extensions\DevToolsNet.Extensions.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Generics\DevToolsNet.Generics.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
-    <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
-    <ProjectReference Include="..\DevToolsNet6.DB.Objects\DevToolsNet.DB.Objects.csproj" />
   </ItemGroup>
 
 </Project>

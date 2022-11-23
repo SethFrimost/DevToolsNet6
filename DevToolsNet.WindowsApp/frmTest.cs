@@ -21,7 +21,7 @@ namespace DevToolsNet.WindowsApp
         {
             InitializeComponent();
             servers = config.Value;
-            this.treeServerConnections1.LoadServers(servers);
+            //this.treeServerConnections1.LoadServers(servers);
         }
 
 

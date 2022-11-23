@@ -1,9 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using DevToolsNet.DB.Generator;
+
 using Microsoft.Extensions.Configuration;
-using DevToolsNet.Generics;
-using DevToolsNet.Extensions;
-using DevToolsNet.DB.Objects;
+
 using VideoLibrary;
 using System.Security;
 using System;
@@ -16,6 +14,7 @@ using DevToolsNet.zzzTester;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
+/*
 Grupo g = new Grupo() { name = "A", subGrupos= new List<Grupo>() };
 g.subGrupos.Add(new Grupo() { name = "A1", padre=g });
 
@@ -30,32 +29,7 @@ Console.WriteLine(json);
 var g2 = System.Text.Json.JsonSerializer.Deserialize<Grupo>(json, options);
 
 Console.WriteLine("");
-
-/*
-Console.WriteLine("Hello, World!");
-ConfigurationManager confManager = new ConfigurationManager();
-var configs = confManager.AddJsonFile("config.json").Build();
 */
-
-/*LocalXmlTemplateGenerators generators = new LocalXmlTemplateGenerators(configs);
-generators.LoadGenerators();
-
-List<DataTable> datas = new List<DataTable>(); ;
-datas.Add(new DataTable()
-{
-    Tabla = "Centro",
-    Schema = "Central",
-    Columnas = new List<DataColumn>()
-    {
-        new DataColumn() { is_identity=true, is_nullable=false, name="id", system_type="bigint"},
-        new DataColumn() { is_identity=false, is_nullable=false, name="Codigo", system_type="varchar", max_length=50 },
-        new DataColumn() { is_identity=false, is_nullable=false, name="ts", system_type="timestamp", max_length=0 }
-    }
-});
-generators.CodeGenerators.ForEach(g=> Console.WriteLine(g.GenerateCode(datas)));
-*/
-//var l = new List<int>() { 4 };
-
 
 //using VideoLibrary;
 /*var VedioUrl = "https://www.youtube.com/embed/lUEXzILh2aQ.mp4";
@@ -88,8 +62,9 @@ catch(Exception ex)
 */
 try
 {
-    string userName = "tuv\\sadm-castell-an";
-    string password = "Kiloploki!certi0";
+    Console.WriteLine("set user and pass");
+    string userName = Console.ReadLine();
+    string password = Console.ReadLine();
     var securestring = new SecureString();
     foreach (Char c in password)
     {
@@ -105,26 +80,9 @@ try
     Runspace runspace = RunspaceFactory.CreateRunspace(connectionInfo);
     runspace.Open();
 
-    /*using (PowerShell ps = PowerShell.Create())
-    {
-        // specify the script code to run.
-        ps.AddScript("ls");
-
-        // specify the parameters to pass into the script.
-        //ps.AddParameters("");
-
-        // execute the script and await the result.
-        var pipelineObjects = await ps.InvokeAsync().ConfigureAwait(false);
-
-        // print the resulting pipeline objects to the console.
-        foreach (var item in pipelineObjects)
-        {
-            Console.WriteLine(item.BaseObject.ToString());
-        }
-    }*/
-
     using (PowerShell ps = PowerShell.Create())
     {
+        //ps.AddCommand()
         ps.AddScript("ls c:\\");
 
         ps.Streams.Error.DataAdded += (s, e) => {

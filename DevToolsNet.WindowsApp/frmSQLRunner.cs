@@ -21,7 +21,7 @@ namespace DevToolsNet.WindowsApp
 
     public partial class frmSQLRunner : Form
     {
-
+        ServerTreeManager.TreeServerConnections treeServerConnections;
         ServersConfig<ServerConnectionStringCollection> servers;
 
         ConnectionStringGroupCollection settings;
@@ -51,7 +51,9 @@ namespace DevToolsNet.WindowsApp
         public frmSQLRunner(IOptions<ServersConfig<ServerConnectionStringCollection>> settings) : this()
         {
             servers = settings.Value;
-            this.treeServers.LoadServers(servers);
+            treeServerConnections = new ServerTreeManager.TreeServerConnections();
+            treeServerConnections.InitializeTree(treeServers.Tree);
+            treeServerConnections.LoadNodes(treeServers.Tree, servers);
         }
 
 
@@ -59,7 +61,7 @@ namespace DevToolsNet.WindowsApp
 
         private void frmSQLRunner_Shown(object sender, EventArgs e)
         {
-            loadConnections();
+            //loadConnections();
         }
 
 
@@ -145,14 +147,10 @@ namespace DevToolsNet.WindowsApp
 
         private void loadConnections()
         {
-            treeConnections.Nodes.Clear();
-            treeConnections.CheckBoxes = true;
+            treeServers.Nodes.Clear();
+            treeServers.CheckBoxes = true;
             runners.Clear();
-            if (settings?.connectionGroups != null)
-            {
-                foreach (var g in settings.connectionGroups) createNodes(treeConnections.Nodes, g);
-            }
-            if(servers != null) treeServers.LoadServers(servers);
+            treeServerConnections.LoadNodes(treeServers.Tree, servers);
         }
 
         private void createNodes(TreeNodeCollection parent, ConnectionStringGroup group)
@@ -491,13 +489,13 @@ namespace DevToolsNet.WindowsApp
 
         #endregion
 
-        
+        private class TabData
+        {
+            public string Name { get; set; }
+            public DataSet data { get; set; }
+            public TextBox txtReplace { get; set; }
+        }
     }
 
-    public class TabData
-    {
-        public string Name { get; set; }
-        public DataSet data { get; set; }
-        public TextBox txtReplace { get; set; }
-    }
+    
 }

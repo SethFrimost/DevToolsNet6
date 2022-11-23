@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DevToolsNet.DB.Objects": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:65030;http://localhost:65036"
+    }
+  }
+}

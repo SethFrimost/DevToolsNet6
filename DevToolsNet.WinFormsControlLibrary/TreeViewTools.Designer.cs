@@ -1,4 +1,4 @@
-﻿namespace DevToolsNet.WindowsApp.ServerTrees
+﻿namespace DevToolsNet.WinFormsControlLibrary
 {
     partial class TreeViewTools
     {
@@ -58,7 +58,7 @@
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(300, 23);
+            this.toolStrip.Size = new System.Drawing.Size(300, 42);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -79,7 +79,7 @@
             // tsbSelectAll
             // 
             this.tsbSelectAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSelectAll.Image = global::DevToolsNet.WindowsApp.Properties.Resources.checks;
+            this.tsbSelectAll.Image = global::DevToolsNet.WinFormsControlLibrary.Properties.Resources.check2;
             this.tsbSelectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSelectAll.Name = "tsbSelectAll";
             this.tsbSelectAll.Size = new System.Drawing.Size(23, 20);
@@ -89,7 +89,7 @@
             // tsbUnselectAll
             // 
             this.tsbUnselectAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbUnselectAll.Image = global::DevToolsNet.WindowsApp.Properties.Resources.delete2;
+            this.tsbUnselectAll.Image = global::DevToolsNet.WinFormsControlLibrary.Properties.Resources.delete2;
             this.tsbUnselectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUnselectAll.Name = "tsbUnselectAll";
             this.tsbUnselectAll.Size = new System.Drawing.Size(23, 20);
@@ -102,10 +102,10 @@
             this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tree.ImageIndex = 0;
             this.tree.ImageList = this.ilTree;
-            this.tree.Location = new System.Drawing.Point(0, 23);
+            this.tree.Location = new System.Drawing.Point(0, 42);
             this.tree.Name = "tree";
             this.tree.SelectedImageIndex = 0;
-            this.tree.Size = new System.Drawing.Size(300, 446);
+            this.tree.Size = new System.Drawing.Size(300, 427);
             this.tree.TabIndex = 2;
             this.tree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterCheck);
             this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);

@@ -10,7 +10,10 @@ namespace DevToolsNet.WindowsApp
 
 
         }
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
 
+        }
         private void tsmiGenerador_Click(object sender, EventArgs e)
         {
             var f = Program.ServiceProvider.GetService<frmGenerador>();
@@ -31,12 +34,15 @@ namespace DevToolsNet.WindowsApp
             f.MdiParent = this;
             f.Show();
         }
-
-        private void frmMain_Shown(object sender, EventArgs e)
+        private void powerShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*var f = Program.ServiceProvider.GetService<frmTest>();
+            var f = Program.ServiceProvider.GetService<frmPowerShell>();
             f.MdiParent = this;
-            f.Show();*/
+            f.Show();
         }
+
+
+
+
     }
 }
