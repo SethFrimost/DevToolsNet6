@@ -64,9 +64,9 @@ namespace DevToolsNet.WinFormsControlLibrary
 
         private void TFilter_Tick(object? sender, EventArgs e)
         {
+            tFilter.Stop();
             FilterNodes(tree.Nodes);
             tree.Sort();
-            tFilter.Stop();
         }
 
         private void TreeViewTools_Resize(object sender, EventArgs e)
