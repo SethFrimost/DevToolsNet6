@@ -41,8 +41,18 @@ namespace DevToolsNet.WindowsApp
             f.Show();
         }
 
+        private void tcpServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new frmTCPServer();
+            f.MdiParent = this;
+            f.Show();
+        }
 
-
-
+        private void tcpClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new frmTCPClient();
+            f.MdiParent = this;
+            f.Show();
+        }
     }
 }

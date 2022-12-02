@@ -13,10 +13,20 @@ using System.Reflection;
 using DevToolsNet.zzzTester;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Drawing;
+using System.Diagnostics;
 
-/*
-Grupo g = new Grupo() { name = "A", subGrupos= new List<Grupo>() };
-g.subGrupos.Add(new Grupo() { name = "A1", padre=g });
+Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
+var jsE = System.Text.Json.JsonSerializer.Serialize(e);
+var e2 = System.Text.Json.JsonSerializer.Deserialize<Estilo>(jsE);
+ColorConverter cc = new ColorConverter();
+
+var c = cc.ConvertFromString("red"); // Color.FromName("ff3355ff");
+c = cc.ConvertFromString("#ff3355");
+c = cc.ConvertFromString("10;10;10");
+
+Grupo g = new Grupo() { name = "A", subGrupos= new List<Grupo>(), color=Color.Red };
+g.subGrupos.Add(new Grupo() { name = "A1", padre=g, color = Color.FromArgb(24,200,240) });
 
 JsonSerializerOptions options = new()
 {
@@ -26,10 +36,10 @@ JsonSerializerOptions options = new()
 var json = System.Text.Json.JsonSerializer.Serialize(g, options);
 Console.WriteLine(json);
 
+json = "{\r\n  \"$id\": \"1\",\r\n  \"padre\": null,\r\n  \"name\": \"A\",\r\n  \"color\": {\r\n    \"Name\": \"Red\"\r\n  },\r\n  \"subGrupos\": {\r\n    \"$id\": \"2\",\r\n    \"$values\": [\r\n      {\r\n        \"$id\": \"3\",\r\n        \"padre\": {\r\n          \"$ref\": \"1\"\r\n        },\r\n        \"name\": \"A1\",\r\n        \"color\": {\r\n          \"R\": 24,\r\n          \"G\": 200,\r\n          \"B\": 240,\r\n          \"A\": 255\r\n        },\r\n        \"subGrupos\": null\r\n      }\r\n    ]\r\n  }\r\n}";
 var g2 = System.Text.Json.JsonSerializer.Deserialize<Grupo>(json, options);
 
 Console.WriteLine("");
-*/
 
 //using VideoLibrary;
 /*var VedioUrl = "https://www.youtube.com/embed/lUEXzILh2aQ.mp4";
@@ -60,7 +70,7 @@ catch(Exception ex)
     Console.WriteLine(ex.Message);
 }
 */
-try
+/*try
 {
     Console.WriteLine("set user and pass");
     string userName = Console.ReadLine();
@@ -144,14 +154,14 @@ try
     {
         Console.WriteLine(item.BaseObject.ToString());
     }
-*/
+/
     runspace.Close();
     
 }
 catch (Exception e)
 {
     Console.WriteLine(e.Message);
-}
+}*/
 
 
 Console.WriteLine("--FIN--");

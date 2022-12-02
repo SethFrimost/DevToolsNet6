@@ -65,27 +65,6 @@ namespace DevToolsNet.WindowsApp
         }
 
 
-        private void treeConnections_AfterCheck(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Tag is ConnectionString)
-            {
-                if (e.Node.Checked)
-                {
-                    ICommandRuner r = Program.ServiceProvider.GetService<ICommandRuner>();
-                    r.SetConnection(e.Node.Tag as ConnectionString);
-                    r.DisplayName = e.Node.Text;
-                    runners.Add(e.Node.Name, r);
-                }
-                else
-                    runners.Remove(e.Node.Name);
-            }
-
-            //if (e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse)
-            //{
-            foreach (TreeNode n in e.Node.Nodes) { n.Checked = e.Node.Checked; }
-            //}
-        }
-
         private void treeServers_AfterNodeCheck(object sender, TreeViewEventArgs e)
         {
             

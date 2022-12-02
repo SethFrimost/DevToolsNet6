@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.PowerShell", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToolsNet.WinFormsControlLibrary", "DevToolsNet.WinFormsControlLibrary\DevToolsNet.WinFormsControlLibrary.csproj", "{A2CE5E4E-9D90-490B-91CD-3FB782A2CE95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.TCP", "DevToolsNet.TCP\DevToolsNet.TCP.csproj", "{F7CEC053-ADD7-4E70-81E0-6A573801FB93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{A2CE5E4E-9D90-490B-91CD-3FB782A2CE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CE5E4E-9D90-490B-91CD-3FB782A2CE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CE5E4E-9D90-490B-91CD-3FB782A2CE95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CEC053-ADD7-4E70-81E0-6A573801FB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CEC053-ADD7-4E70-81E0-6A573801FB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CEC053-ADD7-4E70-81E0-6A573801FB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CEC053-ADD7-4E70-81E0-6A573801FB93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -56,6 +56,7 @@
     <ProjectReference Include="..\DevToolsNet.Json\DevToolsNet.Json.csproj" />
     <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
     <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
+    <ProjectReference Include="..\DevToolsNet.TCP\DevToolsNet.TCP.csproj" />
     <ProjectReference Include="..\DevToolsNet.WinFormsControlLibrary\DevToolsNet.WinFormsControlLibrary.csproj" />
     <ProjectReference Include="..\DevToolsNet.WinServicesManager\DevToolsNet.WinServicesManager.csproj" />
     <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
@@ -64,6 +65,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="frmTCPClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

@@ -165,8 +165,8 @@ namespace DevToolsNet.WindowsApp
                 // Generate codes
                 for (int i = 0; i < tabResults.TabPages.Count; i++)
                 {
-                    if (tabResults.TabPages[i].Visible)
-                    {
+                    //if (tabResults.TabPages[i].Visible)
+                    //{
                         var g = tabResults.TabPages[i].Tag as ICodeGenerator;
                         var code = g.GenerateCode(tables);
                         code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
@@ -180,7 +180,7 @@ namespace DevToolsNet.WindowsApp
                         {
                             ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
                         } 
-                    }
+                    //}
                 }
             }
             else MessageBox.Show("No se han encontrado tablas");

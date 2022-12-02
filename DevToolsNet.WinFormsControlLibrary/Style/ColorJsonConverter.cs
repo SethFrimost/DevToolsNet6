@@ -1,36 +1,13 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevToolsNet.zzzTester
+namespace DevToolsNet.WinFormsControlLibrary.Style
 {
-    internal class Grupo
-    {
-        public Grupo padre { get; set; } = null;
-        public string name { get; set; } = null;
-
-        public Color color { get; set; }
-        public List<Grupo> subGrupos { get; set; } = null;
-    }
-
-
-    internal class Estilo
-    {
-        [JsonConverter(typeof(ColorHexJsonConverter))]
-        public Color a { get; set; }
-
-        [JsonConverter(typeof(ColorHexJsonConverter))]
-        public Color b { get; set; }
-
-    }
-
-
     internal class ColorHexJsonConverter : JsonConverter<Color>
     {
         ColorConverter cc = new ColorConverter();

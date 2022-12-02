@@ -36,6 +36,9 @@
             this.windosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.powerShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tcpServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tcpClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +46,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmSQL,
-            this.windosToolStripMenuItem});
+            this.windosToolStripMenuItem,
+            this.tCPToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1013, 24);
@@ -85,16 +89,39 @@
             // servicesToolStripMenuItem
             // 
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
-            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.servicesToolStripMenuItem.Text = "Services";
             this.servicesToolStripMenuItem.Click += new System.EventHandler(this.servicesToolStripMenuItem_Click);
             // 
             // powerShellToolStripMenuItem
             // 
             this.powerShellToolStripMenuItem.Name = "powerShellToolStripMenuItem";
-            this.powerShellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerShellToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.powerShellToolStripMenuItem.Text = "Power Shell";
             this.powerShellToolStripMenuItem.Click += new System.EventHandler(this.powerShellToolStripMenuItem_Click);
+            // 
+            // tCPToolStripMenuItem
+            // 
+            this.tCPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tcpServerToolStripMenuItem,
+            this.tcpClientToolStripMenuItem});
+            this.tCPToolStripMenuItem.Name = "tCPToolStripMenuItem";
+            this.tCPToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.tCPToolStripMenuItem.Text = "TCP";
+            // 
+            // tcpServerToolStripMenuItem
+            // 
+            this.tcpServerToolStripMenuItem.Name = "tcpServerToolStripMenuItem";
+            this.tcpServerToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.tcpServerToolStripMenuItem.Text = "Server";
+            this.tcpServerToolStripMenuItem.Click += new System.EventHandler(this.tcpServerToolStripMenuItem_Click);
+            // 
+            // tcpClientToolStripMenuItem
+            // 
+            this.tcpClientToolStripMenuItem.Name = "tcpClientToolStripMenuItem";
+            this.tcpClientToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.tcpClientToolStripMenuItem.Text = "Client";
+            this.tcpClientToolStripMenuItem.Click += new System.EventHandler(this.tcpClientToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -106,7 +133,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
-            this.Text = "DevTools";
+            this.Text = "Dev tools";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.menuStrip1.ResumeLayout(false);
@@ -125,5 +152,8 @@
         private ToolStripMenuItem windosToolStripMenuItem;
         private ToolStripMenuItem servicesToolStripMenuItem;
         private ToolStripMenuItem powerShellToolStripMenuItem;
+        private ToolStripMenuItem tCPToolStripMenuItem;
+        private ToolStripMenuItem tcpServerToolStripMenuItem;
+        private ToolStripMenuItem tcpClientToolStripMenuItem;
     }
 }

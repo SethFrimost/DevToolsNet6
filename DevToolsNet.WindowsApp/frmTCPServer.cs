@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DevToolsNet.WindowsApp
+{
+    public partial class frmTCPServer : Form
+    {
+        DevToolsNet.TCP.TcpServer server;
+
+        public frmTCPServer()
+        {
+            InitializeComponent();
+        }
+
+        private void pConfig_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                server = new TCP.TcpServer(new TCP.Configs.TcpConfig()
+                {
+                    Address = txtAddress.Text,
+                    Port = int.Parse(txtPort.Text),
+                    Key = txtKey.Text
+                });
+
+                server.DataReaded += Server_DataReaded;
+                server.ClientChange += Server_ClientChange;
+
+                server.Start();
+
+                txtMessages.Text += "- Server started -" + Environment.NewLine;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
+
+        private void Server_ClientChange(object? sender, EventArgs e)
+        {
+            if (txtMessages.InvokeRequired) txtMessages.Invoke(() => txtMessages.Text += "- Client connected -" + Environment.NewLine);
+            else txtMessages.Text += "- Client connected -" + Environment.NewLine;
+
+        }
+
+        private void Server_DataReaded(object? sender, EventArgs e)
+        {
+            if (txtMessages.InvokeRequired) txtMessages.Invoke(() => txtMessages.Text += "<- " + server.RawRecivedData + Environment.NewLine);
+            else txtMessages.Text += "<- " + server.RawRecivedData + Environment.NewLine;
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            if(server != null)
+            {
+                server.Stop();
+                server.Dispose();
+                server = null;
+
+                txtMessages.Text += "- Server Stoped -" + Environment.NewLine;
+            }
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (server != null)
+                {
+                    txtMessages.Text += "-> " + txtSendText.Text + Environment.NewLine;
+                    server.SendToLastServerClient(txtSendText.Text);
+                    txtSendText.Text = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnSendToAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (server != null)
+                {
+                    txtMessages.Text += "=> " + txtSendText.Text + Environment.NewLine;
+                    server.SendToClients(txtSendText.Text);
+                    txtSendText.Text = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+    }
+}

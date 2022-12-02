@@ -295,6 +295,7 @@ namespace DevToolsNet.WindowsApp
             this.treeServers.ShowTools = true;
             this.treeServers.Size = new System.Drawing.Size(214, 509);
             this.treeServers.TabIndex = 1;
+            this.treeServers.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeServers_AfterNodeCheck);
             // 
             // frmSQLRunner
             // 
