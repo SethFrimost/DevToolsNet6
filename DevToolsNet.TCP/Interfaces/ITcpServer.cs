@@ -15,7 +15,7 @@ namespace DevToolsNet.TCP.Interfaces
         void SendToLastServerClient(string message);
 
         event EventHandler DataReaded;
-        event EventHandler ClientChange;
+        event EventHandler ClientConected;
 
     }
 }

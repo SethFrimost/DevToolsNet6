@@ -35,8 +35,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.pConfig = new System.Windows.Forms.Panel();
-            this.txtKey = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.lbxClientes = new System.Windows.Forms.ListBox();
@@ -63,15 +61,18 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.Location = new System.Drawing.Point(67, 3);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(186, 23);
+            this.txtAddress.Size = new System.Drawing.Size(85, 23);
             this.txtAddress.TabIndex = 2;
             this.txtAddress.Text = "127.0.0.1";
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(260, 3);
+            this.txtPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPort.Location = new System.Drawing.Point(159, 3);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(100, 23);
             this.txtPort.TabIndex = 4;
@@ -79,8 +80,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(252, 6);
+            this.label2.Location = new System.Drawing.Point(151, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 15);
             this.label2.TabIndex = 3;
@@ -88,9 +90,10 @@
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.Location = new System.Drawing.Point(533, 4);
+            this.btnStart.Location = new System.Drawing.Point(265, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(55, 23);
             this.btnStart.TabIndex = 5;
@@ -101,9 +104,11 @@
             // 
             // btnStop
             // 
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStop.Enabled = false;
             this.btnStop.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_stop_red;
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStop.Location = new System.Drawing.Point(594, 4);
+            this.btnStop.Location = new System.Drawing.Point(326, 3);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(55, 23);
             this.btnStop.TabIndex = 6;
@@ -114,8 +119,6 @@
             // 
             // pConfig
             // 
-            this.pConfig.Controls.Add(this.txtKey);
-            this.pConfig.Controls.Add(this.label4);
             this.pConfig.Controls.Add(this.txtAddress);
             this.pConfig.Controls.Add(this.btnStop);
             this.pConfig.Controls.Add(this.lblAddress);
@@ -125,26 +128,9 @@
             this.pConfig.Dock = System.Windows.Forms.DockStyle.Top;
             this.pConfig.Location = new System.Drawing.Point(0, 0);
             this.pConfig.Name = "pConfig";
-            this.pConfig.Size = new System.Drawing.Size(800, 30);
+            this.pConfig.Size = new System.Drawing.Size(384, 30);
             this.pConfig.TabIndex = 7;
             this.pConfig.Paint += new System.Windows.Forms.PaintEventHandler(this.pConfig_Paint);
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(399, 4);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(128, 23);
-            this.txtKey.TabIndex = 8;
-            this.txtKey.Text = "server01";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(367, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Key";
             // 
             // splitContainer1
             // 
@@ -156,6 +142,7 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.lbxClientes);
+            this.splitContainer1.Panel1Collapsed = true;
             // 
             // splitContainer1.Panel2
             // 
@@ -164,8 +151,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.txtMessages);
             this.splitContainer1.Panel2.Controls.Add(this.btnSend);
             this.splitContainer1.Panel2.Controls.Add(this.txtSendText);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 460);
-            this.splitContainer1.SplitterDistance = 148;
+            this.splitContainer1.Size = new System.Drawing.Size(384, 431);
+            this.splitContainer1.SplitterDistance = 71;
             this.splitContainer1.TabIndex = 9;
             // 
             // label1
@@ -187,15 +174,16 @@
             this.lbxClientes.ItemHeight = 15;
             this.lbxClientes.Location = new System.Drawing.Point(0, 18);
             this.lbxClientes.Name = "lbxClientes";
-            this.lbxClientes.Size = new System.Drawing.Size(148, 442);
+            this.lbxClientes.Size = new System.Drawing.Size(71, 413);
             this.lbxClientes.TabIndex = 9;
             // 
             // btnSendToAll
             // 
             this.btnSendToAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendToAll.Enabled = false;
             this.btnSendToAll.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
             this.btnSendToAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSendToAll.Location = new System.Drawing.Point(539, 433);
+            this.btnSendToAll.Location = new System.Drawing.Point(275, 404);
             this.btnSendToAll.Name = "btnSendToAll";
             this.btnSendToAll.Size = new System.Drawing.Size(106, 23);
             this.btnSendToAll.TabIndex = 12;
@@ -222,15 +210,16 @@
             this.txtMessages.Multiline = true;
             this.txtMessages.Name = "txtMessages";
             this.txtMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMessages.Size = new System.Drawing.Size(643, 410);
+            this.txtMessages.Size = new System.Drawing.Size(379, 381);
             this.txtMessages.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Enabled = false;
             this.btnSend.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
             this.btnSend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSend.Location = new System.Drawing.Point(475, 434);
+            this.btnSend.Location = new System.Drawing.Point(211, 405);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(63, 23);
             this.btnSend.TabIndex = 6;
@@ -243,16 +232,16 @@
             // 
             this.txtSendText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSendText.Location = new System.Drawing.Point(2, 434);
+            this.txtSendText.Location = new System.Drawing.Point(2, 405);
             this.txtSendText.Name = "txtSendText";
-            this.txtSendText.Size = new System.Drawing.Size(472, 23);
+            this.txtSendText.Size = new System.Drawing.Size(208, 23);
             this.txtSendText.TabIndex = 0;
             // 
             // frmTCPServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pConfig);
             this.Name = "frmTCPServer";
@@ -285,7 +274,5 @@
         private Button btnSend;
         private TextBox txtSendText;
         private Button btnSendToAll;
-        private TextBox txtKey;
-        private Label label4;
     }
 }

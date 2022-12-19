@@ -12,7 +12,8 @@ namespace DevToolsNet.WindowsApp
         IGenerators generators;
         ITableDataInfoRecover dataInfoRecover;
         List<TabPage> tabs;
-
+        TabPage tabManual;
+        ICodeGenerator genManual;
         //SqlDataInfoRecover dataInfoRecover;
 
         public frmGenerador(IOptions<LocalXmlTemplateConfigSection> settings, IGenerators Generators, ITableDataInfoRecover DataInfoRecover)
@@ -20,8 +21,11 @@ namespace DevToolsNet.WindowsApp
             this.settings = settings.Value;
             generators = Generators;
             dataInfoRecover = DataInfoRecover;
-
+            
             InitializeComponent();
+
+            spcData.Panel1Collapsed = true;
+            loadItemTemplates();
         }
 
         private void frmGenerador_Load(object sender, EventArgs e)
@@ -41,6 +45,20 @@ namespace DevToolsNet.WindowsApp
             loadConnections();
             reloadGenerators();
         }
+
+        private void tsbManual_CheckedChanged(object sender, EventArgs e)
+        {
+            spcData.Panel1Collapsed = !tsbManual.Checked;
+            tsbGenTabManual.Visible = tsbManual.Checked;
+
+            if (!tsbManual.Checked && tabResults.TabPages.Contains(tabManual)) tabResults.TabPages.Add(tabManual);
+        }
+
+        private void tsbGenTabManual_Click(object sender, EventArgs e)
+        {
+            generarPlantillaManual();
+        }
+
 
         private void tscboConection_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -89,6 +107,30 @@ namespace DevToolsNet.WindowsApp
             else tabResults.TabPages.Remove(tabs[e.Index]);
         }
 
+
+        private void tvTags_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node?.Tag != null) txtManual.Paste(e.Node.Tag.ToString());
+            txtManual.Focus();
+        }
+
+        private void lblGenerarPlantilla_Click(object sender, EventArgs e)
+        {
+            if (generarPlantillaManual()) lblGenerarPlantilla.Visible = false;
+        }
+
+
+        private void loadItemTemplates()
+        {
+            var gen = Program.ServiceProvider.GetService<ICodeGenerator>();
+            tvTags.Nodes.Clear();
+            var ni = tvTags.Nodes.Add("Items","Items",0,0);
+            var no = ni.Nodes.Add("Opciones", "Opciones", 1,1);
+            foreach (var x in gen.Items) ni.Nodes.Add(x.Key).Tag=x.Value;
+            foreach (var x in gen.ItemsOptions) no.Nodes.Add(x.Key).Tag = x.Value;
+            ni = tvTags.Nodes.Add("Datos", "Datos",2,2);
+            foreach (var x in gen.DataTags) ni.Nodes.Add(x.Key).Tag = x.Value;
+        }
 
         private void loadConnections()
         {
@@ -155,8 +197,20 @@ namespace DevToolsNet.WindowsApp
         {
             // Find tables
             List<DB.Objects.DataTable> tables;
-            if (tsbLike.Checked) tables = dataInfoRecover.GetTableInfo(tstSchema.Text,tstTable.Text);
-            else tables = dataInfoRecover.GetTableInfoLike(tstSchema.Text, tstTable.Text);
+            if(tstTable.Text.Contains(','))
+            {
+                tables = new List<DB.Objects.DataTable>();
+                foreach (var t in tstTable.Text.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (tsbLike.Checked) tables.AddRange(dataInfoRecover.GetTableInfoLike(tstSchema.Text, t));
+                    else tables.AddRange(dataInfoRecover.GetTableInfo(tstSchema.Text, t));
+                }
+            }
+            else
+            {
+                if (tsbLike.Checked) tables = dataInfoRecover.GetTableInfoLike(tstSchema.Text, tstTable.Text);
+                else tables = dataInfoRecover.GetTableInfo(tstSchema.Text, tstTable.Text);
+            }
 
             string? tabFolder = null;
 
@@ -234,6 +288,39 @@ namespace DevToolsNet.WindowsApp
             if(!System.IO.Directory.Exists(res)) System.IO.Directory.CreateDirectory(res);
 
             return res;
+        }
+
+        private bool generarPlantillaManual()
+        {
+            try
+            {
+                if (genManual == null)
+                {
+                    genManual = Program.ServiceProvider.GetService<ICodeGenerator>();
+                    genManual.Name = "Manual";
+                }
+                genManual.LoadXML(txtManual.Text);
+
+                if (tabManual == null) tabManual = generateTab(genManual);
+                else
+                {
+                    tabManual.Tag = genManual;
+                }
+
+                if (!tabResults.TabPages.Contains(tabManual)) tabResults.TabPages.Add(tabManual);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                if (tabManual != null && !tsbManual.Checked && tabResults.TabPages.Contains(tabManual)) tabResults.TabPages.Remove(tabManual);
+                return false;
+            }
+        }
+
+        private void txtManual_TextChanged(object sender, EventArgs e)
+        {
+            lblGenerarPlantilla.Visible = true;
         }
     }
 }

@@ -18,7 +18,6 @@
 
         public bool is_identity { get; set; }
 
-
         public bool is_primary_key { get; set; }
 
     }

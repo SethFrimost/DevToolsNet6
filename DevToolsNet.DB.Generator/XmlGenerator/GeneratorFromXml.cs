@@ -3,11 +3,15 @@ using DevToolsNet.DB.Objects;
 using DevToolsNet.DB.Objects.TemplateObjects;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using DataColumn = DevToolsNet.DB.Objects.DataColumn;
+using DataTable = DevToolsNet.DB.Objects.DataTable;
 
 namespace DevToolsNet.DB.Generator
 {
@@ -24,14 +28,58 @@ namespace DevToolsNet.DB.Generator
 
         private const string tagIndexName = "{gIndxName}";
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        List<TemplateItem> items = null;
+        public Dictionary<string, string> Items { get; private set; }
+        public Dictionary<string, string> ItemsOptions { get; private set; }
+        public Dictionary<string, string> DataTags { get; private set; }
 
-        public GeneratorFromXml(string xml) 
+        List<TemplateItem>? items = null;
+
+        public GeneratorFromXml() 
+        {
+            fillDictionaries();
+        }
+
+        public GeneratorFromXml(string xml) : this()
         {
             readXml(xml);
         }
+
+        void fillDictionaries()
+        {
+            Items = new Dictionary<string, string>();
+            ItemsOptions = new Dictionary<string, string>();
+            DataTags = new Dictionary<string, string>();
+
+            Items.Add("Text", "<t></t>");
+            Items.Add("Columns", "<c></c>");
+            Items.Add("Indexes", "<i></i>");
+            Items.Add("Index Columns", "<ic></ic>");
+
+            ItemsOptions.Add("Atributo trim", "trim=\"\"");
+            ItemsOptions.Add("Atributo opciones", "opts=\"\"");
+            ItemsOptions.Add("Primary Key", "pk");
+            ItemsOptions.Add("No Primary Key","nopk");
+            ItemsOptions.Add("Identity column", "identity");
+            ItemsOptions.Add("No Identity column","noidentity");
+            ItemsOptions.Add("Timestamp", "timestamp");
+            ItemsOptions.Add("No timestamp", "notimestamp");
+            ItemsOptions.Add("Indice único", "indexuk");
+            ItemsOptions.Add("Indice habilitado","indexenabled");
+
+            DataTags.Add("Base de datos",tagDatabase);
+            DataTags.Add("Schema",tagSchema);
+            DataTags.Add("Tabla",tagTable);
+            DataTags.Add("Columna Nombre",tagColName);
+            DataTags.Add("Columna Tipo", tagColType);
+            DataTags.Add("Columna Max", tagColMax);
+            DataTags.Add("Columna Tipo C#", tagColCType);
+            DataTags.Add("Columna Tipo SQL", tagColSqlType);
+            DataTags.Add("Indice", tagIndexName);
+    }
+
+
 
         private void readXml(string xml)
         {
@@ -43,11 +91,26 @@ namespace DevToolsNet.DB.Generator
                 Name = root.Attribute("name")?.Value??string.Empty;
                 foreach (XElement e in root.Elements())
                 {
-                    items.Add(new TemplateItem(e));
+                    var ti = new TemplateItem(e);
+                    items.Add(ti);
+                    if (ti.ItemType == TemplateItemType.Index)
+                    {
+                        var child = e.Elements().FirstOrDefault();
+                        if (child != null)
+                        {
+                            var ic = new TemplateItem(child, ti);
+                            //items.Add(ic);
+                            ti.Childrens.Add(ic);
+                        }
+                    }
                 }
             }
         }
 
+        public void LoadXML(string xml)
+        {
+            readXml(xml);
+        }
 
         public List<TableCode> GenerateCodeList(List<DataTable> tables)
         {
@@ -101,18 +164,44 @@ namespace DevToolsNet.DB.Generator
         {
             foreach (var itm in items)
             {
-                if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text).TrimEnd(itm.TrimText.ToCharArray());
+                if (itm.ItemType == TemplateItemType.Text) code += TextItem(t, itm.Text);
+                else if (itm.ItemType == TemplateItemType.Index)
+                {
+                    var indx = t.Indexes.FindAll(x => !itm.IndexUK || (itm.IndexUK && x.is_unique));
+                    indx.ForEach(i =>
+                    {
+                        code += CodeIndex(t, i, itm);
+                    });
+                }
                 else
                 {
                     var cols = t.Columnas.FindAll(x => (!itm.PK && !itm.NoPK && !itm.Identity && !itm.TimeStamp && !itm.NoIdentity && !itm.NoTimeStamp) ||
-                                                (itm.PK && x.is_primary_key) || (itm.NoPK && !x.is_primary_key) ||
-                                                (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity) ||
-                                                (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp")
+                                                (
+                                                ((!itm.PK && !itm.NoPK) || (itm.PK && x.is_primary_key) || (itm.NoPK && !x.is_primary_key)) &&
+                                                ((!itm.Identity && !itm.NoIdentity) || (itm.Identity && x.is_identity) || (itm.NoIdentity && !x.is_identity)) &&
+                                                ((!itm.TimeStamp && !itm.NoTimeStamp) || (itm.TimeStamp && x.system_type.ToLower() == "timestamp") || (itm.NoTimeStamp && x.system_type.ToLower() != "timestamp"))
+                                                )
                                             );
                     cols.ForEach(c => code += TextItem(t, c, itm.Text));
-                    code.TrimEnd(itm.TrimText.ToCharArray());
                 }
+                if (!string.IsNullOrEmpty(itm.TrimText)) code = code.TrimEnd(itm.TrimText.ToCharArray());
+            }
 
+            return code;
+        }
+
+        private string CodeIndex(DataTable t, DataIndex i, TemplateItem itm)
+        {
+            string code = string.Empty;
+            code += TextItem(t, i, itm.Text);
+            foreach (var cItm in itm.Childrens)
+            {
+                if (cItm.ItemType == TemplateItemType.Text) code += TextItem(t, cItm.Text);
+                else if (cItm.ItemType == TemplateItemType.IndexColumns)
+                {
+                    i.Columnas.ForEach(c => code += TextItem(t, c, cItm.Text));
+                }
+                if (!string.IsNullOrEmpty(itm.TrimText)) code = code.TrimEnd(cItm.TrimText.ToCharArray());
             }
 
             return code;
@@ -134,6 +223,12 @@ namespace DevToolsNet.DB.Generator
                 .Replace(tagColMax, c.max_length.ToString())
                 .Replace(tagColCType, getCType(c.system_type, c.is_nullable))
                 .Replace(tagColSqlType, getSqlType(c));
+        }
+
+        private string TextItem(DataTable t, DataIndex i, string text)
+        {
+            return TextItem(t, text)
+                .Replace(tagIndexName, i.name);
         }
 
         private string getCType(string system_type, bool nullable)

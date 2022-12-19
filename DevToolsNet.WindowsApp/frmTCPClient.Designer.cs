@@ -35,8 +35,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.pConfig = new System.Windows.Forms.Panel();
-            this.txtKey = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMessages = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
@@ -47,7 +45,7 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(12, 6);
+            this.lblAddress.Location = new System.Drawing.Point(5, 6);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(49, 15);
             this.lblAddress.TabIndex = 1;
@@ -59,14 +57,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.Location = new System.Drawing.Point(67, 3);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(327, 23);
+            this.txtAddress.Size = new System.Drawing.Size(85, 23);
             this.txtAddress.TabIndex = 2;
             this.txtAddress.Text = "127.0.0.1";
             // 
             // txtPort
             // 
             this.txtPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPort.Location = new System.Drawing.Point(401, 3);
+            this.txtPort.Location = new System.Drawing.Point(159, 3);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(100, 23);
             this.txtPort.TabIndex = 4;
@@ -76,7 +74,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(393, 6);
+            this.label2.Location = new System.Drawing.Point(151, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 15);
             this.label2.TabIndex = 3;
@@ -87,7 +85,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.Location = new System.Drawing.Point(681, 4);
+            this.btnStart.Location = new System.Drawing.Point(265, 4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(55, 23);
             this.btnStart.TabIndex = 5;
@@ -99,9 +97,10 @@
             // btnStop
             // 
             this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStop.Enabled = false;
             this.btnStop.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_stop_red;
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStop.Location = new System.Drawing.Point(742, 4);
+            this.btnStop.Location = new System.Drawing.Point(326, 4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(55, 23);
             this.btnStop.TabIndex = 6;
@@ -112,8 +111,6 @@
             // 
             // pConfig
             // 
-            this.pConfig.Controls.Add(this.txtKey);
-            this.pConfig.Controls.Add(this.label4);
             this.pConfig.Controls.Add(this.txtAddress);
             this.pConfig.Controls.Add(this.btnStop);
             this.pConfig.Controls.Add(this.lblAddress);
@@ -123,27 +120,8 @@
             this.pConfig.Dock = System.Windows.Forms.DockStyle.Top;
             this.pConfig.Location = new System.Drawing.Point(0, 0);
             this.pConfig.Name = "pConfig";
-            this.pConfig.Size = new System.Drawing.Size(800, 30);
+            this.pConfig.Size = new System.Drawing.Size(384, 30);
             this.pConfig.TabIndex = 7;
-            // 
-            // txtKey
-            // 
-            this.txtKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtKey.Location = new System.Drawing.Point(547, 4);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(128, 23);
-            this.txtKey.TabIndex = 8;
-            this.txtKey.Text = "cliente01";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(515, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Key";
             // 
             // label3
             // 
@@ -165,15 +143,16 @@
             this.txtMessages.Name = "txtMessages";
             this.txtMessages.ReadOnly = true;
             this.txtMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMessages.Size = new System.Drawing.Size(792, 429);
+            this.txtMessages.Size = new System.Drawing.Size(376, 400);
             this.txtMessages.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Enabled = false;
             this.btnSend.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play_green;
             this.btnSend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSend.Location = new System.Drawing.Point(732, 30);
+            this.btnSend.Location = new System.Drawing.Point(316, 30);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(65, 23);
             this.btnSend.TabIndex = 6;
@@ -188,14 +167,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSendText.Location = new System.Drawing.Point(67, 30);
             this.txtSendText.Name = "txtSendText";
-            this.txtSendText.Size = new System.Drawing.Size(662, 23);
+            this.txtSendText.Size = new System.Drawing.Size(246, 23);
             this.txtSendText.TabIndex = 0;
             // 
             // frmTCPClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtMessages);
             this.Controls.Add(this.btnSend);
@@ -222,7 +201,5 @@
         private TextBox txtMessages;
         private Button btnSend;
         private TextBox txtSendText;
-        private TextBox txtKey;
-        private Label label4;
     }
 }
