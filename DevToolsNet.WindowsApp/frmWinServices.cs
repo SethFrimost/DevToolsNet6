@@ -94,18 +94,21 @@ public partial class frmWinServices : Form
     private void tsbStart_Click(object sender, EventArgs e)
     {
         var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        setIcon(treeServerServices.Tree.SelectedNode, System.ServiceProcess.ServiceControllerStatus.StartPending, null);
         if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Play);
     }
 
     private void tsbStop_Click(object sender, EventArgs e)
     {
         var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        setIcon(treeServerServices.Tree.SelectedNode, System.ServiceProcess.ServiceControllerStatus.StopPending, null);
         if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Stop);
     }
 
     private void tsbRestart_Click(object sender, EventArgs e)
     {
         var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        setIcon(treeServerServices.Tree.SelectedNode, System.ServiceProcess.ServiceControllerStatus.StartPending, null);
         if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Restart);
 
     }
@@ -113,6 +116,7 @@ public partial class frmWinServices : Form
     private void tsbRefresh_Click(object sender, EventArgs e)
     {
         var se = treeServerServices.Tree.SelectedNode?.Tag as WindowsServiceStatus;
+        setIcon(treeServerServices.Tree.SelectedNode, System.ServiceProcess.ServiceControllerStatus.StartPending, null);
         if (se != null) swManager.ManageService(se, WinServicesManagerConfig.ServiceAction.Refresh);
     }
 

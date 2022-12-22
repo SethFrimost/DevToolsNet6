@@ -65,7 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="frmTCPClient.cs">
+    <Compile Update="TCP\frmTCPClient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

@@ -51,7 +51,7 @@ namespace DevToolsNet.WindowsApp
             spcData.Panel1Collapsed = !tsbManual.Checked;
             tsbGenTabManual.Visible = tsbManual.Checked;
 
-            if (!tsbManual.Checked && tabResults.TabPages.Contains(tabManual)) tabResults.TabPages.Add(tabManual);
+            if (!tsbManual.Checked && tabResults.TabPages.Contains(tabManual)) tabResults.TabPages.Remove(tabManual);
         }
 
         private void tsbGenTabManual_Click(object sender, EventArgs e)
@@ -219,22 +219,12 @@ namespace DevToolsNet.WindowsApp
                 // Generate codes
                 for (int i = 0; i < tabResults.TabPages.Count; i++)
                 {
-                    //if (tabResults.TabPages[i].Visible)
-                    //{
-                        var g = tabResults.TabPages[i].Tag as ICodeGenerator;
-                        var code = g.GenerateCode(tables);
-                        code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
+                    var g = tabResults.TabPages[i].Tag as ICodeGenerator;
+                    var code = g.GenerateCode(tables);
+                    code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
 
-                        if (append)
-                        {
-
-                            ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
-                        } 
-                        else
-                        {
-                            ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
-                        } 
-                    //}
+                    if (append) ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
+                    else ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
                 }
             }
             else MessageBox.Show("No se han encontrado tablas");
@@ -321,6 +311,11 @@ namespace DevToolsNet.WindowsApp
         private void txtManual_TextChanged(object sender, EventArgs e)
         {
             lblGenerarPlantilla.Visible = true;
+        }
+
+        private void tsbCopyFromTemplate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

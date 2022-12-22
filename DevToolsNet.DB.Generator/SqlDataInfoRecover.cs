@@ -18,7 +18,6 @@ namespace DevToolsNet.DB.Generator
     {
         public IDbConnection connection {get;set;}
 
-
         public void SetConnection(IDbConnection connection)
         {
             this.connection = connection;
@@ -86,18 +85,20 @@ namespace DevToolsNet.DB.Generator
                         DataBase= d.Key.db,
                         Tabla = d.Key.table,
                         Schema = d.Key.schema,
-                        Columnas = d.GroupBy(c => new Objects.DataColumn()
+                        Columnas = d.GroupBy(c => new {
+                            c.Columna,c.system_type_id,c.system_type,c.max_length,c.precision,c.scale,c.is_nullable,c.is_identity,c.is_primary_key
+                        }).Select(c => new Objects.DataColumn()
                         {
-                            name = c.Columna,
-                            system_type_id = c.system_type_id,
-                            system_type = c.system_type,
-                            max_length = c.max_length,
-                            precision = c.precision,
-                            scale = c.scale,
-                            is_nullable = c.is_nullable,
-                            is_identity = c.is_identity,
-                            is_primary_key = c.is_primary_key
-                        }).Select(c=> c.Key).ToList(),
+                            name = c.Key.Columna,
+                            system_type_id = c.Key.system_type_id,
+                            system_type = c.Key.system_type,
+                            max_length = c.Key.max_length,
+                            precision = c.Key.precision,
+                            scale = c.Key.scale,
+                            is_nullable = c.Key.is_nullable,
+                            is_identity = c.Key.is_identity,
+                            is_primary_key = c.Key.is_primary_key
+                        }).ToList(),
                         Indexes = d.Where(x=>x.indexName != null).GroupBy(i => new { i.indexName,i.is_identity,i.is_primary_key, is_unique=i.is_unique??false, is_disabled=i.is_disabled??true})
                         .Select(i=> new Objects.DataIndex()
                         {
@@ -139,7 +140,7 @@ namespace DevToolsNet.DB.Generator
                 + "\tinner join sys.columns c ON c.object_id = o.object_id\r\n"
                 + "\tinner join sys.types   t ON t.system_type_id = c.system_type_id\r\n"
                 + "\tleft join(\r\n" 
-                + "\t    select distinct ic.column_id, ic.object_id, isnull(ind.name,'') indexName, isnull(ind.is_primary_key, 0) is_primary_key, isnull(ind.is_unique, 0) is_unique, isnull(ind.type, 0) indexType, isnull(ind.type_desc, '') indexTypeDesc, isnull(ind.index_id, 0) index_id, ind.is_disabled \r\n"
+                + "\t    select distinct ic.column_id, ic.object_id, isnull(ind.name,'') indexName, isnull(ind.is_primary_key, 0) is_primary_key, isnull(ind.is_unique_constraint, 0) is_unique, isnull(ind.type, 0) indexType, isnull(ind.type_desc, '') indexTypeDesc, isnull(ind.index_id, 0) index_id, ind.is_disabled \r\n"
                 + "\t    from sys.index_columns ic \r\n " 
                 + "\t        inner join sys.indexes ind On ind.object_id = ic.object_id and ind.index_id = ic.index_id \r\n" 
                 + "\t	) i on i.column_id = c.column_id and i.object_id = o.object_id\r\n"

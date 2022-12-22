@@ -52,12 +52,12 @@
             this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.spcData = new System.Windows.Forms.SplitContainer();
-            this.lblGenerarPlantilla = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tvTags = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtManual = new System.Windows.Forms.TextBox();
             this.lblManual = new System.Windows.Forms.Label();
+            this.txtManual = new System.Windows.Forms.TextBox();
+            this.lblGenerarPlantilla = new System.Windows.Forms.Label();
             this.tabResults = new System.Windows.Forms.TabControl();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -125,7 +125,7 @@
             // tsbGenTabManual
             // 
             this.tsbGenTabManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbGenTabManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
+            this.tsbGenTabManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_refresh;
             this.tsbGenTabManual.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbGenTabManual.Name = "tsbGenTabManual";
             this.tsbGenTabManual.Size = new System.Drawing.Size(23, 22);
@@ -278,9 +278,7 @@
             // 
             // spcData.Panel1
             // 
-            this.spcData.Panel1.Controls.Add(this.lblGenerarPlantilla);
             this.spcData.Panel1.Controls.Add(this.splitContainer2);
-            this.spcData.Panel1.Controls.Add(this.lblManual);
             // 
             // spcData.Panel2
             // 
@@ -289,32 +287,22 @@
             this.spcData.SplitterDistance = 223;
             this.spcData.TabIndex = 1;
             // 
-            // lblGenerarPlantilla
-            // 
-            this.lblGenerarPlantilla.AutoSize = true;
-            this.lblGenerarPlantilla.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblGenerarPlantilla.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblGenerarPlantilla.Location = new System.Drawing.Point(182, 0);
-            this.lblGenerarPlantilla.Name = "lblGenerarPlantilla";
-            this.lblGenerarPlantilla.Size = new System.Drawing.Size(102, 15);
-            this.lblGenerarPlantilla.TabIndex = 4;
-            this.lblGenerarPlantilla.Text = "Generar plantilla...";
-            this.lblGenerarPlantilla.Click += new System.EventHandler(this.lblGenerarPlantilla_Click);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 15);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.tvTags);
+            this.splitContainer2.Panel1.Controls.Add(this.lblManual);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.txtManual);
-            this.splitContainer2.Size = new System.Drawing.Size(966, 208);
+            this.splitContainer2.Panel2.Controls.Add(this.lblGenerarPlantilla);
+            this.splitContainer2.Size = new System.Drawing.Size(966, 223);
             this.splitContainer2.SplitterDistance = 178;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -323,7 +311,7 @@
             this.tvTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvTags.ImageIndex = 3;
             this.tvTags.ImageList = this.imageList1;
-            this.tvTags.Location = new System.Drawing.Point(0, 0);
+            this.tvTags.Location = new System.Drawing.Point(0, 15);
             this.tvTags.Name = "tvTags";
             this.tvTags.SelectedImageIndex = 3;
             this.tvTags.Size = new System.Drawing.Size(178, 208);
@@ -340,13 +328,25 @@
             this.imageList1.Images.SetKeyName(2, "text.png");
             this.imageList1.Images.SetKeyName(3, "text_rich.png");
             // 
+            // lblManual
+            // 
+            this.lblManual.AutoSize = true;
+            this.lblManual.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblManual.Location = new System.Drawing.Point(0, 0);
+            this.lblManual.Name = "lblManual";
+            this.lblManual.Size = new System.Drawing.Size(92, 15);
+            this.lblManual.TabIndex = 3;
+            this.lblManual.Text = "Plantilla manual";
+            // 
             // txtManual
             // 
             this.txtManual.AcceptsReturn = true;
             this.txtManual.AcceptsTab = true;
-            this.txtManual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtManual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtManual.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtManual.Location = new System.Drawing.Point(0, 0);
+            this.txtManual.Location = new System.Drawing.Point(0, 15);
             this.txtManual.Multiline = true;
             this.txtManual.Name = "txtManual";
             this.txtManual.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -355,15 +355,18 @@
             this.txtManual.Text = "<template name=\"manual\">\r\n\r\n</template>";
             this.txtManual.TextChanged += new System.EventHandler(this.txtManual_TextChanged);
             // 
-            // lblManual
+            // lblGenerarPlantilla
             // 
-            this.lblManual.AutoSize = true;
-            this.lblManual.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblManual.Location = new System.Drawing.Point(0, 0);
-            this.lblManual.Name = "lblManual";
-            this.lblManual.Size = new System.Drawing.Size(92, 15);
-            this.lblManual.TabIndex = 2;
-            this.lblManual.Text = "Plantilla manual";
+            this.lblGenerarPlantilla.AutoSize = true;
+            this.lblGenerarPlantilla.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblGenerarPlantilla.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblGenerarPlantilla.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblGenerarPlantilla.Location = new System.Drawing.Point(0, 0);
+            this.lblGenerarPlantilla.Name = "lblGenerarPlantilla";
+            this.lblGenerarPlantilla.Size = new System.Drawing.Size(102, 15);
+            this.lblGenerarPlantilla.TabIndex = 5;
+            this.lblGenerarPlantilla.Text = "Generar plantilla...";
+            this.lblGenerarPlantilla.Click += new System.EventHandler(this.lblGenerarPlantilla_Click);
             // 
             // tabResults
             // 
@@ -393,11 +396,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.spcData.Panel1.ResumeLayout(false);
-            this.spcData.Panel1.PerformLayout();
             this.spcData.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcData)).EndInit();
             this.spcData.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -434,9 +437,9 @@
         private TextBox txtManual;
         private ToolStripButton tsbGenTabManual;
         private SplitContainer splitContainer2;
-        private Label lblManual;
         private ImageList imageList1;
         private TreeView tvTags;
+        private Label lblManual;
         private Label lblGenerarPlantilla;
     }
 }
