@@ -49,8 +49,7 @@
             this.tsbToFiles = new System.Windows.Forms.ToolStripButton();
             this.tstFileTemplate = new System.Windows.Forms.ToolStripTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.treeTemplates = new DevToolsNet.WinFormsControlLibrary.TreeViewTools();
             this.spcData = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tvTags = new System.Windows.Forms.TreeView();
@@ -239,8 +238,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.chkPlantillas);
-            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
+            this.splitContainer1.Panel1.Controls.Add(this.treeTemplates);
             // 
             // splitContainer1.Panel2
             // 
@@ -249,25 +247,16 @@
             this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 1;
             // 
-            // chkPlantillas
+            // treeTemplates
             // 
-            this.chkPlantillas.CheckOnClick = true;
-            this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPlantillas.FormattingEnabled = true;
-            this.chkPlantillas.Location = new System.Drawing.Point(0, 23);
-            this.chkPlantillas.Name = "chkPlantillas";
-            this.chkPlantillas.Size = new System.Drawing.Size(260, 519);
-            this.chkPlantillas.TabIndex = 2;
-            this.chkPlantillas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkPlantillas_ItemCheck);
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.BackColor = System.Drawing.SystemColors.Info;
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Location = new System.Drawing.Point(0, 0);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(260, 23);
-            this.txtFilter.TabIndex = 1;
+            this.treeTemplates.CheckBoxes = true;
+            this.treeTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeTemplates.Location = new System.Drawing.Point(0, 0);
+            this.treeTemplates.Name = "treeTemplates";
+            this.treeTemplates.ShowTools = true;
+            this.treeTemplates.Size = new System.Drawing.Size(260, 542);
+            this.treeTemplates.TabIndex = 3;
+            this.treeTemplates.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeTemplates_AfterNodeCheck);
             // 
             // spcData
             // 
@@ -391,7 +380,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -415,7 +403,6 @@
         private ToolStrip toolStrip1;
         private ToolStripButton tsbReload;
         private SplitContainer splitContainer1;
-        private TextBox txtFilter;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel toolStripLabel3;
         private ToolStripComboBox tscboConection;
@@ -426,7 +413,6 @@
         private ToolStripButton tsbLike;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbRun;
-        private CheckedListBox chkPlantillas;
         private ToolStripButton tsbRunAdd;
         private TabControl tabResults;
         private ToolStripButton tsbToFiles;
@@ -441,5 +427,6 @@
         private TreeView tvTags;
         private Label lblManual;
         private Label lblGenerarPlantilla;
+        private WinFormsControlLibrary.TreeViewTools treeTemplates;
     }
 }

@@ -24,10 +24,10 @@
     <Content Include="xmlTemplates\temp3.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xmlTemplates\temp2.xml">
+    <Content Include="xmlTemplates\TestA\temp2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xmlTemplates\temp1.xml">
+    <Content Include="xmlTemplates\TestA\temp1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

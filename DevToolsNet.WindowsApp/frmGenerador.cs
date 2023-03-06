@@ -1,5 +1,6 @@
 ﻿using DevToolsNet.DB.Generator.Interfaces;
 using DevToolsNet.DB.Objects.Configs;
+using DevToolsNet.WindowsApp.ServerTreeManager;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Data;
@@ -11,10 +12,11 @@ namespace DevToolsNet.WindowsApp
         LocalXmlTemplateConfigSection settings;
         IGenerators generators;
         ITableDataInfoRecover dataInfoRecover;
-        List<TabPage> tabs;
+        Dictionary<ICodeGenerator, TabPage> tabs;
         TabPage tabManual;
         ICodeGenerator genManual;
         //SqlDataInfoRecover dataInfoRecover;
+        TreeGeneredores treeGeneredores;
 
         public frmGenerador(IOptions<LocalXmlTemplateConfigSection> settings, IGenerators Generators, ITableDataInfoRecover DataInfoRecover)
         {
@@ -24,9 +26,14 @@ namespace DevToolsNet.WindowsApp
             
             InitializeComponent();
 
+            treeGeneredores = new TreeGeneredores();
+            treeGeneredores.InitializeTree(treeTemplates.Tree);
+            treeGeneredores.AfterNodeAdd += TreeGeneredores_AfterNodeAdd;
             spcData.Panel1Collapsed = true;
             loadItemTemplates();
         }
+
+
 
         private void frmGenerador_Load(object sender, EventArgs e)
         {
@@ -100,13 +107,17 @@ namespace DevToolsNet.WindowsApp
         }
 
 
-        private void chkPlantillas_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void TreeGeneredores_AfterNodeAdd(object? sender, TreeViewEventArgs e)
         {
-            //tabResults.TabPages[e.Index].Visible = (e.NewValue == CheckState.Chekced);
-            if (e.NewValue == CheckState.Checked) tabResults.TabPages.Add(tabs[e.Index]);
-            else tabResults.TabPages.Remove(tabs[e.Index]);
+            tabs.Add((ICodeGenerator)e.Node.Tag, generateTab((ICodeGenerator)e.Node.Tag));
         }
 
+        private void treeTemplates_AfterNodeCheck(object sender, TreeViewEventArgs e)
+        {
+            //tabResults.TabPages[e.Index].Visible = (e.NewValue == CheckState.Chekced);
+            if (e.Node.Checked) tabResults.TabPages.Add(tabs[(ICodeGenerator)e.Node.Tag]);
+            else tabResults.TabPages.Remove(tabs[(ICodeGenerator)e.Node.Tag]);
+        }
 
         private void tvTags_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -147,16 +158,17 @@ namespace DevToolsNet.WindowsApp
         {
             try
             {
-                if (tabs == null) tabs = new List<TabPage>();
+                if (tabs == null) tabs = new Dictionary<ICodeGenerator, TabPage>();
                 tabs.Clear();
                 tabResults.TabPages.Clear();                
-                chkPlantillas.Items.Clear();
+                //treeTemplates.Items.Clear();
                 generators.LoadGenerators();
-                foreach(var g in generators.CodeGenerators)
+                treeGeneredores.LoadNodes(treeTemplates.Tree, generators.CodeGenerators);
+                /*foreach (var g in generators.CodeGenerators)
                 {
                     chkPlantillas.Items.Add(g);
                     tabs.Add(generateTab(g));                    
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -183,8 +195,6 @@ namespace DevToolsNet.WindowsApp
             txt.WordWrap = false;
             txt.MaxLength = int.MaxValue;
             txt.Dock = DockStyle.Fill;
-            
-            //tabResults.TabPages.Add(tab);
 
             return tab;
         }
@@ -317,5 +327,7 @@ namespace DevToolsNet.WindowsApp
         {
 
         }
+
+
     }
 }

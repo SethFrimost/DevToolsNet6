@@ -29,6 +29,7 @@ namespace DevToolsNet.DB.Generator
 
         private const string tagIndexName = "{gIndxName}";
 
+        public string PathCarpeta { get; set; }
         public string Name { get; set; }
 
         public Dictionary<string, string> Items { get; private set; }
@@ -36,6 +37,7 @@ namespace DevToolsNet.DB.Generator
         public Dictionary<string, string> DataTags { get; private set; }
 
         List<TemplateItem>? items = null;
+        public bool whitErrors { get; set; } = false;
 
         public GeneratorFromXml() 
         {
@@ -90,19 +92,26 @@ namespace DevToolsNet.DB.Generator
 
         private void readXml(string xml)
         {
-            items = new List<TemplateItem>();
-            var doc = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
-            var root = doc.Root;
-            if (root != null)
+            try
             {
-                Name = root.Attribute("name")?.Value ?? string.Empty;
-                foreach (XNode n in root.Nodes())
+                items = new List<TemplateItem>();
+                var doc = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
+                var root = doc.Root;
+                if (root != null)
                 {
-                    if (n.NodeType == XmlNodeType.Text) items.Add(createItem((XText)n));// new TemplateItem(((XText)n)));
-                    else items.Add(createItem((XElement)n));
-                    
-                    //items.Add(createItem(e));
+                    Name = root.Attribute("name")?.Value ?? string.Empty;
+                    foreach (XNode n in root.Nodes())
+                    {
+                        if (n.NodeType == XmlNodeType.Text) items.Add(createItem((XText)n));// new TemplateItem(((XText)n)));
+                        else items.Add(createItem((XElement)n));
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                items = new List<TemplateItem>();
+                items.Add(createItem(new XText(ex.ToString())));
+                whitErrors = true;
             }
         }
 

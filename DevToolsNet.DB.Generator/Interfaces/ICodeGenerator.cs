@@ -13,11 +13,12 @@ namespace DevToolsNet.DB.Generator.Interfaces
         Dictionary<string, string> Items { get; }
         Dictionary<string, string> ItemsOptions { get; }
         Dictionary<string, string> DataTags { get; }
+        string PathCarpeta { get; set; }
         string Name { get; set; }
         void LoadXML(string xml);
         string GenerateCode(DataTable tables);
         string GenerateCode(List<DataTable> tables);
         List<TableCode> GenerateCodeList(List<DataTable> tables);
-
+        bool whitErrors { get; set; }
     }
 }
