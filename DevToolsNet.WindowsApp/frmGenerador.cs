@@ -1,6 +1,7 @@
 ﻿using DevToolsNet.DB.Generator.Interfaces;
 using DevToolsNet.DB.Objects.Configs;
 using DevToolsNet.WindowsApp.ServerTreeManager;
+using DevToolsNet.WinFormsControlLibrary.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Data;
@@ -73,10 +74,25 @@ namespace DevToolsNet.WindowsApp
             {
                 if (tscboConection.SelectedIndex >= 0)
                 {
-                    var cs = tscboConection.SelectedItem as ConnectionString;
-                    var conn = Program.ServiceProvider.GetService<IDbConnection>();
-                    conn.ConnectionString = cs.Value;
-                    dataInfoRecover.SetConnection(conn);
+                    if(tscboConection.SelectedItem is string)
+                    {
+                        dlgText dTxt = new dlgText("data source={server};initial catalog={db};persist security info=True;user id={usr};password={pass};MultipleActiveResultSets=True;");
+                        if(dTxt.ShowDialog() == DialogResult.OK)
+                        {
+                            var cs = new ConnectionString();
+                            cs.Value = dTxt.ResultText;
+                            cs.Name = dTxt.ResultText;
+                            tscboConection.Items.Add(cs);
+                            tscboConection.SelectedItem = cs;
+                        }
+                    }
+                    else
+                    {
+                        var cs = tscboConection.SelectedItem as ConnectionString;
+                        var conn = Program.ServiceProvider.GetService<IDbConnection>();
+                        conn.ConnectionString = cs.Value;
+                        dataInfoRecover.SetConnection(conn);
+                    }
                 }
             }
             catch(Exception ex)
@@ -151,6 +167,7 @@ namespace DevToolsNet.WindowsApp
                 tscboConection.Items.Add(cs);
             }
 
+            tscboConection.Items.Add("+ Add");
         }
 
         /// <summary>Reload generators, checks and tabs</summary>
