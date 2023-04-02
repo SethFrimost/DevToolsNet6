@@ -60,11 +60,10 @@ namespace DevToolsNet.TCP
 
                 //tcpClient.Client.Close();
             }
-            else
-            {
+            //else
+            //{
                 StartReceive(tcpClient);
-
-            }
+            //}
 
         }
     }

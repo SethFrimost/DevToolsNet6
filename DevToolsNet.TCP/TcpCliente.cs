@@ -54,17 +54,18 @@ namespace DevToolsNet.TCP
             //try
             //{
             if (!client.Connected)
-                {
-                    client.Connect(config.Address, config.Port);
-                    StartReceive();
-                }
+            {
+                client.Connect(config.Address, config.Port);
+                StartReceive();
+            }
 
-                NetworkStream stream = client.GetStream();
-
-                // Send the message to the connected TcpServer. 
-                stream.Write(data, 0, data.Length);
-                stream.Close();
-                //stream.Dispose();
+            NetworkStream stream = client.GetStream();
+            
+            // Send the message to the connected TcpServer. 
+            stream.Write(data, 0, data.Length);
+            
+            //stream.Close();
+            //stream.Dispose();
             /*}
             finally
             {

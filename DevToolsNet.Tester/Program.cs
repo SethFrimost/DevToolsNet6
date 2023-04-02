@@ -16,7 +16,7 @@ using System.Text.Json;
 using System.Drawing;
 using System.Diagnostics;
 
-Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
+/*Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
 var jsE = System.Text.Json.JsonSerializer.Serialize(e);
 var e2 = System.Text.Json.JsonSerializer.Deserialize<Estilo>(jsE);
 ColorConverter cc = new ColorConverter();
@@ -162,6 +162,13 @@ catch (Exception e)
 {
     Console.WriteLine(e.Message);
 }*/
+
+
+int[] arr = { 1, 8, 4, 6, 2 };
+int l = arr.Length;
+arr = arr.Order().ToArray();
+int min = arr.Take(l-1).Sum();
+int max = arr.Take(Range.StartAt(l-1)).Sum();
 
 
 Console.WriteLine("--FIN--");
