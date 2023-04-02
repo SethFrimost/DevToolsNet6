@@ -20,14 +20,14 @@ namespace DevToolsNet.TCP
 
         TcpConfig config;
         TcpListener listener;
-        
+
 
         public List<TcpClient> clients = new List<TcpClient>();
         public TcpClient LastServerClient;
 
-        public event EventHandler DataReaded;
-        public event EventHandler ClientChange;
 
+        public event EventHandler ClientConected;
+        public event EventHandler ClientDisconected;
 
         public TcpServer(TcpConfig config)
         {
@@ -44,25 +44,42 @@ namespace DevToolsNet.TCP
 
             listener = new TcpListener(IPAddress.Parse(config.Address), config.Port);
             listener.Start();
+            AcceptConection();
         }
 
         private async void AcceptConection()
         {
             while(listener!=null)
             {
-                var cli= await listener.AcceptTcpClientAsync();
-                LastServerClient = cli;
-                ClientChange?.Invoke(this, EventArgs.Empty);
+                try
+                {
+                    var cli = await listener.AcceptTcpClientAsync();
+                    LastServerClient = cli;
+                    OnAcceptConnection(cli);
+                    _ = CheckCloseConection(cli);
+                }
+                catch
+                {
+
+                }
             }
         }
 
-        private async void Recive(TcpClient cli)
+        private Task CheckCloseConection(TcpClient cli)
         {
-            SocketAsyncEventArgs s = new SocketAsyncEventArgs();
-            //if(await cli.Client.ReceiveAsync(s))
-            //{
-            //    s.
-            //}
+            return Task.Run(() =>
+            {
+                while (listener != null)
+                {
+                    if (cli != null && !cli.Connected)
+                    {
+                        clients.Remove(cli);
+                        cli = null;
+                        ClientDisconected?.Invoke(this, EventArgs.Empty);
+                    }
+                    Thread.Sleep(1000);
+                }
+            });
         }
 
         public void Stop()
@@ -81,23 +98,13 @@ namespace DevToolsNet.TCP
         /// <param name="tcpClient"></param>
         private void OnAcceptConnection(TcpClient tcpClient)
         {
+            LastServerClient = tcpClient;
+            if (!clients.Contains(tcpClient)) { clients.Add(tcpClient); }
 
-                LastServerClient = tcpClient;
-                if (!clients.Contains(tcpClient)) { clients.Add(tcpClient); }
+            ClientConected?.Invoke(this, EventArgs.Empty);
 
-                if (ClientChange != null)
-                {
-                    ClientChange(this, EventArgs.Empty);
-                }
-
-                StartReceive(tcpClient);
+            StartReceive(tcpClient);
         }
-
-
-
-        
-
-
 
         public void SendToLastServerClient(string message)
         {
@@ -114,8 +121,9 @@ namespace DevToolsNet.TCP
 
         private void Send(TcpClient cli, string msg)
         {
-            if(cli != null && cli.Connected)
+            if(cli != null)
             {
+                //if (!cli.Connected) cli.Connect();
                 byte[] data = Encoding.ASCII.GetBytes(msg);
                 cli.GetStream().Write(data, 0, data.Length);
             }

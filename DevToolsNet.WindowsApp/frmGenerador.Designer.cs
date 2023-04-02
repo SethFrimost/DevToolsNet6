@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGenerador));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbReload = new System.Windows.Forms.ToolStripButton();
+            this.tsbManual = new System.Windows.Forms.ToolStripButton();
+            this.tsbGenTabManual = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tscboConection = new System.Windows.Forms.ToolStripComboBox();
@@ -45,20 +49,36 @@
             this.tsbToFiles = new System.Windows.Forms.ToolStripButton();
             this.tstFileTemplate = new System.Windows.Forms.ToolStripTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chkPlantillas = new System.Windows.Forms.CheckedListBox();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.treeTemplates = new DevToolsNet.WinFormsControlLibrary.TreeViewTools();
+            this.spcData = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.tvTags = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.lblManual = new System.Windows.Forms.Label();
+            this.txtManual = new System.Windows.Forms.TextBox();
+            this.lblGenerarPlantilla = new System.Windows.Forms.Label();
             this.tabResults = new System.Windows.Forms.TabControl();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spcData)).BeginInit();
+            this.spcData.Panel1.SuspendLayout();
+            this.spcData.Panel2.SuspendLayout();
+            this.spcData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbReload,
+            this.tsbManual,
+            this.tsbGenTabManual,
             this.toolStripSeparator1,
             this.toolStripLabel3,
             this.tscboConection,
@@ -75,7 +95,7 @@
             this.tstFileTemplate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1092, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1230, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -88,6 +108,30 @@
             this.tsbReload.Size = new System.Drawing.Size(23, 22);
             this.tsbReload.Text = "Reload";
             this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
+            // 
+            // tsbManual
+            // 
+            this.tsbManual.CheckOnClick = true;
+            this.tsbManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_new;
+            this.tsbManual.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbManual.Name = "tsbManual";
+            this.tsbManual.Size = new System.Drawing.Size(23, 22);
+            this.tsbManual.Text = "Mostrar plantilla manual";
+            this.tsbManual.ToolTipText = "Manual template";
+            this.tsbManual.CheckedChanged += new System.EventHandler(this.tsbManual_CheckedChanged);
+            // 
+            // tsbGenTabManual
+            // 
+            this.tsbGenTabManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbGenTabManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_refresh;
+            this.tsbGenTabManual.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbGenTabManual.Name = "tsbGenTabManual";
+            this.tsbGenTabManual.Size = new System.Drawing.Size(23, 22);
+            this.tsbGenTabManual.Text = "Generar plantilla Manual";
+            this.tsbGenTabManual.ToolTipText = "Generar tab Manual";
+            this.tsbGenTabManual.Visible = false;
+            this.tsbGenTabManual.Click += new System.EventHandler(this.tsbGenTabManual_Click);
             // 
             // toolStripSeparator1
             // 
@@ -121,7 +165,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(35, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(34, 22);
             this.toolStripLabel2.Text = "Table";
             // 
             // tstTable
@@ -137,7 +181,7 @@
             this.tsbLike.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLike.Name = "tsbLike";
             this.tsbLike.Size = new System.Drawing.Size(23, 22);
-            this.tsbLike.Text = "toolStripButton1";
+            this.tsbLike.Text = "Busqueda LIKE";
             // 
             // toolStripSeparator2
             // 
@@ -151,7 +195,7 @@
             this.tsbRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRun.Name = "tsbRun";
             this.tsbRun.Size = new System.Drawing.Size(23, 22);
-            this.tsbRun.Text = "toolStripButton2";
+            this.tsbRun.Text = "Generar";
             this.tsbRun.Click += new System.EventHandler(this.tsbRun_Click);
             // 
             // tsbRunAdd
@@ -161,7 +205,7 @@
             this.tsbRunAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRunAdd.Name = "tsbRunAdd";
             this.tsbRunAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbRunAdd.Text = "toolStripButton1";
+            this.tsbRunAdd.Text = "Generar y agregar";
             this.tsbRunAdd.Click += new System.EventHandler(this.tsbRunAdd_Click);
             // 
             // toolStripSeparator3
@@ -194,35 +238,124 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.chkPlantillas);
-            this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
+            this.splitContainer1.Panel1.Controls.Add(this.treeTemplates);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabResults);
-            this.splitContainer1.Size = new System.Drawing.Size(1092, 542);
-            this.splitContainer1.SplitterDistance = 231;
+            this.splitContainer1.Panel2.Controls.Add(this.spcData);
+            this.splitContainer1.Size = new System.Drawing.Size(1230, 542);
+            this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 1;
             // 
-            // chkPlantillas
+            // treeTemplates
             // 
-            this.chkPlantillas.CheckOnClick = true;
-            this.chkPlantillas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPlantillas.FormattingEnabled = true;
-            this.chkPlantillas.Location = new System.Drawing.Point(0, 23);
-            this.chkPlantillas.Name = "chkPlantillas";
-            this.chkPlantillas.Size = new System.Drawing.Size(231, 519);
-            this.chkPlantillas.TabIndex = 2;
-            this.chkPlantillas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkPlantillas_ItemCheck);
+            this.treeTemplates.CheckBoxes = true;
+            this.treeTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeTemplates.Location = new System.Drawing.Point(0, 0);
+            this.treeTemplates.Name = "treeTemplates";
+            this.treeTemplates.ShowTools = true;
+            this.treeTemplates.Size = new System.Drawing.Size(260, 542);
+            this.treeTemplates.TabIndex = 3;
+            this.treeTemplates.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeTemplates_AfterNodeCheck);
             // 
-            // txtFilter
+            // spcData
             // 
-            this.txtFilter.BackColor = System.Drawing.SystemColors.Info;
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Location = new System.Drawing.Point(0, 0);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(231, 23);
-            this.txtFilter.TabIndex = 1;
+            this.spcData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spcData.Location = new System.Drawing.Point(0, 0);
+            this.spcData.Name = "spcData";
+            this.spcData.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // spcData.Panel1
+            // 
+            this.spcData.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // spcData.Panel2
+            // 
+            this.spcData.Panel2.Controls.Add(this.tabResults);
+            this.spcData.Size = new System.Drawing.Size(966, 542);
+            this.spcData.SplitterDistance = 223;
+            this.spcData.TabIndex = 1;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.tvTags);
+            this.splitContainer2.Panel1.Controls.Add(this.lblManual);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.txtManual);
+            this.splitContainer2.Panel2.Controls.Add(this.lblGenerarPlantilla);
+            this.splitContainer2.Size = new System.Drawing.Size(966, 223);
+            this.splitContainer2.SplitterDistance = 178;
+            this.splitContainer2.TabIndex = 1;
+            // 
+            // tvTags
+            // 
+            this.tvTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvTags.ImageIndex = 3;
+            this.tvTags.ImageList = this.imageList1;
+            this.tvTags.Location = new System.Drawing.Point(0, 15);
+            this.tvTags.Name = "tvTags";
+            this.tvTags.SelectedImageIndex = 3;
+            this.tvTags.Size = new System.Drawing.Size(178, 208);
+            this.tvTags.TabIndex = 0;
+            this.tvTags.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvTags_NodeMouseClick);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "text_tree.png");
+            this.imageList1.Images.SetKeyName(1, "text_italics.png");
+            this.imageList1.Images.SetKeyName(2, "text.png");
+            this.imageList1.Images.SetKeyName(3, "text_rich.png");
+            // 
+            // lblManual
+            // 
+            this.lblManual.AutoSize = true;
+            this.lblManual.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblManual.Location = new System.Drawing.Point(0, 0);
+            this.lblManual.Name = "lblManual";
+            this.lblManual.Size = new System.Drawing.Size(92, 15);
+            this.lblManual.TabIndex = 3;
+            this.lblManual.Text = "Plantilla manual";
+            // 
+            // txtManual
+            // 
+            this.txtManual.AcceptsReturn = true;
+            this.txtManual.AcceptsTab = true;
+            this.txtManual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtManual.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtManual.Location = new System.Drawing.Point(0, 15);
+            this.txtManual.Multiline = true;
+            this.txtManual.Name = "txtManual";
+            this.txtManual.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtManual.Size = new System.Drawing.Size(784, 208);
+            this.txtManual.TabIndex = 0;
+            this.txtManual.Text = "<template name=\"manual\">\r\n\r\n</template>";
+            this.txtManual.TextChanged += new System.EventHandler(this.txtManual_TextChanged);
+            // 
+            // lblGenerarPlantilla
+            // 
+            this.lblGenerarPlantilla.AutoSize = true;
+            this.lblGenerarPlantilla.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblGenerarPlantilla.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblGenerarPlantilla.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblGenerarPlantilla.Location = new System.Drawing.Point(0, 0);
+            this.lblGenerarPlantilla.Name = "lblGenerarPlantilla";
+            this.lblGenerarPlantilla.Size = new System.Drawing.Size(102, 15);
+            this.lblGenerarPlantilla.TabIndex = 5;
+            this.lblGenerarPlantilla.Text = "Generar plantilla...";
+            this.lblGenerarPlantilla.Click += new System.EventHandler(this.lblGenerarPlantilla_Click);
             // 
             // tabResults
             // 
@@ -230,14 +363,14 @@
             this.tabResults.Location = new System.Drawing.Point(0, 0);
             this.tabResults.Name = "tabResults";
             this.tabResults.SelectedIndex = 0;
-            this.tabResults.Size = new System.Drawing.Size(857, 542);
+            this.tabResults.Size = new System.Drawing.Size(966, 315);
             this.tabResults.TabIndex = 0;
             // 
             // frmGenerador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1092, 567);
+            this.ClientSize = new System.Drawing.Size(1230, 567);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmGenerador";
@@ -247,10 +380,19 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.spcData.Panel1.ResumeLayout(false);
+            this.spcData.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spcData)).EndInit();
+            this.spcData.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,7 +403,6 @@
         private ToolStrip toolStrip1;
         private ToolStripButton tsbReload;
         private SplitContainer splitContainer1;
-        private TextBox txtFilter;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel toolStripLabel3;
         private ToolStripComboBox tscboConection;
@@ -272,11 +413,20 @@
         private ToolStripButton tsbLike;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbRun;
-        private CheckedListBox chkPlantillas;
         private ToolStripButton tsbRunAdd;
         private TabControl tabResults;
         private ToolStripButton tsbToFiles;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripTextBox tstFileTemplate;
+        private ToolStripButton tsbManual;
+        private SplitContainer spcData;
+        private TextBox txtManual;
+        private ToolStripButton tsbGenTabManual;
+        private SplitContainer splitContainer2;
+        private ImageList imageList1;
+        private TreeView tvTags;
+        private Label lblManual;
+        private Label lblGenerarPlantilla;
+        private WinFormsControlLibrary.TreeViewTools treeTemplates;
     }
 }

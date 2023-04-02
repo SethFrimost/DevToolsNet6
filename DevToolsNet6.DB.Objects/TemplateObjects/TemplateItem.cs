@@ -10,59 +10,51 @@ namespace DevToolsNet.DB.Objects.TemplateObjects
 {
     public enum TemplateItemType
     {
-        Text, Columns
+        Text, Columns, Index, IndexColumns
     }
 
     public class TemplateItem
     {
-        public TemplateItemType ItemType { get; private set; }
-        public string Text { get; private set; }
+        public TemplateItemType ItemType { get; set; }
+        public string Text { get; set; }
 
-        public bool PK { get; private set; }
-        public bool NoPK { get; private set; }
-        public bool Identity { get; private set; }
-        public bool NoIdentity { get; private set; }
-        public bool TimeStamp { get; private set; }
-        public bool NoTimeStamp { get; private set; }
+        public bool PK { get; set; }
+        public bool NoPK { get; set; }
+        public bool Identity { get; set; }
+        public bool NoIdentity { get; set; }
+        public bool TimeStamp { get; set; }
+        public bool NoTimeStamp { get; set; }
+        public bool IndexUK { get; set; }
+        public bool IndexEnabled { get; set; }
         
-        public string TrimText { get; private set; }
+        public string TrimText { get; set; }
 
+        public TemplateItem? Parent { get; set; }
+        public List<TemplateItem> Childrens { get; set; } = new List<TemplateItem>();
+
+
+        /*
         public TemplateItem(XElement xmlElement)
         {
-            if (xmlElement.Name.LocalName.ToLower() == "columns" || xmlElement.Name.LocalName.ToLower() == "c") ItemType = TemplateItemType.Columns;
-            else ItemType = TemplateItemType.Text;
-
-            PK = false;
-            NoPK = false;
-            Identity = false;
-            NoIdentity = false;
-            TimeStamp = false;
-            NoTimeStamp = false;
-
-            var opt = xmlElement.Attributes("opts").FirstOrDefault();
-            if (opt != null)
-            {
-                var opts = opt.Value.Split(' ');
-
-                foreach (var o in opts)
-                {
-                    switch (o.ToLower())
-                    {
-                        case "pk": PK = true; break;
-                        case "nopk": NoPK = true; break;
-                        case "identity": Identity = true; break;
-                        case "noidentity": NoIdentity = true; break;
-                        case "timestamp": TimeStamp = true; break;
-                        case "notimestamp": NoTimeStamp = true; break;
-                    }
-                }
-            }
-
-            var trim = xmlElement.Attributes("trim").FirstOrDefault();
-            if (trim != null) TrimText = trim.Value;
-            else TrimText = string.Empty;
-
-            Text = xmlElement.Value ?? String.Empty;
+            load(xmlElement);
         }
+
+        public TemplateItem(XText xmlText)
+        {
+            load(xmlText);
+        }
+
+        public TemplateItem(XText xmlText, TemplateItem parent)
+        {
+            Parent = parent;
+            load(xmlText);
+        }
+
+        public TemplateItem(XElement xmlElement, TemplateItem parent)
+        {
+            Parent = parent;
+            load(xmlElement);
+        }
+        */
     }
 }

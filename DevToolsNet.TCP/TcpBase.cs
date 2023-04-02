@@ -14,6 +14,8 @@ namespace DevToolsNet.TCP
         protected int BufferSize = 8 * 1024;
         protected byte[] bytesClient;
         public string RawRecivedData;
+        
+        public event EventHandler DataReaded;
 
         protected virtual void StartReceive(TcpClient tcpClient)
         {
@@ -22,12 +24,13 @@ namespace DevToolsNet.TCP
 
             //try
             //{
-            if (tcpClient != null)
+            if (tcpClient != null && tcpClient.Connected)
             {
-                if (tcpClient.Connected)
-                {
-                    tcpClient.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, DataReceived, new KeyValuePair<TcpClient, byte[]>(tcpClient, buffer));
-                }
+                tcpClient.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, DataReceived, new KeyValuePair<TcpClient, byte[]>(tcpClient, buffer));
+            }
+            else
+            {
+
             }
             //}
             //catch { }
@@ -41,7 +44,16 @@ namespace DevToolsNet.TCP
             KeyValuePair<TcpClient, byte[]> dataAr = (KeyValuePair<TcpClient, byte[]>)ar.AsyncState;
             TcpClient tcpClient = dataAr.Key;
 
-            try { dataRead = tcpClient.Client.EndReceive(ar); }
+            try {
+                if (tcpClient?.Client != null)
+                {
+                    dataRead = tcpClient.Client.EndReceive(ar);
+                }
+                else
+                {
+                    return;
+                }
+            }
             catch
             {
                 //if (clients.Contains(tcpClient)) { clients.Remove(tcpClient); }
@@ -56,15 +68,16 @@ namespace DevToolsNet.TCP
                 if (bytesClient.Length > 0)
                 {
                     RawRecivedData = Encoding.ASCII.GetString(bytesClient).Trim('\0');
+
+                    DataReaded?.Invoke(this, EventArgs.Empty);
+                    StartReceive(tcpClient);
                 }
-
-                //tcpClient.Client.Close();
+                else
+                {
+                    tcpClient.Close();
+                }
+                
             }
-            //else
-            //{
-                StartReceive(tcpClient);
-            //}
-
         }
     }
 }

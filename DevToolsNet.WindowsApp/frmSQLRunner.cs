@@ -159,7 +159,7 @@ namespace DevToolsNet.WindowsApp
             if (union)
             {
                 dsUnion = new DataSet();
-                tabUnion = GetTabPage("Result");
+                tabUnion = GetTabPage("Result", "Result");
                 tabUnion.ImageIndex = 2;
             }
             foreach (var run in runners.Values)
@@ -176,7 +176,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion != null)
                 {
-                    if (tabUnion == null) tabUnion = GetTabPage("Result");
+                    if (tabUnion == null) tabUnion = GetTabPage("Result", "Result");
                     tabUnion.ImageIndex = -1;
 
                     SetGridControl(tabUnion, dsUnion, null, true);
@@ -197,8 +197,9 @@ namespace DevToolsNet.WindowsApp
             TabPage tab = null;
             if (dsUnion == null)
             {
-                tab = GetTabPage(name);
+                tab = GetTabPage(name,displayName);
                 tab.ImageIndex = 2;
+                tab.Text = displayName;
             }
             Task tSql = Task.Factory.StartNew(() =>
             {
@@ -208,7 +209,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (dsUnion == null)
                 {
-                    if (tab == null) tab = GetTabPage(name);
+                    if (tab == null) tab = GetTabPage(name, displayName);
                     tab.ImageIndex = -1;
                     if (t.Exception != null)
                     {
@@ -250,7 +251,7 @@ namespace DevToolsNet.WindowsApp
         }
 
 
-        private TabPage GetTabPage(string name)
+        private TabPage GetTabPage(string name, string displayName)
         {
             TabPage tab;
 
@@ -259,6 +260,7 @@ namespace DevToolsNet.WindowsApp
             {
                 tab = new TabPage(name) { Text = name };
                 tab.Tag = new TabData() { Name = name };
+                tab.Text = displayName;
                 tabResults.TabPages.Add(tab);
             }
 

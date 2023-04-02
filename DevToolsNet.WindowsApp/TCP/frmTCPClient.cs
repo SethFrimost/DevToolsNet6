@@ -28,11 +28,14 @@ namespace DevToolsNet.WindowsApp
                 {
                     Address = txtAddress.Text,
                     Port = int.Parse(txtPort.Text),
-                    Key = txtKey.Text
+                    Key = Guid.NewGuid().ToString()
                 });
 
                 cliente.DataReaded += Server_DataReaded;
                 txtMessages.Text += "- Client started -" + Environment.NewLine;
+
+                btnStart.Enabled = false;
+                btnSend.Enabled = btnStop.Enabled = true;
 
             }
             catch (Exception ex)
@@ -44,8 +47,8 @@ namespace DevToolsNet.WindowsApp
 
         private void Server_DataReaded(object? sender, EventArgs e)
         {
-
-            txtMessages.Text += "<- " + cliente.RawRecivedData + Environment.NewLine;
+            if (txtMessages.InvokeRequired) txtMessages.Invoke(() => txtMessages.Text += "<- " + cliente.RawRecivedData + Environment.NewLine);
+            else txtMessages.Text += "<- " + cliente.RawRecivedData + Environment.NewLine;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -56,6 +59,9 @@ namespace DevToolsNet.WindowsApp
                 cliente.Dispose();
                 cliente = null;
             }
+
+            btnStart.Enabled = true;
+            btnSend.Enabled = btnStop.Enabled = false;
 
             txtMessages.Text += "- Client stoped -" + Environment.NewLine;
 

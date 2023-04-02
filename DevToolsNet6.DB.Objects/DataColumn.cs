@@ -1,6 +1,10 @@
-﻿namespace DevToolsNet.DB.Objects
+﻿using Microsoft.VisualBasic;
+using System.Diagnostics.CodeAnalysis;
+
+namespace DevToolsNet.DB.Objects
 {
-    public class DataColumn
+    public class DataColumn //: IEqualityComparer<DataColumn>
+
     {
         public string name { get; set; }
 
@@ -17,7 +21,6 @@
         public bool is_nullable { get; set; }
 
         public bool is_identity { get; set; }
-
 
         public bool is_primary_key { get; set; }
 

@@ -32,24 +32,33 @@ namespace DevToolsNet.WindowsApp
                 {
                     Address = txtAddress.Text,
                     Port = int.Parse(txtPort.Text),
-                    Key = txtKey.Text
+                    Key = Guid.NewGuid().ToString()
                 });
 
                 server.DataReaded += Server_DataReaded;
-                server.ClientChange += Server_ClientChange;
+                server.ClientConected += Server_ClientConected;
+                server.ClientDisconected += Server_ClientDisconected; 
 
                 server.Start();
 
                 txtMessages.Text += "- Server started -" + Environment.NewLine;
+
+                btnSend.Enabled = btnSendToAll.Enabled = btnStop.Enabled = true;
+                btnStart.Enabled = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            
         }
 
-        private void Server_ClientChange(object? sender, EventArgs e)
+        private void Server_ClientDisconected(object? sender, EventArgs e)
+        {
+            if (txtMessages.InvokeRequired) txtMessages.Invoke(() => txtMessages.Text += "- Client disconected -" + Environment.NewLine);
+            else txtMessages.Text += "- Client disconected -" + Environment.NewLine;
+        }
+
+        private void Server_ClientConected(object? sender, EventArgs e)
         {
             if (txtMessages.InvokeRequired) txtMessages.Invoke(() => txtMessages.Text += "- Client connected -" + Environment.NewLine);
             else txtMessages.Text += "- Client connected -" + Environment.NewLine;
@@ -69,6 +78,9 @@ namespace DevToolsNet.WindowsApp
                 server.Stop();
                 server.Dispose();
                 server = null;
+
+                btnSend.Enabled = btnSendToAll.Enabled = btnStop.Enabled = false;
+                btnStart.Enabled = true;
 
                 txtMessages.Text += "- Server Stoped -" + Environment.NewLine;
             }

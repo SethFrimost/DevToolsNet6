@@ -11,5 +11,7 @@ namespace DevToolsNet.DB.Objects
     public string Tabla { get; set; }
 
     public List<DataColumn> Columnas { get; set; }
+
+    public List<DataIndex> Indexes { get; set; }
   }
 }

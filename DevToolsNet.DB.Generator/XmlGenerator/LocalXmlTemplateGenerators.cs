@@ -29,10 +29,17 @@ namespace DevToolsNet.DB.Generator
             try
             {
                 if (System.IO.Directory.Exists(folder)) {
-                    var files = System.IO.Directory.GetFiles(folder, "*.xml");
+                    var files = System.IO.Directory.GetFiles(folder, "*.xml", SearchOption.AllDirectories);
                     foreach(var f in files)
                     {
-                        CodeGenerators.Add(new GeneratorFromXml(System.IO.File.ReadAllText(f)));
+                        var g = new GeneratorFromXml(System.IO.File.ReadAllText(f));
+                        var fi = new System.IO.FileInfo(f);
+
+                        if (g.whitErrors) g.Name = fi.Name;
+
+                        g.PathCarpeta = f.Replace(folder+"\\", string.Empty).Replace(fi.Name,string.Empty);
+                        
+                        CodeGenerators.Add(g);
                     }
                 }
             }

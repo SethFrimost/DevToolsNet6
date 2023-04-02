@@ -15,8 +15,8 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Drawing;
 using System.Diagnostics;
-
-/*Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
+/*
+Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
 var jsE = System.Text.Json.JsonSerializer.Serialize(e);
 var e2 = System.Text.Json.JsonSerializer.Deserialize<Estilo>(jsE);
 ColorConverter cc = new ColorConverter();
@@ -163,12 +163,18 @@ catch (Exception e)
     Console.WriteLine(e.Message);
 }*/
 
+Filtro filtro = new Filtro();
+dynamic datos = new System.Dynamic.ExpandoObject();
+datos.X = 5;
+datos.Y = 5;
 
-int[] arr = { 1, 8, 4, 6, 2 };
-int l = arr.Length;
-arr = arr.Order().ToArray();
-int min = arr.Take(l-1).Sum();
-int max = arr.Take(Range.StartAt(l-1)).Sum();
+var p = new Datos();
+p.X = 10;
+p.Y = 5;
+
+var res = filtro.Evaluar<int>("X + Y", p);
+var res2 = filtro.Evaluar<int>("X * Y", p);
+var res3 = filtro.Evaluar<string>("if(X > Y) return \"A,B,C\"; else return \"X,C,\";", p);
 
 
 Console.WriteLine("--FIN--");

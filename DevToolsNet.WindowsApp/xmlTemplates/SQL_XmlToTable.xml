@@ -1,8 +1,20 @@
-﻿<template name="Xml to Table">
-<t>select  
-</t>
-<c trim=", "> T.c.value('@{gColName}','{gColSqlType}') [{gColName}],</c>
-<t>
-from @a.nodes('//{gTable}') T(c)
-</t>
+﻿<template name="Replica XML to Table">
+  <t>
+    set IDENTITY_INSERT {gSchema}.{gTable} on
+
+    insert into {gSchema}.{gTable}(
+  </t>
+  <c trim="," opts="noTimeStamp">{gColName},</c>
+  <t>
+    )
+    select
+  </t>
+  <c trim="," opts="noTimeStamp"> T.c.value('@{gColName}','{gColSqlType}'),</c>
+  <t>
+    from #tMov as s
+    outer apply s.xml.nodes('/root/{gTable}') as T(c)
+    where entidad = '{gTable}'
+
+    set IDENTITY_INSERT {gSchema}.{gTable} off
+  </t>
 </template>

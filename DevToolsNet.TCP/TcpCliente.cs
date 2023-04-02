@@ -19,12 +19,13 @@ namespace DevToolsNet.TCP
         TcpConfig config;
         TcpClient client;
 
-        public event EventHandler DataReaded;
-
         public TcpCliente(TcpConfig config)
         {
             this.config = config;
             this.BufferSize=config.BufferSize;
+
+            client = new TcpClient(config.Address, config.Port);
+            StartReceive(client);
         }
 
         /// <summary>
@@ -48,39 +49,25 @@ namespace DevToolsNet.TCP
             if (client == null)
             {
                 client = new TcpClient(config.Address, config.Port);
-                StartReceive();
+                StartReceive(client);
             }
 
-            //try
-            //{
             if (!client.Connected)
             {
                 client.Connect(config.Address, config.Port);
-                StartReceive();
+                StartReceive(client);
             }
 
             NetworkStream stream = client.GetStream();
-            
+
             // Send the message to the connected TcpServer. 
             stream.Write(data, 0, data.Length);
-            
-            //stream.Close();
-            //stream.Dispose();
-            /*}
-            finally
-            {
-                if (!ResponseClient)
-                {
-                    client.Close();
-                    client = null;
-                }
-            }*/
         }
 
 
         public void CloseClient()
         {
-            var stream = client.GetStream();
+            var stream = client?.GetStream();
             if (stream != null)
             {
                 stream.Close();
@@ -90,61 +77,10 @@ namespace DevToolsNet.TCP
             if (client != null)
             {
                 client.Close();
+                client.Dispose();
                 client = null;
             }
         }
-
-
-        private void StartReceive()
-        {
-            bytesClient = new byte[0];
-            byte[] buffer = new byte[config.BufferSize];
-
-            //try
-            //{
-                if (client != null)
-                {
-                    if (client.Connected)
-                    {
-                        client.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, DataReceived, new KeyValuePair<TcpClient, byte[]>(client, buffer));
-                    }
-                }
-            /*}
-            catch { }*/
-        }
-
-
-        private void DataReceived(IAsyncResult ar)
-        {
-            int dataRead = 0;
-
-            KeyValuePair<TcpClient, byte[]> dataAr = (KeyValuePair<TcpClient, byte[]>)ar.AsyncState;
-            TcpClient tcpClient = dataAr.Key;
-
-
-            byte[] byteData = dataAr.Value; //ar.AsyncState as byte[];
-            bytesClient = bytesClient.AppendArray(byteData.Take(dataRead).ToArray());
-
-            if (ar.IsCompleted)
-            {
-                if (bytesClient.Length > 0)
-                {
-                    RawRecivedData = Encoding.ASCII.GetString(bytesClient).Trim('\0');
-
-                    if (DataReaded != null)
-                    {
-                        DataReaded(this, EventArgs.Empty);
-                    }
-
-                    //StartReceive();
-                }
-
-                //client.Client.EndReceive(ar);
-
-            }
-        }
-
-
 
         public void Dispose()
         {
