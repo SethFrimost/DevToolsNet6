@@ -1,0 +1,88 @@
+﻿@page "/io"
+
+<PageTitle>Folder</PageTitle>
+
+<RadzenLayout>
+    <RadzenSidebar>
+        <RadzenTree Data=@folders Expand=@LoadFolders @bind-Value=Selection>
+            <RadzenTreeLevel Text=@GetTextForNode Template=@FolderTemplate />
+        </RadzenTree>
+    </RadzenSidebar>
+    <RadzenBody>
+        <RadzenCard>
+            <h3>@selection</h3>
+            <RadzenTextBox Placeholder="Filter..." @bind-Value=@fileFilter Change=@(args => FilterFiles())></RadzenTextBox>
+            <RadzenDataList Data=@filesData >
+                <Template Context="file" >
+                    <RadzenRow>
+                        <RadzenColumn>@GetTextForNode(file)</RadzenColumn>
+                        <RadzenColumn>delete</RadzenColumn>
+                    </RadzenRow>
+                </Template>
+            </RadzenDataList>
+        </RadzenCard>
+    </RadzenBody>
+</RadzenLayout>
+
+@code{
+    string baseFolder = "C:\\temp";
+    object selection = "";
+    object Selection
+    {
+        get => selection;
+        set
+        {
+            selection = value;
+            LoadFiles((string)selection);
+        }
+    }
+    IEnumerable<string> folders;
+    IEnumerable<string> files;
+    IEnumerable<string> filesData;
+    string fileFilter;
+
+    protected override void OnInitialized()
+    {
+        folders = Directory.EnumerateDirectories(baseFolder);
+    }
+
+    void LoadFolders(TreeExpandEventArgs args)
+    {
+        var directory = args.Value as string;
+        args.Children.Data = Directory.EnumerateDirectories(directory);
+        args.Children.Text = GetTextForNode;
+        args.Children.HasChildren = (path) => Directory.Exists((string)path);
+        args.Children.Template = FolderTemplate;
+
+    }
+
+    string GetTextForNode(object data)
+    {
+        return Path.GetFileName((string)data);
+    }
+
+    RenderFragment<RadzenTreeItem> FolderTemplate = (context) => builder =>
+    {
+        string path = context.Value as string;
+
+        builder.OpenComponent<RadzenIcon>(0);
+        builder.AddAttribute(1, nameof(RadzenIcon.Icon), "folder");
+        builder.CloseComponent();
+        builder.AddContent(3, context.Text);
+    };
+
+
+    void LoadFiles(string path)
+    {
+        files= Directory.EnumerateFiles(path);
+        FilterFiles();
+    }
+
+    void FilterFiles()
+    {
+        if (string.IsNullOrWhiteSpace(fileFilter))
+            filesData = files;
+        else
+            filesData = files.Where(x => x.ToLower().Contains(fileFilter));
+    }
+}
