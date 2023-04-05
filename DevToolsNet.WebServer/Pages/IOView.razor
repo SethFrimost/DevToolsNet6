@@ -12,11 +12,13 @@
         <RadzenCard>
             <h3>@selection</h3>
             <RadzenTextBox Placeholder="Filter..." @bind-Value=@fileFilter Change=@(args => FilterFiles())></RadzenTextBox>
+            <InputFile OnChange="@UploadFile" multiple />
+
             <RadzenDataList Data=@filesData >
                 <Template Context="file" >
                     <RadzenRow>
                         <RadzenColumn>@GetTextForNode(file)</RadzenColumn>
-                        <RadzenColumn>delete</RadzenColumn>
+                        <RadzenColumn><RadzenButton icon="delete" Click=@(args => File.Delete(file)) /> </RadzenColumn>
                     </RadzenRow>
                 </Template>
             </RadzenDataList>
@@ -36,6 +38,7 @@
             LoadFiles((string)selection);
         }
     }
+
     IEnumerable<string> folders;
     IEnumerable<string> files;
     IEnumerable<string> filesData;
@@ -84,5 +87,39 @@
             filesData = files;
         else
             filesData = files.Where(x => x.ToLower().Contains(fileFilter));
+    }
+
+
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+
+    private async Task UploadFile(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+
+                //var trustedFileNameForFileStorage = Path.GetRandomFileName();
+                var path = Path.Combine((string)selection, file.Name);
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+
+                loadedFiles.Add(file);
+            }
+            catch (Exception ex)
+            {
+                //Logger.LogError("File: {Filename} Error: {Error}", file.Name, ex.Message);
+            }
+        }
+
+        LoadFiles((string)selection);
+        isLoading = false;
     }
 }
