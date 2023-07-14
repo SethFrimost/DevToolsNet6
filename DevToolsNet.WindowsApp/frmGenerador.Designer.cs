@@ -28,374 +28,354 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGenerador));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbReload = new System.Windows.Forms.ToolStripButton();
-            this.tsbManual = new System.Windows.Forms.ToolStripButton();
-            this.tsbGenTabManual = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.tscboConection = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tstSchema = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.tstTable = new System.Windows.Forms.ToolStripTextBox();
-            this.tsbLike = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.tsbRunAdd = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbToFiles = new System.Windows.Forms.ToolStripButton();
-            this.tstFileTemplate = new System.Windows.Forms.ToolStripTextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeTemplates = new DevToolsNet.WinFormsControlLibrary.TreeViewTools();
-            this.spcData = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.tvTags = new System.Windows.Forms.TreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lblManual = new System.Windows.Forms.Label();
-            this.txtManual = new System.Windows.Forms.TextBox();
-            this.lblGenerarPlantilla = new System.Windows.Forms.Label();
-            this.tabResults = new System.Windows.Forms.TabControl();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcData)).BeginInit();
-            this.spcData.Panel1.SuspendLayout();
-            this.spcData.Panel2.SuspendLayout();
-            this.spcData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.SuspendLayout();
+            toolStrip1 = new ToolStrip();
+            tsbReload = new ToolStripButton();
+            tsbManual = new ToolStripButton();
+            tsbGenTabManual = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripLabel3 = new ToolStripLabel();
+            tscboConection = new ToolStripComboBox();
+            toolStripLabel1 = new ToolStripLabel();
+            tstSchema = new ToolStripTextBox();
+            toolStripLabel2 = new ToolStripLabel();
+            tstTable = new ToolStripTextBox();
+            tsbLike = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            tsbRun = new ToolStripButton();
+            tsbRunAdd = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
+            tsbToFiles = new ToolStripButton();
+            tstFileTemplate = new ToolStripTextBox();
+            splitContainer1 = new SplitContainer();
+            treeTemplates = new WinFormsControlLibrary.TreeViewTools();
+            spcData = new SplitContainer();
+            splitContainer2 = new SplitContainer();
+            tvTags = new TreeView();
+            imageList1 = new ImageList(components);
+            lblManual = new Label();
+            txtManual = new TextBox();
+            lblGenerarPlantilla = new Label();
+            tabResults = new TabControl();
+            toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spcData).BeginInit();
+            spcData.Panel1.SuspendLayout();
+            spcData.Panel2.SuspendLayout();
+            spcData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbReload,
-            this.tsbManual,
-            this.tsbGenTabManual,
-            this.toolStripSeparator1,
-            this.toolStripLabel3,
-            this.tscboConection,
-            this.toolStripLabel1,
-            this.tstSchema,
-            this.toolStripLabel2,
-            this.tstTable,
-            this.tsbLike,
-            this.toolStripSeparator2,
-            this.tsbRun,
-            this.tsbRunAdd,
-            this.toolStripSeparator3,
-            this.tsbToFiles,
-            this.tstFileTemplate});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1230, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbReload, tsbManual, tsbGenTabManual, toolStripSeparator1, toolStripLabel3, tscboConection, toolStripLabel1, tstSchema, toolStripLabel2, tstTable, tsbLike, toolStripSeparator2, tsbRun, tsbRunAdd, toolStripSeparator3, tsbToFiles, tstFileTemplate });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(1230, 25);
+            toolStrip1.TabIndex = 0;
+            toolStrip1.Text = "toolStrip1";
             // 
             // tsbReload
             // 
-            this.tsbReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbReload.Image = global::DevToolsNet.WindowsApp.Properties.Resources.refresh;
-            this.tsbReload.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbReload.Name = "tsbReload";
-            this.tsbReload.Size = new System.Drawing.Size(23, 22);
-            this.tsbReload.Text = "Reload";
-            this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
+            tsbReload.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbReload.Image = Properties.Resources.refresh;
+            tsbReload.ImageTransparentColor = Color.Magenta;
+            tsbReload.Name = "tsbReload";
+            tsbReload.Size = new Size(23, 22);
+            tsbReload.Text = "Reload";
+            tsbReload.Click += tsbReload_Click;
             // 
             // tsbManual
             // 
-            this.tsbManual.CheckOnClick = true;
-            this.tsbManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_new;
-            this.tsbManual.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbManual.Name = "tsbManual";
-            this.tsbManual.Size = new System.Drawing.Size(23, 22);
-            this.tsbManual.Text = "Mostrar plantilla manual";
-            this.tsbManual.ToolTipText = "Manual template";
-            this.tsbManual.CheckedChanged += new System.EventHandler(this.tsbManual_CheckedChanged);
+            tsbManual.CheckOnClick = true;
+            tsbManual.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbManual.Image = Properties.Resources.document_new;
+            tsbManual.ImageTransparentColor = Color.Magenta;
+            tsbManual.Name = "tsbManual";
+            tsbManual.Size = new Size(23, 22);
+            tsbManual.Text = "Mostrar plantilla manual";
+            tsbManual.ToolTipText = "Manual template";
+            tsbManual.CheckedChanged += tsbManual_CheckedChanged;
             // 
             // tsbGenTabManual
             // 
-            this.tsbGenTabManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbGenTabManual.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_refresh;
-            this.tsbGenTabManual.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbGenTabManual.Name = "tsbGenTabManual";
-            this.tsbGenTabManual.Size = new System.Drawing.Size(23, 22);
-            this.tsbGenTabManual.Text = "Generar plantilla Manual";
-            this.tsbGenTabManual.ToolTipText = "Generar tab Manual";
-            this.tsbGenTabManual.Visible = false;
-            this.tsbGenTabManual.Click += new System.EventHandler(this.tsbGenTabManual_Click);
+            tsbGenTabManual.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbGenTabManual.Image = Properties.Resources.document_refresh;
+            tsbGenTabManual.ImageTransparentColor = Color.Magenta;
+            tsbGenTabManual.Name = "tsbGenTabManual";
+            tsbGenTabManual.Size = new Size(23, 22);
+            tsbGenTabManual.Text = "Generar plantilla Manual";
+            tsbGenTabManual.ToolTipText = "Generar tab Manual";
+            tsbGenTabManual.Visible = false;
+            tsbGenTabManual.Click += tsbGenTabManual_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
             // 
             // toolStripLabel3
             // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(62, 22);
-            this.toolStripLabel3.Text = "Conection";
+            toolStripLabel3.Name = "toolStripLabel3";
+            toolStripLabel3.Size = new Size(62, 22);
+            toolStripLabel3.Text = "Conection";
             // 
             // tscboConection
             // 
-            this.tscboConection.DropDownWidth = 200;
-            this.tscboConection.Name = "tscboConection";
-            this.tscboConection.Size = new System.Drawing.Size(250, 25);
-            this.tscboConection.SelectedIndexChanged += new System.EventHandler(this.tscboConection_SelectedIndexChanged);
+            tscboConection.DropDownWidth = 200;
+            tscboConection.Name = "tscboConection";
+            tscboConection.Size = new Size(250, 25);
+            tscboConection.SelectedIndexChanged += tscboConection_SelectedIndexChanged;
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(49, 22);
-            this.toolStripLabel1.Text = "Schema";
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(49, 22);
+            toolStripLabel1.Text = "Schema";
             // 
             // tstSchema
             // 
-            this.tstSchema.Name = "tstSchema";
-            this.tstSchema.Size = new System.Drawing.Size(120, 25);
+            tstSchema.Name = "tstSchema";
+            tstSchema.Size = new Size(120, 25);
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(34, 22);
-            this.toolStripLabel2.Text = "Table";
+            toolStripLabel2.Name = "toolStripLabel2";
+            toolStripLabel2.Size = new Size(34, 22);
+            toolStripLabel2.Text = "Table";
             // 
             // tstTable
             // 
-            this.tstTable.Name = "tstTable";
-            this.tstTable.Size = new System.Drawing.Size(200, 25);
+            tstTable.Name = "tstTable";
+            tstTable.Size = new Size(200, 25);
             // 
             // tsbLike
             // 
-            this.tsbLike.CheckOnClick = true;
-            this.tsbLike.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbLike.Image = global::DevToolsNet.WindowsApp.Properties.Resources.percent;
-            this.tsbLike.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbLike.Name = "tsbLike";
-            this.tsbLike.Size = new System.Drawing.Size(23, 22);
-            this.tsbLike.Text = "Busqueda LIKE";
+            tsbLike.CheckOnClick = true;
+            tsbLike.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbLike.Image = Properties.Resources.percent;
+            tsbLike.ImageTransparentColor = Color.Magenta;
+            tsbLike.Name = "tsbLike";
+            tsbLike.Size = new Size(23, 22);
+            tsbLike.Text = "Busqueda LIKE";
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
             // 
             // tsbRun
             // 
-            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRun.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_play;
-            this.tsbRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRun.Name = "tsbRun";
-            this.tsbRun.Size = new System.Drawing.Size(23, 22);
-            this.tsbRun.Text = "Generar";
-            this.tsbRun.Click += new System.EventHandler(this.tsbRun_Click);
+            tsbRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbRun.Image = Properties.Resources.media_play;
+            tsbRun.ImageTransparentColor = Color.Magenta;
+            tsbRun.Name = "tsbRun";
+            tsbRun.Size = new Size(23, 22);
+            tsbRun.Text = "Generar";
+            tsbRun.Click += tsbRun_Click;
             // 
             // tsbRunAdd
             // 
-            this.tsbRunAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRunAdd.Image = global::DevToolsNet.WindowsApp.Properties.Resources.media_step_forward;
-            this.tsbRunAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRunAdd.Name = "tsbRunAdd";
-            this.tsbRunAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbRunAdd.Text = "Generar y agregar";
-            this.tsbRunAdd.Click += new System.EventHandler(this.tsbRunAdd_Click);
+            tsbRunAdd.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbRunAdd.Image = Properties.Resources.media_step_forward;
+            tsbRunAdd.ImageTransparentColor = Color.Magenta;
+            tsbRunAdd.Name = "tsbRunAdd";
+            tsbRunAdd.Size = new Size(23, 22);
+            tsbRunAdd.Text = "Generar y agregar";
+            tsbRunAdd.Click += tsbRunAdd_Click;
             // 
             // toolStripSeparator3
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 25);
             // 
             // tsbToFiles
             // 
-            this.tsbToFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbToFiles.Image = global::DevToolsNet.WindowsApp.Properties.Resources.document_into;
-            this.tsbToFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbToFiles.Name = "tsbToFiles";
-            this.tsbToFiles.Size = new System.Drawing.Size(23, 22);
-            this.tsbToFiles.Text = "Generar en ficheros separados";
-            this.tsbToFiles.Click += new System.EventHandler(this.tsbToFiles_Click);
+            tsbToFiles.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbToFiles.Image = Properties.Resources.document_into;
+            tsbToFiles.ImageTransparentColor = Color.Magenta;
+            tsbToFiles.Name = "tsbToFiles";
+            tsbToFiles.Size = new Size(23, 22);
+            tsbToFiles.Text = "Generar en ficheros separados";
+            tsbToFiles.Click += tsbToFiles_Click;
             // 
             // tstFileTemplate
             // 
-            this.tstFileTemplate.Name = "tstFileTemplate";
-            this.tstFileTemplate.Size = new System.Drawing.Size(200, 25);
-            this.tstFileTemplate.Text = "[t].cs";
-            this.tstFileTemplate.ToolTipText = "File template: default \"[t].cs\"";
+            tstFileTemplate.Name = "tstFileTemplate";
+            tstFileTemplate.Size = new Size(200, 25);
+            tstFileTemplate.Text = "[t].cs";
+            tstFileTemplate.ToolTipText = "File template: default \"[t].cs\"";
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 25);
+            splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeTemplates);
+            splitContainer1.Panel1.Controls.Add(treeTemplates);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.spcData);
-            this.splitContainer1.Size = new System.Drawing.Size(1230, 542);
-            this.splitContainer1.SplitterDistance = 260;
-            this.splitContainer1.TabIndex = 1;
+            splitContainer1.Panel2.Controls.Add(spcData);
+            splitContainer1.Size = new Size(1230, 542);
+            splitContainer1.SplitterDistance = 260;
+            splitContainer1.TabIndex = 1;
             // 
             // treeTemplates
             // 
-            this.treeTemplates.CheckBoxes = true;
-            this.treeTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeTemplates.Location = new System.Drawing.Point(0, 0);
-            this.treeTemplates.Name = "treeTemplates";
-            this.treeTemplates.ShowTools = true;
-            this.treeTemplates.Size = new System.Drawing.Size(260, 542);
-            this.treeTemplates.TabIndex = 3;
-            this.treeTemplates.AfterNodeCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeTemplates_AfterNodeCheck);
+            treeTemplates.CheckBoxes = true;
+            treeTemplates.Dock = DockStyle.Fill;
+            treeTemplates.Location = new Point(0, 0);
+            treeTemplates.Name = "treeTemplates";
+            treeTemplates.ShowTools = false;
+            treeTemplates.Size = new Size(260, 542);
+            treeTemplates.TabIndex = 3;
+            treeTemplates.AfterNodeCheck += treeTemplates_AfterNodeCheck;
             // 
             // spcData
             // 
-            this.spcData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spcData.Location = new System.Drawing.Point(0, 0);
-            this.spcData.Name = "spcData";
-            this.spcData.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            spcData.Dock = DockStyle.Fill;
+            spcData.Location = new Point(0, 0);
+            spcData.Name = "spcData";
+            spcData.Orientation = Orientation.Horizontal;
             // 
             // spcData.Panel1
             // 
-            this.spcData.Panel1.Controls.Add(this.splitContainer2);
+            spcData.Panel1.Controls.Add(splitContainer2);
             // 
             // spcData.Panel2
             // 
-            this.spcData.Panel2.Controls.Add(this.tabResults);
-            this.spcData.Size = new System.Drawing.Size(966, 542);
-            this.spcData.SplitterDistance = 223;
-            this.spcData.TabIndex = 1;
+            spcData.Panel2.Controls.Add(tabResults);
+            spcData.Size = new Size(966, 542);
+            spcData.SplitterDistance = 223;
+            spcData.TabIndex = 1;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.tvTags);
-            this.splitContainer2.Panel1.Controls.Add(this.lblManual);
+            splitContainer2.Panel1.Controls.Add(tvTags);
+            splitContainer2.Panel1.Controls.Add(lblManual);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.txtManual);
-            this.splitContainer2.Panel2.Controls.Add(this.lblGenerarPlantilla);
-            this.splitContainer2.Size = new System.Drawing.Size(966, 223);
-            this.splitContainer2.SplitterDistance = 178;
-            this.splitContainer2.TabIndex = 1;
+            splitContainer2.Panel2.Controls.Add(txtManual);
+            splitContainer2.Panel2.Controls.Add(lblGenerarPlantilla);
+            splitContainer2.Size = new Size(966, 223);
+            splitContainer2.SplitterDistance = 178;
+            splitContainer2.TabIndex = 1;
             // 
             // tvTags
             // 
-            this.tvTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvTags.ImageIndex = 3;
-            this.tvTags.ImageList = this.imageList1;
-            this.tvTags.Location = new System.Drawing.Point(0, 15);
-            this.tvTags.Name = "tvTags";
-            this.tvTags.SelectedImageIndex = 3;
-            this.tvTags.Size = new System.Drawing.Size(178, 208);
-            this.tvTags.TabIndex = 0;
-            this.tvTags.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvTags_NodeMouseClick);
+            tvTags.Dock = DockStyle.Fill;
+            tvTags.ImageIndex = 3;
+            tvTags.ImageList = imageList1;
+            tvTags.Location = new Point(0, 15);
+            tvTags.Name = "tvTags";
+            tvTags.SelectedImageIndex = 3;
+            tvTags.Size = new Size(178, 208);
+            tvTags.TabIndex = 0;
+            tvTags.NodeMouseClick += tvTags_NodeMouseClick;
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "text_tree.png");
-            this.imageList1.Images.SetKeyName(1, "text_italics.png");
-            this.imageList1.Images.SetKeyName(2, "text.png");
-            this.imageList1.Images.SetKeyName(3, "text_rich.png");
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "text_tree.png");
+            imageList1.Images.SetKeyName(1, "text_italics.png");
+            imageList1.Images.SetKeyName(2, "text.png");
+            imageList1.Images.SetKeyName(3, "text_rich.png");
             // 
             // lblManual
             // 
-            this.lblManual.AutoSize = true;
-            this.lblManual.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblManual.Location = new System.Drawing.Point(0, 0);
-            this.lblManual.Name = "lblManual";
-            this.lblManual.Size = new System.Drawing.Size(92, 15);
-            this.lblManual.TabIndex = 3;
-            this.lblManual.Text = "Plantilla manual";
+            lblManual.AutoSize = true;
+            lblManual.Dock = DockStyle.Top;
+            lblManual.Location = new Point(0, 0);
+            lblManual.Name = "lblManual";
+            lblManual.Size = new Size(92, 15);
+            lblManual.TabIndex = 3;
+            lblManual.Text = "Plantilla manual";
             // 
             // txtManual
             // 
-            this.txtManual.AcceptsReturn = true;
-            this.txtManual.AcceptsTab = true;
-            this.txtManual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtManual.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtManual.Location = new System.Drawing.Point(0, 15);
-            this.txtManual.Multiline = true;
-            this.txtManual.Name = "txtManual";
-            this.txtManual.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtManual.Size = new System.Drawing.Size(784, 208);
-            this.txtManual.TabIndex = 0;
-            this.txtManual.Text = "<template name=\"manual\">\r\n\r\n</template>";
-            this.txtManual.TextChanged += new System.EventHandler(this.txtManual_TextChanged);
+            txtManual.AcceptsReturn = true;
+            txtManual.AcceptsTab = true;
+            txtManual.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtManual.Font = new Font("Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtManual.Location = new Point(0, 15);
+            txtManual.Multiline = true;
+            txtManual.Name = "txtManual";
+            txtManual.ScrollBars = ScrollBars.Both;
+            txtManual.Size = new Size(784, 208);
+            txtManual.TabIndex = 0;
+            txtManual.Text = "<template name=\"manual\">\r\n\r\n</template>";
+            txtManual.TextChanged += txtManual_TextChanged;
             // 
             // lblGenerarPlantilla
             // 
-            this.lblGenerarPlantilla.AutoSize = true;
-            this.lblGenerarPlantilla.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblGenerarPlantilla.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblGenerarPlantilla.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblGenerarPlantilla.Location = new System.Drawing.Point(0, 0);
-            this.lblGenerarPlantilla.Name = "lblGenerarPlantilla";
-            this.lblGenerarPlantilla.Size = new System.Drawing.Size(102, 15);
-            this.lblGenerarPlantilla.TabIndex = 5;
-            this.lblGenerarPlantilla.Text = "Generar plantilla...";
-            this.lblGenerarPlantilla.Click += new System.EventHandler(this.lblGenerarPlantilla_Click);
+            lblGenerarPlantilla.AutoSize = true;
+            lblGenerarPlantilla.Cursor = Cursors.Hand;
+            lblGenerarPlantilla.Dock = DockStyle.Top;
+            lblGenerarPlantilla.ForeColor = SystemColors.Highlight;
+            lblGenerarPlantilla.Location = new Point(0, 0);
+            lblGenerarPlantilla.Name = "lblGenerarPlantilla";
+            lblGenerarPlantilla.Size = new Size(102, 15);
+            lblGenerarPlantilla.TabIndex = 5;
+            lblGenerarPlantilla.Text = "Generar plantilla...";
+            lblGenerarPlantilla.Click += lblGenerarPlantilla_Click;
             // 
             // tabResults
             // 
-            this.tabResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabResults.Location = new System.Drawing.Point(0, 0);
-            this.tabResults.Name = "tabResults";
-            this.tabResults.SelectedIndex = 0;
-            this.tabResults.Size = new System.Drawing.Size(966, 315);
-            this.tabResults.TabIndex = 0;
+            tabResults.Dock = DockStyle.Fill;
+            tabResults.Location = new Point(0, 0);
+            tabResults.Name = "tabResults";
+            tabResults.SelectedIndex = 0;
+            tabResults.Size = new Size(966, 315);
+            tabResults.TabIndex = 0;
             // 
             // frmGenerador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 567);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.toolStrip1);
-            this.Name = "frmGenerador";
-            this.Text = "Generador";
-            this.Load += new System.EventHandler(this.frmGenerador_Load);
-            this.Shown += new System.EventHandler(this.frmGenerador_Shown);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.spcData.Panel1.ResumeLayout(false);
-            this.spcData.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spcData)).EndInit();
-            this.spcData.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1230, 567);
+            Controls.Add(splitContainer1);
+            Controls.Add(toolStrip1);
+            Name = "frmGenerador";
+            Text = "Generador";
+            Load += frmGenerador_Load;
+            Shown += frmGenerador_Shown;
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            spcData.Panel1.ResumeLayout(false);
+            spcData.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)spcData).EndInit();
+            spcData.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel1.PerformLayout();
+            splitContainer2.Panel2.ResumeLayout(false);
+            splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

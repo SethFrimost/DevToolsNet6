@@ -15,6 +15,18 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Drawing;
 using System.Diagnostics;
+using System.Configuration;
+using DevToolsNet.PowerShell.ScriptLibrary;
+
+PSScript s = new PSScript();
+s.Params = new Dictionary<string, string>();
+s.Params.Add("dir", "C:\\temp");
+s.Name = "data";
+s.Code = "asdfasdfasdfa \r\n asdadfasda";
+
+string str = System.Text.Json.JsonSerializer.Serialize(s);
+
+Console.WriteLine(str);
 /*
 Estilo e = new Estilo() { a = Color.Red, b = Color.FromArgb(100, 200, 50) };
 var jsE = System.Text.Json.JsonSerializer.Serialize(e);
@@ -30,8 +42,8 @@ g.subGrupos.Add(new Grupo() { name = "A1", padre=g, color = Color.FromArgb(24,20
 
 JsonSerializerOptions options = new()
 {
-    ReferenceHandler = ReferenceHandler.Preserve,
-    WriteIndented = true
+ReferenceHandler = ReferenceHandler.Preserve,
+WriteIndented = true
 };
 var json = System.Text.Json.JsonSerializer.Serialize(g, options);
 Console.WriteLine(json);
@@ -163,19 +175,36 @@ catch (Exception e)
     Console.WriteLine(e.Message);
 }*/
 
+
 Filtro filtro = new Filtro();
-dynamic datos = new System.Dynamic.ExpandoObject();
-datos.X = 5;
-datos.Y = 5;
+filtro.AddScript("suma", "X + Y");
+
+/*dynamic datos = new System.Dynamic.ExpandoObject();
+datos.globals = new System.Dynamic.ExpandoObject();
+datos.X = 15;
+datos.Y = 5;*/
 
 var p = new Datos();
 p.X = 10;
 p.Y = 5;
+p.matricula = "B-1987-AAA";
+p.matricula.StartsWith("B");
+
+filtro.Data = p;
+var res4 = filtro.RunScript("suma");
+
+var idPrueba = filtro.Evaluar<int>("if(matricula.StartsWith(\"B\")) return 1; else return 2;", p);
 
 var res = filtro.Evaluar<int>("X + Y", p);
 var res2 = filtro.Evaluar<int>("X * Y", p);
 var res3 = filtro.Evaluar<string>("if(X > Y) return \"A,B,C\"; else return \"X,C,\";", p);
 
+/*
+PowerShell ps = PowerShell.Create();
+var c = new Command("$a = 1" + Environment.NewLine
+    + "echo $a");
+ps.Commands.AddCommand(c);
+*/
 
 Console.WriteLine("--FIN--");
 Console.ReadLine();

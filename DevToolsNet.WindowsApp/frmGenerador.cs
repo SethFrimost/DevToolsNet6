@@ -24,7 +24,7 @@ namespace DevToolsNet.WindowsApp
             this.settings = settings.Value;
             generators = Generators;
             dataInfoRecover = DataInfoRecover;
-            
+
             InitializeComponent();
 
             treeGeneredores = new TreeGeneredores();
@@ -74,10 +74,10 @@ namespace DevToolsNet.WindowsApp
             {
                 if (tscboConection.SelectedIndex >= 0)
                 {
-                    if(tscboConection.SelectedItem is string)
+                    if (tscboConection.SelectedItem is string)
                     {
                         dlgText dTxt = new dlgText("data source={server};initial catalog={db};persist security info=True;user id={usr};password={pass};MultipleActiveResultSets=True;");
-                        if(dTxt.ShowDialog() == DialogResult.OK)
+                        if (dTxt.ShowDialog() == DialogResult.OK)
                         {
                             var cs = new ConnectionString();
                             cs.Value = dTxt.ResultText;
@@ -95,7 +95,7 @@ namespace DevToolsNet.WindowsApp
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -115,10 +115,10 @@ namespace DevToolsNet.WindowsApp
         {
             var fbd = new FolderBrowserDialog();
             fbd.ShowNewFolderButton = true;
-            
+
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                generateToFiles(fbd.SelectedPath, tstFileTemplate.Text, false); 
+                generateToFiles(fbd.SelectedPath, tstFileTemplate.Text, false);
             }
         }
 
@@ -151,11 +151,11 @@ namespace DevToolsNet.WindowsApp
         {
             var gen = Program.ServiceProvider.GetService<ICodeGenerator>();
             tvTags.Nodes.Clear();
-            var ni = tvTags.Nodes.Add("Items","Items",0,0);
-            var no = ni.Nodes.Add("Opciones", "Opciones", 1,1);
-            foreach (var x in gen.Items) ni.Nodes.Add(x.Key).Tag=x.Value;
+            var ni = tvTags.Nodes.Add("Items", "Items", 0, 0);
+            var no = ni.Nodes.Add("Opciones", "Opciones", 1, 1);
+            foreach (var x in gen.Items) ni.Nodes.Add(x.Key).Tag = x.Value;
             foreach (var x in gen.ItemsOptions) no.Nodes.Add(x.Key).Tag = x.Value;
-            ni = tvTags.Nodes.Add("Datos", "Datos",2,2);
+            ni = tvTags.Nodes.Add("Datos", "Datos", 2, 2);
             foreach (var x in gen.DataTags) ni.Nodes.Add(x.Key).Tag = x.Value;
         }
 
@@ -177,7 +177,7 @@ namespace DevToolsNet.WindowsApp
             {
                 if (tabs == null) tabs = new Dictionary<ICodeGenerator, TabPage>();
                 tabs.Clear();
-                tabResults.TabPages.Clear();                
+                tabResults.TabPages.Clear();
                 //treeTemplates.Items.Clear();
                 generators.LoadGenerators();
                 treeGeneredores.LoadNodes(treeTemplates.Tree, generators.CodeGenerators);
@@ -224,7 +224,7 @@ namespace DevToolsNet.WindowsApp
         {
             // Find tables
             List<DB.Objects.DataTable> tables;
-            if(tstTable.Text.Contains(','))
+            if (tstTable.Text.Contains(','))
             {
                 tables = new List<DB.Objects.DataTable>();
                 foreach (var t in tstTable.Text.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
@@ -248,7 +248,7 @@ namespace DevToolsNet.WindowsApp
                 {
                     var g = tabResults.TabPages[i].Tag as ICodeGenerator;
                     var code = g.GenerateCode(tables);
-                    code = code.Replace("\n\r","\n").Replace("\n", Environment.NewLine);
+                    code = code.Replace("\n\r", "\n").Replace("\n", Environment.NewLine);
 
                     if (append) ((TextBox)tabResults.TabPages[i].Controls[0]).Text += code;
                     else ((TextBox)tabResults.TabPages[i].Controls[0]).Text = code;
@@ -283,7 +283,7 @@ namespace DevToolsNet.WindowsApp
                         tabFolder = GetTabPageFolder(baseFolder, g.Name);
                         foreach (var ct in codes)
                         {
-                            tableFile = $"{tabFolder}\\{fileTemplate.Replace("[t]",ct.Table)}";
+                            tableFile = $"{tabFolder}\\{fileTemplate.Replace("[t]", ct.Table)}";
 
                             if (append) File.AppendAllText(tableFile, ct.Code);
                             else File.WriteAllText(tableFile, ct.Code);
@@ -302,7 +302,7 @@ namespace DevToolsNet.WindowsApp
         {
             var res = baseFolder + "\\" + folderName;
 
-            if(!System.IO.Directory.Exists(res)) System.IO.Directory.CreateDirectory(res);
+            if (!System.IO.Directory.Exists(res)) System.IO.Directory.CreateDirectory(res);
 
             return res;
         }

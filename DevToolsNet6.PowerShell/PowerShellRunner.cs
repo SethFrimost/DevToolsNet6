@@ -20,21 +20,34 @@ namespace DevToolsNet.PowerShell
         public event MessageOutDelegate InfoMessaje;
         public event MessageOutDelegate TextMessaje;
 
+        public PowerShellRunner()
+        {
+            crearPowerShell(null, null);
+        }
+
         public PowerShellRunner(ServerConfig server, string user, SecureString pass)
         {
             this.server = server;
             crearPowerShell(user, pass);
         }
+        
 
         private void crearPowerShell(string user, SecureString pass)
         {
-            WSManConnectionInfo connectionInfo = new WSManConnectionInfo();
-            connectionInfo.ComputerName = server.IP;
-            connectionInfo.Credential = new PSCredential(user, pass); ;
+            if (server == null || string.IsNullOrEmpty(user) || pass == null)
+            {
+                ps = System.Management.Automation.PowerShell.Create();
+            }
+            else
+            {
+                WSManConnectionInfo connectionInfo = new WSManConnectionInfo();
+                connectionInfo.ComputerName = server.IP;
+                connectionInfo.Credential = new PSCredential(user, pass); ;
 
-            runspace = RunspaceFactory.CreateRunspace(connectionInfo);
-            runspace.Open();
-            ps = System.Management.Automation.PowerShell.Create(runspace);
+                runspace = RunspaceFactory.CreateRunspace(connectionInfo);
+                runspace.Open();
+                ps = System.Management.Automation.PowerShell.Create(runspace);
+            }
 
             ps.Streams.Error.DataAdded += (s, e) =>
             {
@@ -63,7 +76,7 @@ namespace DevToolsNet.PowerShell
                 ps.Commands.Clear();
                 ps.Commands.AddScript(command);
                 ps.Commands.AddCommand("Out-String");
-
+                
                 TextMessaje?.Invoke(this, "> "+ command);
 
                 var pipelineObjects = await ps.InvokeAsync().ConfigureAwait(false);

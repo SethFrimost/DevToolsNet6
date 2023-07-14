@@ -65,6 +65,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="frmPSGallery.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="TCP\frmTCPClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +110,10 @@
     <None Update="xmlTemplates\SQL_XmlToTable.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PSGalllery\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

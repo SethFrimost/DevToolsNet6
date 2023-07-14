@@ -24,6 +24,17 @@ namespace DevToolsNet.WindowsApp
             //this.treeServerConnections1.LoadServers(servers);
         }
 
+        private void frmTest_Load(object sender, EventArgs e)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("id", "1");
+            dic.Add("cod", "\"Hola\"");
+            dic.Add("cod2", "\"Hola\"");
+            dic.Add("cod3", "\"Hola\"");
+            dic.Add("cod4", "\"Hola\"");
+            dic.Add("cod5", "\"Hola\"");
 
+            dicEdit.Dictionary = dic;
+        }
     }
 }

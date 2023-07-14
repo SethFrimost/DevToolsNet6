@@ -29,118 +29,116 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.tsmSQL = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiGenerador = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSqlRunner = new System.Windows.Forms.ToolStripMenuItem();
-            this.windosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.powerShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tcpServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tcpClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            tsmSQL = new ToolStripMenuItem();
+            tsmiGenerador = new ToolStripMenuItem();
+            tsmiSqlRunner = new ToolStripMenuItem();
+            windosToolStripMenuItem = new ToolStripMenuItem();
+            servicesToolStripMenuItem = new ToolStripMenuItem();
+            powerShellToolStripMenuItem = new ToolStripMenuItem();
+            tsmiPSGallery = new ToolStripMenuItem();
+            tCPToolStripMenuItem = new ToolStripMenuItem();
+            tcpServerToolStripMenuItem = new ToolStripMenuItem();
+            tcpClientToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmSQL,
-            this.windosToolStripMenuItem,
-            this.tCPToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1013, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmSQL, windosToolStripMenuItem, tCPToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1013, 24);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "menuStrip1";
             // 
             // tsmSQL
             // 
-            this.tsmSQL.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiGenerador,
-            this.tsmiSqlRunner});
-            this.tsmSQL.Name = "tsmSQL";
-            this.tsmSQL.Size = new System.Drawing.Size(35, 20);
-            this.tsmSQL.Text = "Sql";
+            tsmSQL.DropDownItems.AddRange(new ToolStripItem[] { tsmiGenerador, tsmiSqlRunner });
+            tsmSQL.Name = "tsmSQL";
+            tsmSQL.Size = new Size(35, 20);
+            tsmSQL.Text = "Sql";
             // 
             // tsmiGenerador
             // 
-            this.tsmiGenerador.Name = "tsmiGenerador";
-            this.tsmiGenerador.Size = new System.Drawing.Size(136, 22);
-            this.tsmiGenerador.Text = "Generador";
-            this.tsmiGenerador.Click += new System.EventHandler(this.tsmiGenerador_Click);
+            tsmiGenerador.Name = "tsmiGenerador";
+            tsmiGenerador.Size = new Size(136, 22);
+            tsmiGenerador.Text = "Generador";
+            tsmiGenerador.Click += tsmiGenerador_Click;
             // 
             // tsmiSqlRunner
             // 
-            this.tsmiSqlRunner.Name = "tsmiSqlRunner";
-            this.tsmiSqlRunner.Size = new System.Drawing.Size(136, 22);
-            this.tsmiSqlRunner.Text = "SQL Runner";
-            this.tsmiSqlRunner.Click += new System.EventHandler(this.tsmiSqlRunner_Click);
+            tsmiSqlRunner.Name = "tsmiSqlRunner";
+            tsmiSqlRunner.Size = new Size(136, 22);
+            tsmiSqlRunner.Text = "SQL Runner";
+            tsmiSqlRunner.Click += tsmiSqlRunner_Click;
             // 
             // windosToolStripMenuItem
             // 
-            this.windosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.servicesToolStripMenuItem,
-            this.powerShellToolStripMenuItem});
-            this.windosToolStripMenuItem.Name = "windosToolStripMenuItem";
-            this.windosToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.windosToolStripMenuItem.Text = "Windows";
+            windosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { servicesToolStripMenuItem, powerShellToolStripMenuItem, tsmiPSGallery });
+            windosToolStripMenuItem.Name = "windosToolStripMenuItem";
+            windosToolStripMenuItem.Size = new Size(68, 20);
+            windosToolStripMenuItem.Text = "Windows";
             // 
             // servicesToolStripMenuItem
             // 
-            this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
-            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.servicesToolStripMenuItem.Text = "Services";
-            this.servicesToolStripMenuItem.Click += new System.EventHandler(this.servicesToolStripMenuItem_Click);
+            servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
+            servicesToolStripMenuItem.Size = new Size(135, 22);
+            servicesToolStripMenuItem.Text = "Services";
+            servicesToolStripMenuItem.Click += servicesToolStripMenuItem_Click;
             // 
             // powerShellToolStripMenuItem
             // 
-            this.powerShellToolStripMenuItem.Name = "powerShellToolStripMenuItem";
-            this.powerShellToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.powerShellToolStripMenuItem.Text = "Power Shell";
-            this.powerShellToolStripMenuItem.Click += new System.EventHandler(this.powerShellToolStripMenuItem_Click);
+            powerShellToolStripMenuItem.Name = "powerShellToolStripMenuItem";
+            powerShellToolStripMenuItem.Size = new Size(135, 22);
+            powerShellToolStripMenuItem.Text = "Power Shell";
+            powerShellToolStripMenuItem.Click += powerShellToolStripMenuItem_Click;
+            // 
+            // tsmiPSGallery
+            // 
+            tsmiPSGallery.Name = "tsmiPSGallery";
+            tsmiPSGallery.Size = new Size(135, 22);
+            tsmiPSGallery.Text = "PS Gallery";
+            tsmiPSGallery.Click += tsmiPSGallery_Click;
             // 
             // tCPToolStripMenuItem
             // 
-            this.tCPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tcpServerToolStripMenuItem,
-            this.tcpClientToolStripMenuItem});
-            this.tCPToolStripMenuItem.Name = "tCPToolStripMenuItem";
-            this.tCPToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.tCPToolStripMenuItem.Text = "TCP";
+            tCPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tcpServerToolStripMenuItem, tcpClientToolStripMenuItem });
+            tCPToolStripMenuItem.Name = "tCPToolStripMenuItem";
+            tCPToolStripMenuItem.Size = new Size(39, 20);
+            tCPToolStripMenuItem.Text = "TCP";
             // 
             // tcpServerToolStripMenuItem
             // 
-            this.tcpServerToolStripMenuItem.Name = "tcpServerToolStripMenuItem";
-            this.tcpServerToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.tcpServerToolStripMenuItem.Text = "Server";
-            this.tcpServerToolStripMenuItem.Click += new System.EventHandler(this.tcpServerToolStripMenuItem_Click);
+            tcpServerToolStripMenuItem.Name = "tcpServerToolStripMenuItem";
+            tcpServerToolStripMenuItem.Size = new Size(106, 22);
+            tcpServerToolStripMenuItem.Text = "Server";
+            tcpServerToolStripMenuItem.Click += tcpServerToolStripMenuItem_Click;
             // 
             // tcpClientToolStripMenuItem
             // 
-            this.tcpClientToolStripMenuItem.Name = "tcpClientToolStripMenuItem";
-            this.tcpClientToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.tcpClientToolStripMenuItem.Text = "Client";
-            this.tcpClientToolStripMenuItem.Click += new System.EventHandler(this.tcpClientToolStripMenuItem_Click);
+            tcpClientToolStripMenuItem.Name = "tcpClientToolStripMenuItem";
+            tcpClientToolStripMenuItem.Size = new Size(106, 22);
+            tcpClientToolStripMenuItem.Text = "Client";
+            tcpClientToolStripMenuItem.Click += tcpClientToolStripMenuItem_Click;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 608);
-            this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmMain";
-            this.Text = "Dev tools";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Shown += new System.EventHandler(this.frmMain_Shown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1013, 608);
+            Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            IsMdiContainer = true;
+            MainMenuStrip = menuStrip1;
+            Name = "frmMain";
+            Text = "Dev tools";
+            WindowState = FormWindowState.Maximized;
+            Shown += frmMain_Shown;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -155,5 +153,6 @@
         private ToolStripMenuItem tCPToolStripMenuItem;
         private ToolStripMenuItem tcpServerToolStripMenuItem;
         private ToolStripMenuItem tcpClientToolStripMenuItem;
+        private ToolStripMenuItem tsmiPSGallery;
     }
 }

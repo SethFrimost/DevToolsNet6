@@ -8,6 +8,7 @@ using DevToolsNet.DB.Runner;
 using DevToolsNet.DB.Runner.Interfaces;
 using DevToolsNet.Extensions;
 using DevToolsNet.PowerShell;
+using DevToolsNet.PowerShell.ScriptLibrary;
 using DevToolsNet.Shared.Configs;
 using DevToolsNet.WinServicesManager;
 using Microsoft.Extensions.Configuration;
@@ -82,7 +83,8 @@ namespace DevToolsNet.WindowsApp
                 .Configure<WinServicesManagerConfig>(Configuration.GetSection("WinServicesManagerConfig"))
                 .Configure<ServersConfig<ServerConfig>>(Configuration.GetSection("ServersConfig"))
                 .Configure<ServersConfig<ServerConnectionStringCollection>>(Configuration.GetSection("ServersConfig"))
-                .Configure<ServersConfig<WindowsServiceConfig>>(Configuration.GetSection("ServersConfig"));
+                .Configure<ServersConfig<WindowsServiceConfig>>(Configuration.GetSection("ServersConfig"))
+                .Configure<PSGalleryConfig>(Configuration.GetSection("PSGalleryConfig"));
 
             // clases
             services
@@ -101,6 +103,7 @@ namespace DevToolsNet.WindowsApp
                 .AddTransient<frmSQLRunner>()
                 .AddTransient<frmWinServices>()
                 .AddTransient<frmPowerShell>()
+                .AddTransient<frmPSGallery>()
                 .AddTransient<frmTest>();
             
         }

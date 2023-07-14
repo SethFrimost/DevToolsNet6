@@ -12,7 +12,9 @@ namespace DevToolsNet.WindowsApp
         }
         private void frmMain_Shown(object sender, EventArgs e)
         {
-
+            /*var f = Program.ServiceProvider.GetService<frmTest>();
+            f.MdiParent = this;
+            f.Show();*/
         }
         private void tsmiGenerador_Click(object sender, EventArgs e)
         {
@@ -54,5 +56,13 @@ namespace DevToolsNet.WindowsApp
             f.MdiParent = this;
             f.Show();
         }
+
+        private void tsmiPSGallery_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetService<frmPSGallery>();
+            f.MdiParent = this;
+            f.Show();
+        }
+
     }
 }
