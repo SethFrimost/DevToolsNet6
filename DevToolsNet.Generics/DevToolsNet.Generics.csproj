@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageOutputPath>..\outPackages</PackageOutputPath>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

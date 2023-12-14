@@ -21,7 +21,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Radzen.Blazor" Version="4.8.3" />
+    <PackageReference Include="Radzen.Blazor" Version="4.16.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToolsNet.TCP\DevToolsNet.TCP.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Tcpip.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 
 </Project>

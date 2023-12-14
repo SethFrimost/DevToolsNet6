@@ -1,5 +1,7 @@
 ﻿using DevToolsNet.AppConfig.Interfaces;
 using DevToolsNet.Shared.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace DevToolsNet.AppConfig
@@ -17,7 +19,7 @@ namespace DevToolsNet.AppConfig
         }
 
 
-        public List<AppConfig> LoadConfigs(string app, string? group, string? pc, DateTime date)
+        public List<AppConfig> LoadConfigs(string app, string group, string pc, DateTime date)
         {
             AppConfigs = configRecover.RecoverConfigs(app, group, pc, date);
             return AppConfigs;

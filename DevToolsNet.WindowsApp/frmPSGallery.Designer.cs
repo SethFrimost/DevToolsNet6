@@ -181,7 +181,7 @@
             treeGaleries.Dock = DockStyle.Fill;
             treeGaleries.Location = new Point(0, 0);
             treeGaleries.Name = "treeGaleries";
-            treeGaleries.ShowTools = true;
+            treeGaleries.ShowTools = false;
             treeGaleries.Size = new Size(266, 425);
             treeGaleries.TabIndex = 0;
             treeGaleries.AfterNodeCheck += treeServers_AfterNodeCheck;

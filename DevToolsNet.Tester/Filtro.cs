@@ -44,10 +44,11 @@ namespace DevToolsNet.zzzTester
         {
             if(scritps.TryGetValue(key, out var script))
             {
-                return script.RunAsync(globals: datos).Result;
+                return script.RunAsync(new { data = datos }).Result;
             }
             return null;
         }
+
 
         public T Evaluar<T>(string code, object datos)
         {

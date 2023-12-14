@@ -1,4 +1,7 @@
-﻿namespace DevToolsNet.AppConfig.Interfaces
+﻿using System;
+using System.Collections.Generic;
+
+namespace DevToolsNet.AppConfig.Interfaces
 {
     public interface IConfigManager
     {

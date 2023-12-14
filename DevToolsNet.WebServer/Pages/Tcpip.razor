@@ -1,0 +1,92 @@
+﻿@page "/tcpip"
+
+<PageTitle>TCPIP</PageTitle>
+<RadzenRow>
+    <RadzenCard>
+        <RadzenText TextStyle="TextStyle.Overline" TagName="TagName.H4">IP</RadzenText>
+        <RadzenTextBox @bind-Value=ip class="w-100" />
+    </RadzenCard>
+    <RadzenCard>
+        <RadzenText TextStyle="TextStyle.Overline" TagName="TagName.H4">Port</RadzenText>
+        <RadzenTextBox @bind-Value=port class="w-100" />
+    </RadzenCard>
+    <RadzenButton Text="Conect" Click="Conect"  ButtonStyle="ButtonStyle.Primary" />
+    <RadzenButton Text="Disconect" Click="Disconect"  ButtonStyle="ButtonStyle.Secondary" />
+</RadzenRow>
+<RadzenRow>
+    <RadzenCard>
+        <RadzenText TextStyle="TextStyle.Overline" TagName="TagName.H4">Send text</RadzenText>
+        <RadzenTextBox @bind-Value=sendText />
+    </RadzenCard>
+    <RadzenButton Text="Send" Click="Send"  ButtonStyle="ButtonStyle.Primary" />
+</RadzenRow>
+<RadzenRow>
+    @text
+</RadzenRow>
+
+@code {
+    DevToolsNet.TCP.TcpCliente cliente;
+    string ip = "127.0.0.1";
+    string port="2400";
+    string sendText { get; set; }
+    string text { get; set; }
+
+    void Conect()
+    {
+        try
+        {
+            cliente = new TCP.TcpCliente(new TCP.Configs.TcpConfig()
+            {
+                Address = ip,
+                Port = int.Parse(port),
+                Key = Guid.NewGuid().ToString()
+            });
+
+            cliente.DataReaded += Server_DataReaded;
+            text += "- Client started -" + "<br/>";
+        }
+        catch (Exception ex)
+        {
+            // MessageBox.Show(ex.ToString());
+        }
+    }
+
+    void Disconect()
+    {
+        if(cliente != null)
+        {
+            cliente.CloseClient();
+            cliente.Dispose();
+            cliente = null;
+        }
+    }
+
+    async Task Send()
+    {
+        try
+        {
+            if (cliente != null)
+            {
+                text += "-> " + sendText + "<br/>";
+                cliente.Send(sendText);
+                sendText = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            //MessageBox.Show(ex.ToString());
+        }
+        //return Task.CompletedTask;
+    }
+
+
+    void Server_DataReaded(object? sender, EventArgs e) 
+    {
+        text += "<- " + cliente.RawRecivedData + "<br/>";
+        InvokeAsync(() => this.StateHasChanged());
+
+        //this.OnAfterRender();
+        //return Task.CompletedTask;
+    }
+
+}
