@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToolsNet.AppConfig\DevToolsNet.AppConfig.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Drawing\DevToolsNet.Drawing.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Extensions\DevToolsNet.Extensions.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Generics\DevToolsNet.Generics.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Json\DevToolsNet.Json.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Security\DevToolsNet.Security.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Shared\DevToolsNet.Shared.csproj" />
+    <ProjectReference Include="..\DevToolsNet.TCP\DevToolsNet.TCP.csproj" />
+    <ProjectReference Include="..\DevToolsNet.WebServer\DevToolsNet.WebServer.csproj" />
+    <ProjectReference Include="..\DevToolsNet.WinFormsControlLibrary\DevToolsNet.WinFormsControlLibrary.csproj" />
+    <ProjectReference Include="..\DevToolsNet.WinServicesManager\DevToolsNet.WinServicesManager.csproj" />
+    <ProjectReference Include="..\DevToolsNet.Xml\DevToolsNet.Xml.csproj" />
+  </ItemGroup>
+
+</Project>
