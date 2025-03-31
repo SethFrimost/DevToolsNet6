@@ -177,5 +177,9 @@ namespace DevToolsNet.Xml
                 return (T)deserializer.ReadObject(stream);
             }
         }
+
+
+
+
     }
 }

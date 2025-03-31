@@ -11,4 +11,10 @@
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.69.0.3703" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -73,6 +73,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetroFramework.Demo", "Metr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.GoogleServices", "DevToolsNet.GoogleServices\DevToolsNet.GoogleServices.csproj", "{EE1BDE9E-87E3-4C1A-A893-503203373F5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.Razor", "DevToolsNet.Razor\DevToolsNet.Razor.csproj", "{535C0783-8317-416B-9386-2F62A14D9367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,10 @@ Global
 		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{535C0783-8317-416B-9386-2F62A14D9367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{535C0783-8317-416B-9386-2F62A14D9367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{535C0783-8317-416B-9386-2F62A14D9367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{535C0783-8317-416B-9386-2F62A14D9367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
