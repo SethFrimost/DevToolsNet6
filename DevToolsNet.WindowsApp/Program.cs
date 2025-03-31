@@ -30,6 +30,7 @@ namespace DevToolsNet.WindowsApp
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            Application.SetColorMode(SystemColorMode.Dark);
 
             ConfigurationBuilder confBuilder = new ConfigurationBuilder();
             Configuration = confBuilder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();

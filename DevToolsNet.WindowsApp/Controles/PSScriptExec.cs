@@ -15,6 +15,8 @@ namespace DevToolsNet.WindowsApp.Controles
     public partial class PSScriptExec : UserControl
     {
         IPowerShellRunner psr;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public IPowerShellRunner PowerShellRunner
         {
             get => psr;
@@ -25,6 +27,7 @@ namespace DevToolsNet.WindowsApp.Controles
             }
         }
         public PSScript script;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PSScript Script
         {
             get => script;

@@ -4,7 +4,7 @@
     <TargetFrameworks>net48;net6.0;net7.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <PackageProjectUrl>https://github.com/SethFrimost/DevToolsNet6/tree/main/DevToolsNet.AppConfig</PackageProjectUrl>
     <Description>Application config manager, allow load configs from external sources.</Description>
 	<PackageOutputPath>..\outPackages</PackageOutputPath>

@@ -71,6 +71,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetroFramework.Fonts", "Met
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetroFramework.Demo", "MetroFramework.Demo\MetroFramework.Demo.csproj", "{78BA7A5A-D6E1-47E4-99F5-5F6FE62FECE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToolsNet.GoogleServices", "DevToolsNet.GoogleServices\DevToolsNet.GoogleServices.csproj", "{EE1BDE9E-87E3-4C1A-A893-503203373F5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,10 @@ Global
 		{78BA7A5A-D6E1-47E4-99F5-5F6FE62FECE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78BA7A5A-D6E1-47E4-99F5-5F6FE62FECE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78BA7A5A-D6E1-47E4-99F5-5F6FE62FECE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE1BDE9E-87E3-4C1A-A893-503203373F5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
